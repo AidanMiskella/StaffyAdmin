@@ -3,25 +3,33 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		212FB1B1EAD2BABC870381D5 /* Pods_Staffy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B52C6C51D2F79BF24B9E3E8D /* Pods_Staffy.framework */; };
 		7411E32922F0BA3200E3830A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7411E32822F0BA3200E3830A /* AppDelegate.swift */; };
-		7411E32B22F0BA3200E3830A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7411E32A22F0BA3200E3830A /* ViewController.swift */; };
 		7411E32E22F0BA3200E3830A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7411E32C22F0BA3200E3830A /* Main.storyboard */; };
 		7411E33022F0BA3500E3830A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7411E32F22F0BA3500E3830A /* Assets.xcassets */; };
 		7411E33322F0BA3500E3830A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7411E33122F0BA3500E3830A /* LaunchScreen.storyboard */; };
+		7411E33B22F0BAE100E3830A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7411E33A22F0BAE100E3830A /* GoogleService-Info.plist */; };
+		74EDBC0222F0BC19007B65B8 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 74EDBC0122F0BC19007B65B8 /* Login.storyboard */; };
+		74EDBC0422F0BD01007B65B8 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74EDBC0322F0BD01007B65B8 /* LoginViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2F15A6D682DD4735EC998F1B /* Pods-Staffy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Staffy.release.xcconfig"; path = "Target Support Files/Pods-Staffy/Pods-Staffy.release.xcconfig"; sourceTree = "<group>"; };
+		5C365620052AF770151A81B2 /* Pods-Staffy.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Staffy.debug.xcconfig"; path = "Target Support Files/Pods-Staffy/Pods-Staffy.debug.xcconfig"; sourceTree = "<group>"; };
 		7411E32522F0BA3200E3830A /* Staffy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Staffy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7411E32822F0BA3200E3830A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		7411E32A22F0BA3200E3830A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		7411E32D22F0BA3200E3830A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		7411E32F22F0BA3500E3830A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7411E33222F0BA3500E3830A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7411E33422F0BA3500E3830A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7411E33A22F0BAE100E3830A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		74EDBC0122F0BC19007B65B8 /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
+		74EDBC0322F0BD01007B65B8 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		B52C6C51D2F79BF24B9E3E8D /* Pods_Staffy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Staffy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,6 +37,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				212FB1B1EAD2BABC870381D5 /* Pods_Staffy.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -40,6 +49,8 @@
 			children = (
 				7411E32722F0BA3200E3830A /* Staffy */,
 				7411E32622F0BA3200E3830A /* Products */,
+				B5FA7F316355B06C586471E4 /* Pods */,
+				C2F7DB9FA730F69D40B4CDD7 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -55,13 +66,32 @@
 			isa = PBXGroup;
 			children = (
 				7411E32822F0BA3200E3830A /* AppDelegate.swift */,
-				7411E32A22F0BA3200E3830A /* ViewController.swift */,
 				7411E32C22F0BA3200E3830A /* Main.storyboard */,
 				7411E32F22F0BA3500E3830A /* Assets.xcassets */,
 				7411E33122F0BA3500E3830A /* LaunchScreen.storyboard */,
 				7411E33422F0BA3500E3830A /* Info.plist */,
+				7411E33A22F0BAE100E3830A /* GoogleService-Info.plist */,
+				74EDBC0122F0BC19007B65B8 /* Login.storyboard */,
+				74EDBC0322F0BD01007B65B8 /* LoginViewController.swift */,
 			);
 			path = Staffy;
+			sourceTree = "<group>";
+		};
+		B5FA7F316355B06C586471E4 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				5C365620052AF770151A81B2 /* Pods-Staffy.debug.xcconfig */,
+				2F15A6D682DD4735EC998F1B /* Pods-Staffy.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		C2F7DB9FA730F69D40B4CDD7 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B52C6C51D2F79BF24B9E3E8D /* Pods_Staffy.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -71,9 +101,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 7411E33722F0BA3500E3830A /* Build configuration list for PBXNativeTarget "Staffy" */;
 			buildPhases = (
+				1C0A0AB8FF4C4F7E637ADAC9 /* [CP] Check Pods Manifest.lock */,
 				7411E32122F0BA3200E3830A /* Sources */,
 				7411E32222F0BA3200E3830A /* Frameworks */,
 				7411E32322F0BA3200E3830A /* Resources */,
+				53F788663A14D4DB9999D619 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -123,19 +155,63 @@
 			buildActionMask = 2147483647;
 			files = (
 				7411E33322F0BA3500E3830A /* LaunchScreen.storyboard in Resources */,
+				7411E33B22F0BAE100E3830A /* GoogleService-Info.plist in Resources */,
 				7411E33022F0BA3500E3830A /* Assets.xcassets in Resources */,
+				74EDBC0222F0BC19007B65B8 /* Login.storyboard in Resources */,
 				7411E32E22F0BA3200E3830A /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		1C0A0AB8FF4C4F7E637ADAC9 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Staffy-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		53F788663A14D4DB9999D619 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Staffy/Pods-Staffy-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Staffy/Pods-Staffy-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Staffy/Pods-Staffy-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		7411E32122F0BA3200E3830A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7411E32B22F0BA3200E3830A /* ViewController.swift in Sources */,
+				74EDBC0422F0BD01007B65B8 /* LoginViewController.swift in Sources */,
 				7411E32922F0BA3200E3830A /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -280,6 +356,7 @@
 		};
 		7411E33822F0BA3500E3830A /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5C365620052AF770151A81B2 /* Pods-Staffy.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -292,12 +369,13 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.aidanmiskella.Staffy;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
 		7411E33922F0BA3500E3830A /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2F15A6D682DD4735EC998F1B /* Pods-Staffy.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -310,7 +388,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.aidanmiskella.Staffy;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
