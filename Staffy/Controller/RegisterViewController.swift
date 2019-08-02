@@ -35,11 +35,11 @@ class RegisterViewController: UIViewController {
         
         //        errorLabel.alpha = 0
         
-        Utilities.styleTextField(firstNameText)
-        Utilities.styleTextField(secondNameText)
-        Utilities.styleTextField(emailText)
-        Utilities.styleTextField(passwordText)
-        Utilities.styleFilledButton(submitButton)
+        Utilities.styleTextField(firstNameText, .textField, .black)
+        Utilities.styleTextField(secondNameText, .textField, .black)
+        Utilities.styleTextField(emailText, .textField, .black)
+        Utilities.styleTextField(passwordText, .textField, .black)
+        Utilities.styleFilledButton(submitButton, .largeLoginButton, .white, .lightBlue, 20.0)
         
         topImageHeight.constant = UIScreen.main.bounds.height / 2.25
     }

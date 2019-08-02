@@ -39,10 +39,10 @@ class LoginViewController: UIViewController {
         
 //        errorLabel.alpha = 0
         
-        Utilities.styleTextField(emailText)
-        Utilities.styleTextField(passwordText)
-        Utilities.styleHollowButton(loginButton)
-        Utilities.styleFilledButton(registerButton)
+        Utilities.styleTextField(emailText, .textField, .black)
+        Utilities.styleTextField(passwordText, .textField, .black)
+        Utilities.styleHollowButton(loginButton, .largeLoginButton, .lightBlue, 2.0, 20.0)
+        Utilities.styleFilledButton(registerButton, .largeLoginButton, .white, .lightBlue, 20.0)
         
         topImageHeight.constant = UIScreen.main.bounds.height / 2.25
     }

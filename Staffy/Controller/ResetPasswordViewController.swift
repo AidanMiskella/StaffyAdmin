@@ -27,8 +27,8 @@ class ResetPasswordViewController: UIViewController {
         
         //        errorLabel.alpha = 0
         
-        Utilities.styleTextField(emailText)
-        Utilities.styleFilledButton(submitButton)
+        Utilities.styleTextField(emailText, .textField, .black)
+        Utilities.styleFilledButton(submitButton, .largeLoginButton, .white, .lightBlue, 20.0)
         
         topImageHeight.constant = UIScreen.main.bounds.height / 2.25
     }
