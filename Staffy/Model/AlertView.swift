@@ -44,9 +44,9 @@ class AlertView: UIView {
     
     func commonInit() {
         
-        Utilities.styleFilledButton(button, .largeLoginButton, .white, .lightBlue, 20.0)
-        Utilities.styleLabel(title, .largeTitle, .black)
-        Utilities.styleLabel(message, .subTitle, .black)
+        Utilities.styleFilledButton(button: button, font: .largeLoginButton, fontColor: .white, backgroundColor: .lightBlue, cornerRadius: 20.0)
+        Utilities.styleLabel(label: title, font: .largeTitle, fontColor: .black)
+        Utilities.styleLabel(label: message, font: .subTitle, fontColor: .black)
         
         image.layer.cornerRadius = 45
         image.layer.borderColor = UIColor.white.cgColor
@@ -58,11 +58,11 @@ class AlertView: UIView {
         parentView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
     }
     
-    func showAlert(title :String, message: String, image: UIImageView, buttonText: String) {
+    func showAlert(title :String, message: String, image: String, buttonText: String) {
         
         self.title.text = title
         self.message.text = message
-        self.image.image = UIImage(named: "tick")
+        self.image.image = UIImage(named: image)
         self.button.setTitle(buttonText, for: .normal)
         
         UIApplication.shared.keyWindow?.addSubview(parentView)

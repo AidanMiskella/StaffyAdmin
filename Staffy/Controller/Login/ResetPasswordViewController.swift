@@ -28,7 +28,6 @@ class ResetPasswordViewController: UIViewController, AlertViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
         alertView = AlertView()
         alertView?.delegate = self
         
@@ -39,12 +38,12 @@ class ResetPasswordViewController: UIViewController, AlertViewDelegate {
         
         errorLabel.alpha = 0
         
-        Utilities.styleTextField(emailText, .textField, .black)
-        Utilities.styleFilledButton(submitButton, .largeLoginButton, .white, .lightBlue, 20.0)
-        Utilities.styleLabel(errorLabel, .loginError, .red)
-        Utilities.styleLabel(titleLabel, .loginTitle, .lightGray)
+        Utilities.styleTextField(textfield: emailText, font: .textField, fontColor: .black)
+        Utilities.styleFilledButton(button: submitButton, font: .largeLoginButton, fontColor: .white, backgroundColor: .lightBlue, cornerRadius: 20.0)
+        Utilities.styleLabel(label: errorLabel, font: .loginError, fontColor: .red)
+        Utilities.styleLabel(label: titleLabel, font: .loginTitle, fontColor: .lightGray)
         
-        emailImage.tintColor = .lightGray
+        Utilities.styleImage(imageView: emailImage, image: "envelope", imageColor: .lightGray)
         
         topImageHeight.constant = UIScreen.main.bounds.height / 2.25
     }
@@ -61,7 +60,7 @@ class ResetPasswordViewController: UIViewController, AlertViewDelegate {
                 self.errorLabel.text = errorCode?.errorMessage
             } else {
                 
-                self.alertView?.showAlert(title: "Email Reset", message: "We have sent you an email to reset your password", image: UIImageView(), buttonText: "Return to login")
+                self.alertView?.showAlert(title: "Check your mail", message: "We have sent an email to \(email) as you have requested to change your password.", image: "tick", buttonText: "Return to login")
             }
         }
     }

@@ -41,7 +41,6 @@ class RegisterViewController: UIViewController, AlertViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Do any additional setup after loading the view.
         alertView = AlertView()
         alertView?.delegate = self
         
@@ -52,18 +51,18 @@ class RegisterViewController: UIViewController, AlertViewDelegate {
         
         errorLabel.alpha = 0
         
-        Utilities.styleTextField(firstNameText, .textField, .black)
-        Utilities.styleTextField(lastNameText, .textField, .black)
-        Utilities.styleTextField(emailText, .textField, .black)
-        Utilities.styleTextField(passwordText, .textField, .black)
-        Utilities.styleFilledButton(submitButton, .largeLoginButton, .white, .lightBlue, 20.0)
-        Utilities.styleLabel(errorLabel, .loginError, .red)
-        Utilities.styleLabel(titleLabel, .loginTitle, .lightGray)
+        Utilities.styleTextField(textfield: firstNameText, font: .textField, fontColor: .black)
+        Utilities.styleTextField(textfield: lastNameText, font: .textField, fontColor: .black)
+        Utilities.styleTextField(textfield: emailText, font: .textField, fontColor: .black)
+        Utilities.styleTextField(textfield: passwordText, font: .textField, fontColor: .black)
+        Utilities.styleFilledButton(button: submitButton, font: .largeLoginButton, fontColor: .white, backgroundColor: .lightBlue, cornerRadius: 20.0)
+        Utilities.styleLabel(label: errorLabel, font: .loginError, fontColor: .red)
+        Utilities.styleLabel(label: titleLabel, font: .loginTitle, fontColor: .lightGray)
         
-        firstNameImage.tintColor = .lightGray
-        lastNameImage.tintColor = .lightGray
-        emailImage.tintColor = .lightGray
-        passwordImage.tintColor = .lightGray
+        Utilities.styleImage(imageView: firstNameImage, image: "user", imageColor: .lightGray)
+        Utilities.styleImage(imageView: lastNameImage, image: "user", imageColor: .lightGray)
+        Utilities.styleImage(imageView: emailImage, image: "envelope", imageColor: .lightGray)
+        Utilities.styleImage(imageView: passwordImage, image: "lock", imageColor: .lightGray)
         
         topImageHeight.constant = UIScreen.main.bounds.height / 2.25
     }
@@ -113,6 +112,25 @@ class RegisterViewController: UIViewController, AlertViewDelegate {
         })
     }
     
+    func sendVerificationEmail() {
+        
+        if Auth.auth().currentUser != nil && Auth.auth().currentUser?.isEmailVerified == false {
+            
+            Auth.auth().currentUser?.sendEmailVerification(completion: { (error) in
+                if let error = error {
+                    
+                    let errorCode = AuthErrorCode(rawValue: error._code)
+                    self.errorLabel.alpha = 1
+                    self.errorLabel.text = errorCode?.errorMessage
+                } else {
+                    
+                    guard let email = self.emailText.text else { return }
+                    self.alertView?.showAlert(title: "Check your mail", message: "We have sent a verification email to \(email) so that we can verify it's you", image: "tick", buttonText: "Return to login")
+                }
+            })
+        }
+    }
+    
     func validateFields() -> String? {
         
         let error: String
@@ -127,24 +145,6 @@ class RegisterViewController: UIViewController, AlertViewDelegate {
         }
         
         return nil
-    }
-    
-    func sendVerificationEmail() {
-        
-        if Auth.auth().currentUser != nil && Auth.auth().currentUser?.isEmailVerified == false {
-            
-            Auth.auth().currentUser?.sendEmailVerification(completion: { (error) in
-                if let error = error {
-                    
-                    let errorCode = AuthErrorCode(rawValue: error._code)
-                    self.errorLabel.alpha = 1
-                    self.errorLabel.text = errorCode?.errorMessage
-                } else {
-                    
-                    self.alertView?.showAlert(title: "Email verification", message: "We have sent you an email to verify that it's you", image: UIImageView(), buttonText: "Return to login")
-                }
-            })
-        }
     }
     
     func didClickButton() {
