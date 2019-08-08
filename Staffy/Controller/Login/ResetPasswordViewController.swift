@@ -8,8 +8,9 @@
 
 import UIKit
 import FirebaseAuth
+import SCLAlertView
 
-class ResetPasswordViewController: UIViewController, AlertViewDelegate {
+class ResetPasswordViewController: UIViewController {
 
     @IBOutlet weak var topImageHeight: NSLayoutConstraint!
     
@@ -23,14 +24,9 @@ class ResetPasswordViewController: UIViewController, AlertViewDelegate {
     
     @IBOutlet weak var emailImage: UIImageView!
     
-    var alertView: AlertView?
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        alertView = AlertView()
-        alertView?.delegate = self
-        
         setUpElements()
     }
     
@@ -60,7 +56,13 @@ class ResetPasswordViewController: UIViewController, AlertViewDelegate {
                 self.errorLabel.text = errorCode?.errorMessage
             } else {
                 
-                self.alertView?.showAlert(title: "Check your mail", message: "We have sent an email to \(email) as you have requested to change your password.", image: "tick", buttonText: "Return to login")
+                let alertView = SCLAlertView(appearance: Constants.AlertView.appearance)
+                alertView.addButton("Login", backgroundColor: .lightBlue, textColor: .white) {
+                    
+                    self.didClickButton()
+                }
+                
+                alertView.showSuccess("Check your email", subTitle: "We have sent an email to \(email) as you have requested to change your password.", animationStyle: .rightToLeft)
             }
         }
     }
@@ -68,7 +70,7 @@ class ResetPasswordViewController: UIViewController, AlertViewDelegate {
     func didClickButton() {
         
         let storyboard = UIStoryboard(name: "Login", bundle: nil)
-        let loginVC = storyboard.instantiateViewController(withIdentifier: "loginRoot")
+        let loginVC = storyboard.instantiateViewController(withIdentifier: Constants.Storyboard.loginViewController)
         self.present(loginVC, animated: true, completion: nil)
     }
 }

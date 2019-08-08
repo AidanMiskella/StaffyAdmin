@@ -78,7 +78,7 @@ class LoginViewController: UIViewController {
                     if authResult.user.isEmailVerified {
                         
                         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                        let homeVC = storyboard.instantiateViewController(withIdentifier: "homeVC")
+                        let homeVC = storyboard.instantiateViewController(withIdentifier: Constants.Storyboard.main)
                         self.present(homeVC, animated: true, completion: nil)
                     } else {
                         

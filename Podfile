@@ -10,5 +10,6 @@ target 'Staffy' do
   pod 'Firebase/Core'
   pod 'Firebase/Auth'
   pod 'IQKeyboardManagerSwift'
+  pod 'SCLAlertView'
 
 end

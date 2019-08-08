@@ -9,8 +9,9 @@
 import UIKit
 import Firebase
 import FirebaseAuth
+import SCLAlertView
 
-class RegisterViewController: UIViewController, AlertViewDelegate {
+class RegisterViewController: UIViewController {
     
     @IBOutlet weak var topImageHeight: NSLayoutConstraint!
     
@@ -36,13 +37,8 @@ class RegisterViewController: UIViewController, AlertViewDelegate {
     
     @IBOutlet weak var passwordImage: UIImageView!
     
-    var alertView: AlertView?
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        alertView = AlertView()
-        alertView?.delegate = self
         
         setUpElements()
     }
@@ -125,7 +121,14 @@ class RegisterViewController: UIViewController, AlertViewDelegate {
                 } else {
                     
                     guard let email = self.emailText.text else { return }
-                    self.alertView?.showAlert(title: "Check your mail", message: "We have sent a verification email to \(email) so that we can verify it's you", image: "tick", buttonText: "Return to login")
+                    let alertView = SCLAlertView(appearance: Constants.AlertView.appearance)
+                    
+                    alertView.addButton("Login", backgroundColor: .lightBlue, textColor: .white) {
+                        
+                        self.didClickButton()
+                    }
+                    
+                    alertView.showSuccess("Check your email", subTitle: "We have sent a verification email to \(email) so we can verify it's you.", animationStyle: .rightToLeft)
                 }
             })
         }
@@ -150,7 +153,7 @@ class RegisterViewController: UIViewController, AlertViewDelegate {
     func didClickButton() {
 
         let storyboard = UIStoryboard(name: "Login", bundle: nil)
-        let loginVC = storyboard.instantiateViewController(withIdentifier: "loginRoot")
+        let loginVC = storyboard.instantiateViewController(withIdentifier: Constants.Storyboard.loginViewController)
         self.present(loginVC, animated: true, completion: nil)
     }
 }
