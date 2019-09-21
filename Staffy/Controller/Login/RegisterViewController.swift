@@ -104,14 +104,14 @@ class RegisterViewController: UIViewController {
             Constants.FirebaseDB.bio: Constants.Profile.bioDescription,
             Constants.FirebaseDB.reviewRating: 0.0,
             Constants.FirebaseDB.avatar_url: avatarURL,
-            Constants.FirebaseDB.mobile: "",
-            Constants.FirebaseDB.address: "",
-            Constants.FirebaseDB.gender: "",
+            Constants.FirebaseDB.mobile: Constants.Profile.notSet,
+            Constants.FirebaseDB.address: Constants.Profile.notSet,
+            Constants.FirebaseDB.gender: Constants.Profile.notSet,
             Constants.FirebaseDB.jobs_applied: [],
             Constants.FirebaseDB.jobs_accepted: [],
             Constants.FirebaseDB.documents: [],
-            Constants.FirebaseDB.dob: Date(),
-            Constants.FirebaseDB.date_created: FieldValue.serverTimestamp()
+            Constants.FirebaseDB.dob: Constants.Profile.notSet,
+            Constants.FirebaseDB.date_created: Utilities.dateFormatter(Date())
             ], completion: { (error) in
                 if let error = error {
                     

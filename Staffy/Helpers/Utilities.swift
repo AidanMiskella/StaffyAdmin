@@ -68,4 +68,13 @@ class Utilities {
         imageView.image = UIImage(named: image)
         imageView.tintColor = imageColor
     }
+    
+    static func dateFormatter(_ dob: Date) -> String {
+        
+        let df = DateFormatter()
+        df.dateFormat = "dd MMMM yyyy"
+        let result = df.string(from: dob)
+        
+        return result
+    }
 }

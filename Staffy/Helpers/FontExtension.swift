@@ -18,4 +18,7 @@ extension UIFont {
     static let loginError = UIFont(name: "AvenirNext-Medium", size: 12)!
     static let largeTitle = UIFont(name: "AvenirNext-Medium", size: 20)!
     static let subTitle = UIFont(name: "Avenir Next", size: 16)!
+    static let boldLargeTitle = UIFont(name: "AvenirNext-Bold", size: 20)!
+    static let profileTableHeading = UIFont(name: "AvenirNext-Medium", size: 16)!
+    static let profileTableData = UIFont(name: "Avenir Next", size: 18)!
 }

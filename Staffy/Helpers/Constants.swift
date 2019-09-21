@@ -57,6 +57,7 @@ struct Constants {
         static let ratingError = "An error has occured getting your rating"
         static let rating = "of 5 Average Rating"
         static let no_rating = "No reviews yet"
+        static let notSet = "Not set"
         static let bioDescription = """
                                     This is a few short lines to describe who you are, what you do and what kind of
                                     job you are looking for. Edit your personal statement by clicking below.

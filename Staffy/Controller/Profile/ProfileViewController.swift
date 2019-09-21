@@ -28,11 +28,21 @@ class ProfileViewController: UIViewController, ImagePickerDelegate {
     
     @IBOutlet weak var bioLabel: UILabel!
     
-    @IBOutlet weak var editProfileButton: UIButton!
-    
     @IBOutlet weak var jobAlertView: UIView!
     
+//    @IBOutlet weak var logoutButton: UIButton!
+    
+    @IBOutlet weak var jobAlertImage: UIImageView!
+    
     @IBOutlet weak var jobAlertLabel: UILabel!
+    
+    @IBOutlet weak var editProfileButton: UIBarButtonItem!
+    
+    @IBOutlet weak var tableView: UITableView!
+    
+    @IBOutlet weak var scrollView: UIScrollView!
+    
+    var dataCells: [ProfileCellData] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,13 +50,28 @@ class ProfileViewController: UIViewController, ImagePickerDelegate {
         // Do any additional setup after loading the view.
         setUpProfile()
         setUpElements()
+        setGradientBackground()
+        dataCells = createArray()
+        
+        tableView.delegate = self
+        tableView.dataSource = self
+        
     }
     
     func setUpElements() {
-     
-        Utilities.styleFilledButton(button: editProfileButton, font: .largeLoginButton, fontColor: .white, backgroundColor: .lightBlue, cornerRadius: 10.0)
+
+//        Utilities.styleHollowButton(button: logoutButton, font: .largeLoginButton, fontColor: .lightBlue, borderWidth: 2.0, cornerRadius: 10.0)
+        Utilities.styleLabel(label: firstNameLabel, font: .boldLargeTitle, fontColor: .white)
+        Utilities.styleLabel(label: ratingLabel, font: .subTitle, fontColor: .gray)
+        Utilities.styleLabel(label: bioLabel, font: .subTitle, fontColor: .darkGray)
+        Utilities.styleLabel(label: jobAlertLabel, font: .subTitle, fontColor: .white)
+        
+        jobAlertView.backgroundColor = .lightBlue
+        jobAlertImage.tintColor = .white
         
         middleRatingView.roundCorners([.topLeft, .topRight], radius: 30)
+        
+        editProfileButton.tintColor = .white
         
         profileImage.layer.borderWidth = 4
         profileImage.layer.masksToBounds = false
@@ -64,41 +89,24 @@ class ProfileViewController: UIViewController, ImagePickerDelegate {
     
     func setUpProfile() {
         
-        let ref = Firestore.firestore().collection(Constants.FirebaseDB.user_ref)
-            .document(Auth.auth().currentUser!.uid)
-
-        ref.getDocument { (snapshot, err) in
-            if let data = snapshot?.data() {
-                
-                self.downloadAvatar(data)
-                self.firstNameLabel.text = "\(data[Constants.FirebaseDB.first_name]!) \(data[Constants.FirebaseDB.last_name]!)"
-                self.ratingView.rating = data[Constants.FirebaseDB.reviewRating]! as! Float
-                self.ratingLabel.text = self.getRatingText(rating: data[Constants.FirebaseDB.reviewRating]! as! Float)
-                self.bioLabel.text = "\(data[Constants.FirebaseDB.bio]!)"
-            } else {
-                
-                print("Couldn't find the document")
-            }
-        }
-    }
-    
-    func downloadAvatar(_ data: [String: Any]) {
+        guard let currentUser = UserService.currentUser else { return }
         
-        let url = URL(string: data[Constants.FirebaseDB.avatar_url] as! String)
-        let session = URLSession.shared
-        session.dataTask(with: url!) { (data: Data?, response: URLResponse?, error: Error?) in
+        if currentUser.avatarURL?.absoluteString != Constants.Profile.notSet {
             
-            if let error = error {
+            ImageService.getImage(withURL: currentUser.avatarURL!) { (image) in
                 
-                print(error)
-            } else {
-                
-                DispatchQueue.main.async {
-                    
-                    self.profileImage.image = UIImage(data: data!)
-                }
+                self.profileImage.image = image
             }
-        }.resume()
+        } else {
+            
+            self.profileImage.image = UIImage(named: "image-placeholder")
+        }
+        
+        firstNameLabel.text = "\(currentUser.firstName) \(currentUser.lastName)"
+        ratingView.rating = currentUser.reviewRating!
+        ratingLabel.text = getRatingText(rating: currentUser.reviewRating!)
+        bioLabel.text = currentUser.bio
+        
     }
     
     func getRatingText(rating: Float) -> String {
@@ -132,7 +140,7 @@ class ProfileViewController: UIViewController, ImagePickerDelegate {
     
     func wrapperDidPress(_ imagePicker: ImagePickerController, images: [UIImage]) {
         
-        
+        imagePicker.dismiss(animated: true)
     }
     
     func doneButtonDidPress(_ imagePicker: ImagePickerController, images: [UIImage]) {
@@ -171,6 +179,39 @@ class ProfileViewController: UIViewController, ImagePickerDelegate {
         imagePicker.dismiss(animated: true)
     }
     
+    func setGradientBackground() {
+        
+        let colorTop =  UIColor(red: 149/255, green: 209/255, blue: 237/255, alpha: 1).cgColor
+        let colorBottom = UIColor(red: 45/255, green: 171/255, blue: 235/255, alpha: 1).cgColor
+
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.colors = [colorTop, colorBottom]
+        gradientLayer.locations = [0.0, 1.0]
+        gradientLayer.frame = topProfileImageView.bounds
+        
+        self.view.layer.insertSublayer(gradientLayer, at:0)
+    }
+    
+    func createArray() -> [ProfileCellData] {
+        
+        var tempCells: [ProfileCellData] = []
+        guard let currentUser = UserService.currentUser else { return tempCells }
+        
+        let emailCell = ProfileCellData(title: "Email", data: currentUser.email!)
+        let dateOfBirthCell = ProfileCellData(title: "Date of Birth", data: currentUser.dateOfBirth!)
+        let genderCell = ProfileCellData(title: "Gender", data: currentUser.gender!)
+        let mobileCell = ProfileCellData(title: "Mobile", data: currentUser.mobile!)
+        let addressCell = ProfileCellData(title: "Address", data: currentUser.address!)
+        
+        tempCells.append(emailCell)
+        tempCells.append(dateOfBirthCell)
+        tempCells.append(genderCell)
+        tempCells.append(mobileCell)
+        tempCells.append(addressCell)
+        
+        return tempCells
+    }
+    
     @IBAction func logoutTapped(_ sender: UIBarButtonItem) {
         
         do {
@@ -182,3 +223,25 @@ class ProfileViewController: UIViewController, ImagePickerDelegate {
         }
     }
 }
+
+extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+        return dataCells.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        let profileData = dataCells[indexPath.row]
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ProfileCell") as! ProfileTableViewCell
+        
+        cell.setCell(profileData: profileData)
+        
+        return cell
+    }
+    
+    
+    
+}
+
