@@ -163,6 +163,7 @@
                         <outlet property="emailText" destination="feh-6A-KZs" id="J54-ek-gtc"/>
                         <outlet property="errorLabel" destination="97q-35-O0M" id="nNw-R5-hJz"/>
                         <outlet property="forgotPasswordButton" destination="Kvw-Lv-lOd" id="SCN-VL-buk"/>
+                        <outlet property="loginBackground" destination="r2Z-N8-wMf" id="QYl-dT-6Cv"/>
                         <outlet property="loginButton" destination="bw8-jE-J6q" id="KSj-gl-rzR"/>
                         <outlet property="passwordImage" destination="FEw-1m-V2B" id="XvN-Ig-iYd"/>
                         <outlet property="passwordText" destination="CqW-6Y-jAe" id="oNa-jf-IWQ"/>

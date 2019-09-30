@@ -49,10 +49,10 @@ class RegisterViewController: UIViewController {
         
         errorLabel.alpha = 0
         
-        Utilities.styleTextField(textfield: firstNameText, font: .textField, fontColor: .black)
-        Utilities.styleTextField(textfield: lastNameText, font: .textField, fontColor: .black)
-        Utilities.styleTextField(textfield: emailText, font: .textField, fontColor: .black)
-        Utilities.styleTextField(textfield: passwordText, font: .textField, fontColor: .black)
+        Utilities.styleTextField(textfield: firstNameText, font: .textField, fontColor: .black, padding: 40.0)
+        Utilities.styleTextField(textfield: lastNameText, font: .textField, fontColor: .black, padding: 40.0)
+        Utilities.styleTextField(textfield: emailText, font: .textField, fontColor: .black, padding: 40.0)
+        Utilities.styleTextField(textfield: passwordText, font: .textField, fontColor: .black, padding: 40.0)
         Utilities.styleFilledButton(button: submitButton, font: .largeLoginButton, fontColor: .white, backgroundColor: .lightBlue, cornerRadius: 20.0)
         Utilities.styleLabel(label: errorLabel, font: .loginError, fontColor: .red)
         Utilities.styleLabel(label: titleLabel, font: .loginTitle, fontColor: .lightGray)

@@ -13,7 +13,7 @@
         <!--Navigation Controller-->
         <scene sceneID="3am-37-Zss">
             <objects>
-                <navigationController id="DBZ-WX-fEa" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="ProfileRoot" id="DBZ-WX-fEa" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="kS6-a6-WSE">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -31,7 +31,7 @@
             <objects>
                 <viewController id="bWb-cN-tCs" customClass="ProfileViewController" customModule="Staffy" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="EuI-QM-Dgn">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="1500"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="1000"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="T6a-wD-Cpu">
@@ -74,23 +74,19 @@
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="No reviews yet" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vtv-z1-YoI">
-                                        <rect key="frame" x="79" y="73" width="256" height="21"/>
+                                        <rect key="frame" x="79" y="61" width="256" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gkc-ri-2ze">
-                                        <rect key="frame" x="21" y="102" width="373" height="92"/>
+                                        <rect key="frame" x="21" y="94" width="373" height="92"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uhs-gM-DaM">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="709"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    </scrollView>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
@@ -111,16 +107,16 @@
                                     </label>
                                 </subviews>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="90" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="SNE-4V-jqQ">
-                                <rect key="frame" x="0.0" y="568" width="414" height="433"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="90" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="SNE-4V-jqQ">
+                                <rect key="frame" x="0.0" y="568" width="414" height="325"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ProfileCell" id="Kb5-KY-UNs" customClass="ProfileTableViewCell" customModule="Staffy" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="ProfileCell" id="Kb5-KY-UNs" customClass="ProfileTableViewCell" customModule="Staffy" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="90"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Kb5-KY-UNs" id="xzj-gL-dD2">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="89.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="376" height="89.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Te5-Vm-ASw">
@@ -152,7 +148,7 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Me" image="userSmall" id="GD2-sD-56R"/>
                     <navigationItem key="navigationItem" id="Ei3-cJ-RWX">
-                        <barButtonItem key="rightBarButtonItem" title="Edit" id="7Pz-5x-cAy">
+                        <barButtonItem key="rightBarButtonItem" title="Logout" id="7Pz-5x-cAy">
                             <connections>
                                 <action selector="logoutTapped:" destination="bWb-cN-tCs" id="tcf-f5-Jom"/>
                             </connections>
@@ -160,20 +156,27 @@
                     </navigationItem>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="414" height="1500"/>
+                    <size key="freeformSize" width="414" height="1000"/>
                     <connections>
                         <outlet property="bioLabel" destination="gkc-ri-2ze" id="rYM-9z-dep"/>
-                        <outlet property="editProfileButton" destination="7Pz-5x-cAy" id="slg-4z-xgh"/>
                         <outlet property="firstNameLabel" destination="ZAq-Ab-T5X" id="Rje-oa-rNf"/>
                         <outlet property="jobAlertImage" destination="Rfw-sk-QYK" id="zU5-MB-PLR"/>
                         <outlet property="jobAlertLabel" destination="WFr-24-m9g" id="oi5-aV-nrJ"/>
                         <outlet property="jobAlertView" destination="OtX-Zf-xTp" id="5iR-na-WFD"/>
+                        <outlet property="logoutButton" destination="7Pz-5x-cAy" id="Tpb-6F-E36"/>
                         <outlet property="middleRatingView" destination="Aex-sW-kzC" id="auF-II-Rfs"/>
                         <outlet property="profileImage" destination="psx-WD-fge" id="cC1-LM-tjl"/>
                         <outlet property="ratingLabel" destination="vtv-z1-YoI" id="CQC-kK-aFD"/>
                         <outlet property="ratingView" destination="cLs-VN-nBp" id="Wcq-zD-Bs9"/>
                         <outlet property="tableView" destination="SNE-4V-jqQ" id="bXd-eb-lso"/>
                         <outlet property="topProfileImageView" destination="T6a-wD-Cpu" id="RZj-8o-2ey"/>
+                        <segue destination="lWv-Oy-kvK" kind="show" identifier="Email" id="cf9-Nc-I76"/>
+                        <segue destination="Ao0-L7-YC7" kind="show" identifier="Date of Birth" id="Cm4-eR-nm4"/>
+                        <segue destination="JPC-u2-nPJ" kind="show" identifier="Gender" id="BA7-pv-qN7"/>
+                        <segue destination="VP1-sc-2c4" kind="show" identifier="Mobile" id="9bl-uO-6jv"/>
+                        <segue destination="xs3-oa-YWf" kind="show" identifier="Address" id="ilB-Vg-cWk"/>
+                        <segue destination="GHa-vg-Ded" kind="show" identifier="Name" id="7Av-5u-7rQ"/>
+                        <segue destination="MmN-mm-OKl" kind="show" identifier="Documents" id="Bcv-sa-hP0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wdf-W5-Grn" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -185,9 +188,70 @@
             </objects>
             <point key="canvasLocation" x="-426.08695652173918" y="50.892857142857139"/>
         </scene>
+        <!--NameEdit-->
+        <scene sceneID="Qfn-o5-GLT">
+            <objects>
+                <viewControllerPlaceholder storyboardName="NameEdit" id="GHa-vg-Ded" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="x8b-EA-aG3"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="J82-A6-dFP" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="241" y="-257"/>
+        </scene>
+        <!--EmailEdit-->
+        <scene sceneID="hbc-tW-SUq">
+            <objects>
+                <viewControllerPlaceholder storyboardName="EmailEdit" id="lWv-Oy-kvK" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Kwl-Yb-SXU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="244" y="-202"/>
+        </scene>
+        <!--DateOfBirthEdit-->
+        <scene sceneID="S6s-NM-sRq">
+            <objects>
+                <viewControllerPlaceholder storyboardName="DateOfBirthEdit" id="Ao0-L7-YC7" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Jfw-Gl-cbN" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="253" y="-145"/>
+        </scene>
+        <!--GenderEdit-->
+        <scene sceneID="xIX-sy-BHg">
+            <objects>
+                <viewControllerPlaceholder storyboardName="GenderEdit" id="JPC-u2-nPJ" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="MS3-pV-k5w" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="259" y="-84"/>
+        </scene>
+        <!--MobileEdit-->
+        <scene sceneID="CYe-dc-QJI">
+            <objects>
+                <viewControllerPlaceholder storyboardName="MobileEdit" id="VP1-sc-2c4" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="MFy-vb-xwb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="250" y="-36"/>
+        </scene>
+        <!--AddressEdit-->
+        <scene sceneID="HYV-zg-J0r">
+            <objects>
+                <viewControllerPlaceholder storyboardName="AddressEdit" id="xs3-oa-YWf" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="E5M-bW-Ogg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="256" y="16"/>
+        </scene>
+        <!--Documents-->
+        <scene sceneID="2fG-BD-FYX">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Documents" id="MmN-mm-OKl" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="sPu-4h-oei"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hat-Wz-Nlv" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="300" y="65"/>
+        </scene>
     </scenes>
     <resources>
         <image name="briefcase" width="30" height="30"/>
         <image name="userSmall" width="30" height="30"/>
     </resources>
+    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
 </document>

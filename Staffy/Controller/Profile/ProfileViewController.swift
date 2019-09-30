@@ -30,37 +30,37 @@ class ProfileViewController: UIViewController, ImagePickerDelegate {
     
     @IBOutlet weak var jobAlertView: UIView!
     
-//    @IBOutlet weak var logoutButton: UIButton!
-    
     @IBOutlet weak var jobAlertImage: UIImageView!
     
     @IBOutlet weak var jobAlertLabel: UILabel!
     
-    @IBOutlet weak var editProfileButton: UIBarButtonItem!
+    @IBOutlet weak var logoutButton: UIBarButtonItem!
     
     @IBOutlet weak var tableView: UITableView!
     
-    @IBOutlet weak var scrollView: UIScrollView!
-    
     var dataCells: [ProfileCellData] = []
+    
+    override func viewWillAppear(_ animated: Bool) {
+        
+        setUpProfile()
+        dataCells = createArray()
+        tableView.reloadData()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        setUpProfile()
         setUpElements()
-        setGradientBackground()
+        topProfileImageView.layerGradient()
         dataCells = createArray()
         
         tableView.delegate = self
         tableView.dataSource = self
-        
     }
     
     func setUpElements() {
 
-//        Utilities.styleHollowButton(button: logoutButton, font: .largeLoginButton, fontColor: .lightBlue, borderWidth: 2.0, cornerRadius: 10.0)
         Utilities.styleLabel(label: firstNameLabel, font: .boldLargeTitle, fontColor: .white)
         Utilities.styleLabel(label: ratingLabel, font: .subTitle, fontColor: .gray)
         Utilities.styleLabel(label: bioLabel, font: .subTitle, fontColor: .darkGray)
@@ -70,8 +70,6 @@ class ProfileViewController: UIViewController, ImagePickerDelegate {
         jobAlertImage.tintColor = .white
         
         middleRatingView.roundCorners([.topLeft, .topRight], radius: 30)
-        
-        editProfileButton.tintColor = .white
         
         profileImage.layer.borderWidth = 4
         profileImage.layer.masksToBounds = false
@@ -91,15 +89,9 @@ class ProfileViewController: UIViewController, ImagePickerDelegate {
         
         guard let currentUser = UserService.currentUser else { return }
         
-        if currentUser.avatarURL?.absoluteString != Constants.Profile.notSet {
+        ImageService.getImage(withURL: currentUser.avatarURL!) { (image) in
             
-            ImageService.getImage(withURL: currentUser.avatarURL!) { (image) in
-                
-                self.profileImage.image = image
-            }
-        } else {
-            
-            self.profileImage.image = UIImage(named: "image-placeholder")
+            self.profileImage.image = image
         }
         
         firstNameLabel.text = "\(currentUser.firstName) \(currentUser.lastName)"
@@ -197,17 +189,21 @@ class ProfileViewController: UIViewController, ImagePickerDelegate {
         var tempCells: [ProfileCellData] = []
         guard let currentUser = UserService.currentUser else { return tempCells }
         
+        let nameCell = ProfileCellData(title: "Name", data: "\(currentUser.firstName) \(currentUser.lastName)")
         let emailCell = ProfileCellData(title: "Email", data: currentUser.email!)
         let dateOfBirthCell = ProfileCellData(title: "Date of Birth", data: currentUser.dateOfBirth!)
         let genderCell = ProfileCellData(title: "Gender", data: currentUser.gender!)
         let mobileCell = ProfileCellData(title: "Mobile", data: currentUser.mobile!)
         let addressCell = ProfileCellData(title: "Address", data: currentUser.address!)
+        let documentsCell = ProfileCellData(title: "Documents", data: "\(currentUser.documents!.count) Documents")
         
+        tempCells.append(nameCell)
         tempCells.append(emailCell)
         tempCells.append(dateOfBirthCell)
         tempCells.append(genderCell)
         tempCells.append(mobileCell)
         tempCells.append(addressCell)
+        tempCells.append(documentsCell)
         
         return tempCells
     }
@@ -241,7 +237,10 @@ extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
         return cell
     }
     
-    
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        self.performSegue(withIdentifier: dataCells[indexPath.row].title, sender: self)
+    }
+
 }
 

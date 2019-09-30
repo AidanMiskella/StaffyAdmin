@@ -11,7 +11,7 @@ import FirebaseAuth
 
 class LoginViewController: UIViewController {
     
-    @IBOutlet weak var topImageHeight: NSLayoutConstraint!
+    @IBOutlet weak var loginBackground: UIImageView!
     
     @IBOutlet weak var titleLabel: UILabel!
     
@@ -41,8 +41,8 @@ class LoginViewController: UIViewController {
         
         errorLabel.alpha = 0
         
-        Utilities.styleTextField(textfield: emailText, font: .textField, fontColor: .black)
-        Utilities.styleTextField(textfield: passwordText, font: .textField, fontColor: .black)
+        Utilities.styleTextField(textfield: emailText, font: .textField, fontColor: .black, padding: 40.0)
+        Utilities.styleTextField(textfield: passwordText, font: .textField, fontColor: .black, padding: 40.0)
         Utilities.styleHollowButton(button: loginButton, font: .largeLoginButton, fontColor: .lightBlue, borderWidth: 2.0, cornerRadius: 20.0)
         Utilities.styleHollowButton(button: forgotPasswordButton, font: .smallLoginButton, fontColor: .lightBlue, borderWidth: 0.0, cornerRadius: 0.0)
         Utilities.styleFilledButton(button: registerButton, font: .largeLoginButton, fontColor: .white, backgroundColor: .lightBlue, cornerRadius: 20.0)
@@ -51,8 +51,6 @@ class LoginViewController: UIViewController {
         
         Utilities.styleImage(imageView: emailImage, image: "envelope", imageColor: .lightGray)
         Utilities.styleImage(imageView: passwordImage, image: "lock", imageColor: .lightGray)
-        
-        topImageHeight.constant = UIScreen.main.bounds.height / 2.25
         
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         self.navigationController?.navigationBar.shadowImage = UIImage()
