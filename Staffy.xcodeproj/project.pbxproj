@@ -48,6 +48,8 @@
 		74B23E8A22F8ADEA0058B5D4 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 74B23E8922F8ADEA0058B5D4 /* Profile.storyboard */; };
 		74EDBC0222F0BC19007B65B8 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 74EDBC0122F0BC19007B65B8 /* Login.storyboard */; };
 		74EDBC0422F0BD01007B65B8 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74EDBC0322F0BD01007B65B8 /* LoginViewController.swift */; };
+		74FC54BD2343C15400938320 /* BioEdit.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 74FC54BC2343C15400938320 /* BioEdit.storyboard */; };
+		74FC54BF2343C16300938320 /* BioEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74FC54BE2343C16300938320 /* BioEditViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -95,6 +97,8 @@
 		74B23E8922F8ADEA0058B5D4 /* Profile.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
 		74EDBC0122F0BC19007B65B8 /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		74EDBC0322F0BD01007B65B8 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		74FC54BC2343C15400938320 /* BioEdit.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = BioEdit.storyboard; sourceTree = "<group>"; };
+		74FC54BE2343C16300938320 /* BioEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BioEditViewController.swift; sourceTree = "<group>"; };
 		B52C6C51D2F79BF24B9E3E8D /* Pods_Staffy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Staffy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -144,6 +148,7 @@
 			children = (
 				74BEC61F233F6AFC00019738 /* Name */,
 				74BEC620233F6B0400019738 /* Email */,
+				74FC54BB2343C12E00938320 /* Bio */,
 				74BEC621233F6B0A00019738 /* Date Of Birth */,
 				74BEC622233F6B1900019738 /* Gender */,
 				74BEC623233F6B2000019738 /* Mobile */,
@@ -312,6 +317,15 @@
 			path = Address;
 			sourceTree = "<group>";
 		};
+		74FC54BB2343C12E00938320 /* Bio */ = {
+			isa = PBXGroup;
+			children = (
+				74FC54BE2343C16300938320 /* BioEditViewController.swift */,
+				74FC54BC2343C15400938320 /* BioEdit.storyboard */,
+			);
+			path = Bio;
+			sourceTree = "<group>";
+		};
 		B5FA7F316355B06C586471E4 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -415,6 +429,7 @@
 				7411E32E22F0BA3200E3830A /* Main.storyboard in Resources */,
 				7401164423413FE900667AE1 /* Documents.storyboard in Resources */,
 				7405A4FD233C2C950046BC71 /* EmailEdit.storyboard in Resources */,
+				74FC54BD2343C15400938320 /* BioEdit.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -490,6 +505,7 @@
 				7403019D233CB3390040FAF5 /* NameEditViewController.swift in Sources */,
 				7403CFCC22F8A16D00C6C8D1 /* ColorExtension.swift in Sources */,
 				740301A7233CB3B00040FAF5 /* AddressEditViewController.swift in Sources */,
+				74FC54BF2343C16300938320 /* BioEditViewController.swift in Sources */,
 				743BE9EA22F0C5C6006A2F6E /* Constants.swift in Sources */,
 				740301A1233CB3680040FAF5 /* DateOfBirthEditViewController.swift in Sources */,
 			);

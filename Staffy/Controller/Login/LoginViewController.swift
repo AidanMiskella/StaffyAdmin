@@ -11,7 +11,7 @@ import FirebaseAuth
 
 class LoginViewController: UIViewController {
     
-    @IBOutlet weak var loginBackground: UIImageView!
+    @IBOutlet weak var topImageHeight: NSLayoutConstraint!
     
     @IBOutlet weak var titleLabel: UILabel!
     
@@ -51,6 +51,8 @@ class LoginViewController: UIViewController {
         
         Utilities.styleImage(imageView: emailImage, image: "envelope", imageColor: .lightGray)
         Utilities.styleImage(imageView: passwordImage, image: "lock", imageColor: .lightGray)
+        
+        topImageHeight.constant = UIScreen.main.bounds.height / 2.25
         
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         self.navigationController?.navigationBar.shadowImage = UIImage()

@@ -60,8 +60,7 @@ struct Constants {
         static let no_rating = "No reviews yet"
         static let notSet = "Not set"
         static let bioDescription = """
-                                    This is a few short lines to describe who you are, what you do and what kind of
-                                    job you are looking for. Edit your personal statement by clicking below.
+                                    This is a few short lines to describe who you are, what you do and what kind of job you are looking for. Edit your personal statement by clicking below.
                                     """
         static let genderArray = ["Male", "Female", "Other"]
         static let countyArray = ["Co. Antrim", "Co. Armagh", "Co. Carlow", "Co. Cavan", "Co. Clare", "Co. Cork", "Co. Derry", "Co. Donegal", "Co. Down", "Co. Dublin", "Co. Fermanagh", "Co. Galway", "Co. Kerry", "Co. Kildare", "Co. Kilkenny", "Co. Laois", "Co. Leitrim", "Co. Limerick", "Co. Longford", "Co. Louth", "Co. Mayo", "Co. Meath", "Co. Monaghan", "Co. Offaly", "Co. Roscommon", "Co. Sligo", "Co. Tipperary", "Co. Tyrone", "Co. Waterford", "Co. Westmeath", "Co. Wexford", "Co. Wicklow"]

@@ -39,8 +39,15 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bJp-sF-DQP">
+                                <rect key="frame" x="47" y="225" width="320" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                            </textField>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rQc-Ll-czf">
-                                <rect key="frame" x="100" y="233" width="215" height="50"/>
+                                <rect key="frame" x="100" y="277" width="215" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Save"/>
                                 <connections>
@@ -53,6 +60,7 @@
                     </view>
                     <connections>
                         <outlet property="emailTextField" destination="PPr-Hc-5ef" id="Cn1-2w-S0v"/>
+                        <outlet property="passwordTextField" destination="bJp-sF-DQP" id="CAt-sg-M52"/>
                         <outlet property="saveButton" destination="rQc-Ll-czf" id="kfr-kv-KNt"/>
                         <outlet property="titleLabel" destination="MMb-Uk-Zb5" id="3KN-LC-vt8"/>
                         <outlet property="topView" destination="IPt-PT-Sml" id="Hin-aI-QYa"/>

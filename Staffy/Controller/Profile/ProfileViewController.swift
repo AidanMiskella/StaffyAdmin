@@ -66,6 +66,8 @@ class ProfileViewController: UIViewController, ImagePickerDelegate {
         Utilities.styleLabel(label: bioLabel, font: .subTitle, fontColor: .darkGray)
         Utilities.styleLabel(label: jobAlertLabel, font: .subTitle, fontColor: .white)
         
+        bioLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(bioTapped)))
+        
         jobAlertView.backgroundColor = .lightBlue
         jobAlertImage.tintColor = .white
         
@@ -128,6 +130,11 @@ class ProfileViewController: UIViewController, ImagePickerDelegate {
         imagePickerController.delegate = self
         imagePickerController.imageLimit = 1
         present(imagePickerController, animated: true, completion: nil)
+    }
+    
+    @objc private func bioTapped(_ recognizer: UITapGestureRecognizer) {
+        
+        self.performSegue(withIdentifier: "Bio", sender: self)
     }
     
     func wrapperDidPress(_ imagePicker: ImagePickerController, images: [UIImage]) {

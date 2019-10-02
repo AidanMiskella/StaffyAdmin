@@ -26,13 +26,13 @@ class Utilities {
         
         textView.isScrollEnabled = false
         
-        let bottomLine = CALayer()
-
-        bottomLine.frame = CGRect(x: 0, y: textView.frame.height - 1, width: textView.frame.width, height: 1)
-
-        bottomLine.backgroundColor = UIColor.lightGray.cgColor
-
-        textView.layer.addSublayer(bottomLine)
+//        let bottomLine = CALayer()
+//
+//        bottomLine.frame = CGRect(x: 0, y: textView.frame.height - 1, width: textView.frame.width, height: 1)
+//
+//        bottomLine.backgroundColor = UIColor.lightGray.cgColor
+//
+//        textView.layer.addSublayer(bottomLine)
     }
     
     static func styleLabel(label: UILabel, font: UIFont, fontColor: UIColor) {
