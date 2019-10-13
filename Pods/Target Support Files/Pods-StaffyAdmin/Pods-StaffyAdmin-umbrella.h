@@ -11,6 +11,6 @@
 #endif
 
 
-FOUNDATION_EXPORT double Pods_StaffyVersionNumber;
-FOUNDATION_EXPORT const unsigned char Pods_StaffyVersionString[];
+FOUNDATION_EXPORT double Pods_StaffyAdminVersionNumber;
+FOUNDATION_EXPORT const unsigned char Pods_StaffyAdminVersionString[];
 

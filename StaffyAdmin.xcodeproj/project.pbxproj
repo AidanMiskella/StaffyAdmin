@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		212FB1B1EAD2BABC870381D5 /* Pods_Staffy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B52C6C51D2F79BF24B9E3E8D /* Pods_Staffy.framework */; };
 		7400A2092334306E00D4E9FE /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7400A2082334306E00D4E9FE /* User.swift */; };
 		7400A20B2334336D00D4E9FE /* UserServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7400A20A2334336D00D4E9FE /* UserServices.swift */; };
 		7401164423413FE900667AE1 /* Documents.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7401164323413FE900667AE1 /* Documents.storyboard */; };
@@ -51,11 +50,15 @@
 		74EDBC0422F0BD01007B65B8 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74EDBC0322F0BD01007B65B8 /* LoginViewController.swift */; };
 		74FC54BD2343C15400938320 /* BioEdit.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 74FC54BC2343C15400938320 /* BioEdit.storyboard */; };
 		74FC54BF2343C16300938320 /* BioEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74FC54BE2343C16300938320 /* BioEditViewController.swift */; };
+		811ACD41748C5C11DFB603FA /* Pods_StaffyAdmin.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73F7E1C8B7A535CBC1775FEA /* Pods_StaffyAdmin.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		18CFE4FF7E548750235621ED /* Pods-StaffyAdmin.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StaffyAdmin.release.xcconfig"; path = "Target Support Files/Pods-StaffyAdmin/Pods-StaffyAdmin.release.xcconfig"; sourceTree = "<group>"; };
 		2F15A6D682DD4735EC998F1B /* Pods-Staffy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Staffy.release.xcconfig"; path = "Target Support Files/Pods-Staffy/Pods-Staffy.release.xcconfig"; sourceTree = "<group>"; };
+		3E08EA34B6084B757D334FBA /* Pods-StaffyAdmin.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StaffyAdmin.debug.xcconfig"; path = "Target Support Files/Pods-StaffyAdmin/Pods-StaffyAdmin.debug.xcconfig"; sourceTree = "<group>"; };
 		5C365620052AF770151A81B2 /* Pods-Staffy.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Staffy.debug.xcconfig"; path = "Target Support Files/Pods-Staffy/Pods-Staffy.debug.xcconfig"; sourceTree = "<group>"; };
+		73F7E1C8B7A535CBC1775FEA /* Pods_StaffyAdmin.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StaffyAdmin.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7400A2082334306E00D4E9FE /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		7400A20A2334336D00D4E9FE /* UserServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserServices.swift; sourceTree = "<group>"; };
 		7401164323413FE900667AE1 /* Documents.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Documents.storyboard; sourceTree = "<group>"; };
@@ -79,7 +82,7 @@
 		7405A504233C2CD50046BC71 /* AddressEdit.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AddressEdit.storyboard; sourceTree = "<group>"; };
 		740C16C92336343F00266C62 /* ImageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageService.swift; sourceTree = "<group>"; };
 		74107EBD234B6E5800059F34 /* FoldingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoldingCell.swift; sourceTree = "<group>"; };
-		7411E32522F0BA3200E3830A /* Staffy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Staffy.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		7411E32522F0BA3200E3830A /* StaffyAdmin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StaffyAdmin.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7411E32822F0BA3200E3830A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7411E32D22F0BA3200E3830A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		7411E32F22F0BA3500E3830A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -101,7 +104,6 @@
 		74EDBC0322F0BD01007B65B8 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		74FC54BC2343C15400938320 /* BioEdit.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = BioEdit.storyboard; sourceTree = "<group>"; };
 		74FC54BE2343C16300938320 /* BioEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BioEditViewController.swift; sourceTree = "<group>"; };
-		B52C6C51D2F79BF24B9E3E8D /* Pods_Staffy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Staffy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,7 +111,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				212FB1B1EAD2BABC870381D5 /* Pods_Staffy.framework in Frameworks */,
+				811ACD41748C5C11DFB603FA /* Pods_StaffyAdmin.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -172,7 +174,7 @@
 		7411E31C22F0BA3200E3830A = {
 			isa = PBXGroup;
 			children = (
-				7411E32722F0BA3200E3830A /* Staffy */,
+				7411E32722F0BA3200E3830A /* StaffyAdmin */,
 				7411E32622F0BA3200E3830A /* Products */,
 				B5FA7F316355B06C586471E4 /* Pods */,
 				C2F7DB9FA730F69D40B4CDD7 /* Frameworks */,
@@ -182,12 +184,12 @@
 		7411E32622F0BA3200E3830A /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				7411E32522F0BA3200E3830A /* Staffy.app */,
+				7411E32522F0BA3200E3830A /* StaffyAdmin.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		7411E32722F0BA3200E3830A /* Staffy */ = {
+		7411E32722F0BA3200E3830A /* StaffyAdmin */ = {
 			isa = PBXGroup;
 			children = (
 				7413AE4E22F37D740019CD06 /* Helpers */,
@@ -202,7 +204,7 @@
 				7411E33A22F0BAE100E3830A /* GoogleService-Info.plist */,
 				7411E32C22F0BA3200E3830A /* Main.storyboard */,
 			);
-			path = Staffy;
+			path = StaffyAdmin;
 			sourceTree = "<group>";
 		};
 		7413AE4E22F37D740019CD06 /* Helpers */ = {
@@ -334,6 +336,8 @@
 			children = (
 				5C365620052AF770151A81B2 /* Pods-Staffy.debug.xcconfig */,
 				2F15A6D682DD4735EC998F1B /* Pods-Staffy.release.xcconfig */,
+				3E08EA34B6084B757D334FBA /* Pods-StaffyAdmin.debug.xcconfig */,
+				18CFE4FF7E548750235621ED /* Pods-StaffyAdmin.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -341,7 +345,7 @@
 		C2F7DB9FA730F69D40B4CDD7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				B52C6C51D2F79BF24B9E3E8D /* Pods_Staffy.framework */,
+				73F7E1C8B7A535CBC1775FEA /* Pods_StaffyAdmin.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -349,9 +353,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		7411E32422F0BA3200E3830A /* Staffy */ = {
+		7411E32422F0BA3200E3830A /* StaffyAdmin */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 7411E33722F0BA3500E3830A /* Build configuration list for PBXNativeTarget "Staffy" */;
+			buildConfigurationList = 7411E33722F0BA3500E3830A /* Build configuration list for PBXNativeTarget "StaffyAdmin" */;
 			buildPhases = (
 				1C0A0AB8FF4C4F7E637ADAC9 /* [CP] Check Pods Manifest.lock */,
 				7411E32122F0BA3200E3830A /* Sources */,
@@ -363,9 +367,9 @@
 			);
 			dependencies = (
 			);
-			name = Staffy;
+			name = StaffyAdmin;
 			productName = Staffy;
-			productReference = 7411E32522F0BA3200E3830A /* Staffy.app */;
+			productReference = 7411E32522F0BA3200E3830A /* StaffyAdmin.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -394,7 +398,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 7411E32022F0BA3200E3830A /* Build configuration list for PBXProject "Staffy" */;
+			buildConfigurationList = 7411E32022F0BA3200E3830A /* Build configuration list for PBXProject "StaffyAdmin" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -407,7 +411,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				7411E32422F0BA3200E3830A /* Staffy */,
+				7411E32422F0BA3200E3830A /* StaffyAdmin */,
 			);
 		};
 /* End PBXProject section */
@@ -454,7 +458,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Staffy-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-StaffyAdmin-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -467,15 +471,15 @@
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Staffy/Pods-Staffy-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-StaffyAdmin/Pods-StaffyAdmin-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Staffy/Pods-Staffy-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-StaffyAdmin/Pods-StaffyAdmin-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Staffy/Pods-Staffy-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-StaffyAdmin/Pods-StaffyAdmin-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -655,17 +659,17 @@
 		};
 		7411E33822F0BA3500E3830A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5C365620052AF770151A81B2 /* Pods-Staffy.debug.xcconfig */;
+			baseConfigurationReference = 3E08EA34B6084B757D334FBA /* Pods-StaffyAdmin.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 8CDXH35L83;
-				INFOPLIST_FILE = Staffy/Info.plist;
+				INFOPLIST_FILE = StaffyAdmin/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.aidanmiskella.Staffy;
+				PRODUCT_BUNDLE_IDENTIFIER = com.aidanmiskella.StaffyAdmin;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -674,17 +678,17 @@
 		};
 		7411E33922F0BA3500E3830A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2F15A6D682DD4735EC998F1B /* Pods-Staffy.release.xcconfig */;
+			baseConfigurationReference = 18CFE4FF7E548750235621ED /* Pods-StaffyAdmin.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 8CDXH35L83;
-				INFOPLIST_FILE = Staffy/Info.plist;
+				INFOPLIST_FILE = StaffyAdmin/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.aidanmiskella.Staffy;
+				PRODUCT_BUNDLE_IDENTIFIER = com.aidanmiskella.StaffyAdmin;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -694,7 +698,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		7411E32022F0BA3200E3830A /* Build configuration list for PBXProject "Staffy" */ = {
+		7411E32022F0BA3200E3830A /* Build configuration list for PBXProject "StaffyAdmin" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				7411E33522F0BA3500E3830A /* Debug */,
@@ -703,7 +707,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		7411E33722F0BA3500E3830A /* Build configuration list for PBXNativeTarget "Staffy" */ = {
+		7411E33722F0BA3500E3830A /* Build configuration list for PBXNativeTarget "StaffyAdmin" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				7411E33822F0BA3500E3830A /* Debug */,

@@ -1,6 +1,0 @@
-framework module Pods_Staffy {
-  umbrella header "Pods-Staffy-umbrella.h"
-
-  export *
-  module * { export * }
-}

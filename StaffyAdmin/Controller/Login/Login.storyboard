@@ -29,7 +29,7 @@
         <!--Login View Controller-->
         <scene sceneID="V8x-uR-4xi">
             <objects>
-                <viewController storyboardIdentifier="loginVC" id="VHk-u0-fYe" customClass="LoginViewController" customModule="Staffy" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="loginVC" id="VHk-u0-fYe" customClass="LoginViewController" customModule="StaffyAdmin" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Hcc-pX-SFY">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -81,7 +81,7 @@
                                     <action selector="loginButtonTapped:" destination="VHk-u0-fYe" eventType="touchUpInside" id="0ts-eq-k6D"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Staffy" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SfF-0b-SZM">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Staffy Admin" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SfF-0b-SZM">
                                 <rect key="frame" x="40" y="128" width="334" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="FjX-AD-hjE"/>
@@ -192,7 +192,7 @@
         <!--Register View Controller-->
         <scene sceneID="i3b-Mn-w0a">
             <objects>
-                <viewController id="ZnB-As-ZN9" customClass="RegisterViewController" customModule="Staffy" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="ZnB-As-ZN9" customClass="RegisterViewController" customModule="StaffyAdmin" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="W3X-rv-By6">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -209,7 +209,7 @@
                                 <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Staffy" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OK3-Zk-F7m">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Staffy Admin" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OK3-Zk-F7m">
                                 <rect key="frame" x="40" y="148" width="334" height="47"/>
                                 <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="40"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -348,7 +348,7 @@
         <!--Reset Password View Controller-->
         <scene sceneID="LMr-X0-5Za">
             <objects>
-                <viewController id="6vq-yD-sbO" customClass="ResetPasswordViewController" customModule="Staffy" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="6vq-yD-sbO" customClass="ResetPasswordViewController" customModule="StaffyAdmin" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Hfw-t6-rDp">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -365,7 +365,7 @@
                                 <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Staffy" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vlz-Vd-9Ni">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Staffy Admin" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vlz-Vd-9Ni">
                                 <rect key="frame" x="40" y="148" width="334" height="47"/>
                                 <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="40"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
