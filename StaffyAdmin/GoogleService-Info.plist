@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>287419185256-q9tcekh843c3qr30e54pcv9f1kuqmkr6.apps.googleusercontent.com</string>
+	<string>287419185256-gfci8r9nnqsh0psa9c87037ib4oa5679.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.287419185256-q9tcekh843c3qr30e54pcv9f1kuqmkr6</string>
+	<string>com.googleusercontent.apps.287419185256-gfci8r9nnqsh0psa9c87037ib4oa5679</string>
 	<key>API_KEY</key>
 	<string>AIzaSyATPHq57N3H4UXmaSCRQ8KRL4F435nW5II</string>
 	<key>GCM_SENDER_ID</key>
@@ -13,7 +13,7 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.aidanmiskella.Staffy</string>
+	<string>com.aidanmiskella.StaffyAdmin</string>
 	<key>PROJECT_ID</key>
 	<string>myfyp-c18b5</string>
 	<key>STORAGE_BUCKET</key>
@@ -29,7 +29,7 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:287419185256:ios:bd00a8a30852b963</string>
+	<string>1:287419185256:ios:13949105a2f14f26cea3dd</string>
 	<key>DATABASE_URL</key>
 	<string>https://myfyp-c18b5.firebaseio.com</string>
 </dict>

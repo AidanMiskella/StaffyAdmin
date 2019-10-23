@@ -9,12 +9,9 @@
 import UIKit
 import Firebase
 import FirebaseAuth
+import FirebaseFirestore
 
 class AddressEditViewController: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
-    
-    @IBOutlet weak var topView: UIView!
-    
-    @IBOutlet weak var titleLabel: UILabel!
     
     @IBOutlet weak var address1: UITextField!
     
@@ -53,10 +50,8 @@ class AddressEditViewController: UIViewController, UITextFieldDelegate, UIPicker
     
     func setupUI() {
         
-        topView.layerGradient()
         errorLabel.alpha = 0
         
-        Utilities.styleLabel(label: titleLabel, font: .editProfileTitle, fontColor: .white)
         Utilities.styleTextField(textfield: address1, font: .editProfileText, fontColor: .black, padding: 40.0)
         Utilities.styleTextField(textfield: address2, font: .editProfileText, fontColor: .black, padding: 40.0)
         Utilities.styleTextField(textfield: address3, font: .editProfileText, fontColor: .black, padding: 40.0)
@@ -100,7 +95,7 @@ class AddressEditViewController: UIViewController, UITextFieldDelegate, UIPicker
     
     @objc func doneClick() {
         
-        address4.text = Constants.Profile.countyArray[self.countyPicker.selectedRow(inComponent: 0)]
+        address4.text = Constants.Arrays.countyArray[self.countyPicker.selectedRow(inComponent: 0)]
         address4.resignFirstResponder()
     }
     
@@ -116,12 +111,12 @@ class AddressEditViewController: UIViewController, UITextFieldDelegate, UIPicker
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         
-        return Constants.Profile.countyArray.count
+        return Constants.Arrays.countyArray.count
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         
-        return Constants.Profile.countyArray[row]
+        return Constants.Arrays.countyArray[row]
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
@@ -131,7 +126,7 @@ class AddressEditViewController: UIViewController, UITextFieldDelegate, UIPicker
     
     @IBAction func saveButtonDidPress(_ sender: UIButton) {
         
-        guard let currentUser = UserService.currentUser else { return }
+        guard let currentCompany = CompanyService.currentCompany else { return }
         
         if address1.text == "" || address3.text == "" || address4.text == "" {
             
@@ -140,7 +135,7 @@ class AddressEditViewController: UIViewController, UITextFieldDelegate, UIPicker
         } else {
             
             var fullAddress: String
-            let ref = Firestore.firestore().collection(Constants.FirebaseDB.user_ref)
+            let ref = Firestore.firestore().collection(Constants.FirebaseDB.company_ref)
                 .document(Auth.auth().currentUser!.uid)
             
             if address2.text == "" {
@@ -160,7 +155,7 @@ class AddressEditViewController: UIViewController, UITextFieldDelegate, UIPicker
                     print("Error updating information \(error)")
                 } else {
                     
-                    currentUser.address = fullAddress
+                    currentCompany.address = fullAddress
                     self.navigationController?.popViewController(animated: true)
                 }
             }

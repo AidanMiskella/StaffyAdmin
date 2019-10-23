@@ -1,45 +1,54 @@
 //
-//  ResetPasswordViewController.swift
-//  Staffy
+//  PasswordEditViewController.swift
+//  StaffyAdmin
 //
-//  Created by Aidan Miskella on 01/08/2019.
+//  Created by Aidan Miskella on 22/10/2019.
 //  Copyright © 2019 Aidan Miskella. All rights reserved.
 //
 
 import UIKit
+import Firebase
 import FirebaseAuth
 import SCLAlertView
 
-class ResetPasswordViewController: UIViewController {
+class PasswordEditViewController: UIViewController {
+
+    @IBOutlet weak var emailTextField: UITextField!
     
-    @IBOutlet weak var emailText: UITextField!
-    
-    @IBOutlet weak var submitButton: UIButton!
+    @IBOutlet weak var emailImage: UIImageView!
     
     @IBOutlet weak var errorLabel: UILabel!
     
-    @IBOutlet weak var emailImage: UIImageView!
+    @IBOutlet weak var changeButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        setUpElements()
+        // Do any additional setup after loading the view.
+        setupUI()
+        placeholder()
     }
     
-    func setUpElements() {
+    func setupUI() {
+        
+        Utilities.setupNavigationStyle(navigationController!)
         
         errorLabel.alpha = 0
         
-        Utilities.styleTextField(textfield: emailText, font: .textField, fontColor: .black, padding: 40.0)
-        Utilities.styleFilledButton(button: submitButton, font: .largeLoginButton, fontColor: .white, backgroundColor: .lightBlue, cornerRadius: 20.0)
-        Utilities.styleLabel(label: errorLabel, font: .loginError, fontColor: .red)
-        
+        Utilities.styleTextField(textfield: emailTextField, font: .editProfileText, fontColor: .black, padding: 40.0)
         Utilities.styleImage(imageView: emailImage, image: "envelope", imageColor: .lightGray)
+        Utilities.styleLabel(label: errorLabel, font: .loginError, fontColor: .red)
+        Utilities.styleFilledButton(button: changeButton, font: .largeLoginButton, fontColor: .white, backgroundColor: .lightBlue, cornerRadius: 10.0)
     }
     
-    @IBAction func submitButtonTapped(_ sender: UIButton) {
+    func placeholder() {
         
-        guard let email = emailText.text else { return }
+        emailTextField.placeholder = Auth.auth().currentUser?.email
+    }
+    
+    @IBAction func changeButtonPressed(_ sender: Any) {
+        
+        guard let email = emailTextField.text else { return }
         Auth.auth().sendPasswordReset(withEmail: email) { (error) in
             
             if let error = error {

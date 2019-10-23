@@ -9,12 +9,9 @@
 import UIKit
 import Firebase
 import FirebaseAuth
+import FirebaseFirestore
 
 class MobileEditViewController: UIViewController {
-    
-    @IBOutlet weak var topView: UIView!
-    
-    @IBOutlet weak var titleLabel: UILabel!
     
     @IBOutlet weak var mobileTextField: UITextField!
     
@@ -34,10 +31,8 @@ class MobileEditViewController: UIViewController {
     
     func setupUI() {
         
-        topView.layerGradient()
         errorLabel.alpha = 0
         
-        Utilities.styleLabel(label: titleLabel, font: .editProfileTitle, fontColor: .white)
         Utilities.styleTextField(textfield: mobileTextField, font: .editProfileText, fontColor: .black, padding: 40.0)
         Utilities.styleLabel(label: errorLabel, font: .loginError, fontColor: .red)
         Utilities.styleImage(imageView: mobileImage, image: "phone-handset", imageColor: .lightGray)
@@ -46,20 +41,20 @@ class MobileEditViewController: UIViewController {
     
     func placeholders() {
         
-        guard let currentUser = UserService.currentUser else { return }
+        guard let currentCompany = CompanyService.currentCompany else { return }
         
-        if currentUser.mobile == "Not set" {
+        if currentCompany.mobile == "Not set" {
             
             mobileTextField.placeholder = "012 345 6789"
         } else {
             
-            mobileTextField.placeholder = currentUser.mobile
+            mobileTextField.placeholder = currentCompany.mobile
         }
     }
     
     @IBAction func saveButtonDidPress(_ sender: UIButton) {
         
-        guard let currentUser = UserService.currentUser else { return }
+        guard let currentCompany = CompanyService.currentCompany else { return }
         
         if mobileTextField.text == "" {
             
@@ -67,7 +62,7 @@ class MobileEditViewController: UIViewController {
             errorLabel.text = "Please enter a mobile number."
         } else {
             
-            let ref = Firestore.firestore().collection(Constants.FirebaseDB.user_ref)
+            let ref = Firestore.firestore().collection(Constants.FirebaseDB.company_ref)
                 .document(Auth.auth().currentUser!.uid)
             
             ref.updateData([
@@ -79,7 +74,7 @@ class MobileEditViewController: UIViewController {
                     print("Error updating information \(error)")
                 } else {
                     
-                    currentUser.mobile = self.mobileTextField.text!
+                    currentCompany.mobile = self.mobileTextField.text!
                     self.navigationController?.popViewController(animated: true)
                 }
             }

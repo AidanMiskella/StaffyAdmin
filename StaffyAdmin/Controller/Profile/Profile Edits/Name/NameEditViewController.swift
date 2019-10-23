@@ -9,12 +9,9 @@
 import UIKit
 import Firebase
 import FirebaseAuth
+import FirebaseFirestore
 
 class NameEditViewController: UIViewController {
-    
-    @IBOutlet weak var topView: UIView!
-    
-    @IBOutlet weak var titleLabel: UILabel!
     
     @IBOutlet weak var firstNameTextField: UITextField!
     
@@ -37,10 +34,7 @@ class NameEditViewController: UIViewController {
     }
     
     func setupUI() {
-        
-        topView.layerGradient()
-        
-        Utilities.styleLabel(label: titleLabel, font: .editProfileTitle, fontColor: .white)
+
         Utilities.styleTextField(textfield: firstNameTextField, font: .editProfileText, fontColor: .black, padding: 40.0)
         Utilities.styleTextField(textfield: lastNameTextField, font: .editProfileText, fontColor: .black, padding: 40.0)
         Utilities.styleFilledButton(button: saveButton, font: .largeLoginButton, fontColor: .white, backgroundColor: .lightBlue, cornerRadius: 10.0)
@@ -53,18 +47,18 @@ class NameEditViewController: UIViewController {
     
     func placeholders() {
         
-        guard let currentUser = UserService.currentUser else { return }
+        guard let currentCompany = CompanyService.currentCompany else { return }
         
-        firstNameTextField.placeholder = currentUser.firstName
-        lastNameTextField.placeholder = currentUser.lastName
+        firstNameTextField.placeholder = currentCompany.firstName
+        lastNameTextField.placeholder = currentCompany.lastName
     }
     
     @IBAction func saveButtonDidPress(_ sender: Any) {
         
-        guard let currentUser = UserService.currentUser else { return }
+        guard let currentCompany = CompanyService.currentCompany else { return }
         
-        var newFirstName = currentUser.firstName
-        var newLastName = currentUser.lastName
+        var newFirstName = currentCompany.firstName
+        var newLastName = currentCompany.lastName
         
         if firstNameTextField.text == "" || lastNameTextField.text == "" {
             
@@ -82,7 +76,7 @@ class NameEditViewController: UIViewController {
                 newLastName = lastNameTextField.text!
             }
             
-            let ref = Firestore.firestore().collection(Constants.FirebaseDB.user_ref)
+            let ref = Firestore.firestore().collection(Constants.FirebaseDB.company_ref)
                 .document(Auth.auth().currentUser!.uid)
             
             ref.updateData([
@@ -95,8 +89,8 @@ class NameEditViewController: UIViewController {
                     print("Error updating information \(error)")
                 } else {
                     
-                    currentUser.firstName = newFirstName
-                    currentUser.lastName = newLastName
+                    currentCompany.firstName = newFirstName
+                    currentCompany.lastName = newLastName
                     self.navigationController?.popViewController(animated: true)
                 }
             }

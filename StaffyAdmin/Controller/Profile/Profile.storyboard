@@ -29,23 +29,16 @@
         <!--Me-->
         <scene sceneID="xWw-11-Wwq">
             <objects>
-                <viewController id="bWb-cN-tCs" customClass="ProfileViewController" customModule="Staffy" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="bWb-cN-tCs" customClass="ProfileViewController" customModule="StaffyAdmin" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="EuI-QM-Dgn">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="1000"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="T6a-wD-Cpu">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="340"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="245"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZAq-Ab-T5X">
-                                        <rect key="frame" x="8" y="265" width="398" height="20"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="psx-WD-fge">
-                                        <rect key="frame" x="127" y="90" width="160" height="160"/>
+                                        <rect key="frame" x="120" y="8" width="175" height="175"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                         <gestureRecognizers/>
                                         <connections>
@@ -54,11 +47,11 @@
                                     </imageView>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="340" id="Kif-ef-4qt"/>
+                                    <constraint firstAttribute="height" constant="245" id="Kif-ef-4qt"/>
                                 </constraints>
                             </view>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ffJ-ye-C4Z">
-                                <rect key="frame" x="0.0" y="300" width="414" height="617"/>
+                                <rect key="frame" x="0.0" y="293" width="414" height="624"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="y9K-g6-XPc" userLabel="ContentView">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="624"/>
@@ -123,7 +116,7 @@
                                                     <constraint firstAttribute="height" constant="377" id="td1-XO-m7s"/>
                                                 </constraints>
                                                 <prototypes>
-                                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="ProfileCell" id="Kb5-KY-UNs" customClass="ProfileTableViewCell" customModule="Staffy" customModuleProvider="target">
+                                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="ProfileCell" id="Kb5-KY-UNs" customClass="ProfileTableViewCell" customModule="StaffyAdmin" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="28" width="414" height="90"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Kb5-KY-UNs" id="xzj-gL-dD2">
@@ -201,7 +194,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="T6a-wD-Cpu" firstAttribute="top" secondItem="EuI-QM-Dgn" secondAttribute="top" id="5N4-uq-Zcj"/>
+                            <constraint firstItem="T6a-wD-Cpu" firstAttribute="top" secondItem="PcQ-3A-mK3" secondAttribute="top" id="3xV-t9-VYv"/>
                             <constraint firstItem="ffJ-ye-C4Z" firstAttribute="top" secondItem="T6a-wD-Cpu" secondAttribute="bottom" constant="-40" id="8TC-gi-2G8"/>
                             <constraint firstItem="T6a-wD-Cpu" firstAttribute="leading" secondItem="PcQ-3A-mK3" secondAttribute="leading" id="N9k-MZ-rDf"/>
                             <constraint firstItem="ffJ-ye-C4Z" firstAttribute="bottom" secondItem="PcQ-3A-mK3" secondAttribute="bottom" id="NCG-5Q-FUA"/>
@@ -225,7 +218,6 @@
                     <connections>
                         <outlet property="bioLabel" destination="gkc-ri-2ze" id="rYM-9z-dep"/>
                         <outlet property="contentView" destination="y9K-g6-XPc" id="0A0-jB-CSD"/>
-                        <outlet property="firstNameLabel" destination="ZAq-Ab-T5X" id="Rje-oa-rNf"/>
                         <outlet property="jobAlertImage" destination="Rfw-sk-QYK" id="zU5-MB-PLR"/>
                         <outlet property="jobAlertLabel" destination="WFr-24-m9g" id="oi5-aV-nrJ"/>
                         <outlet property="jobAlertView" destination="OtX-Zf-xTp" id="5iR-na-WFD"/>
@@ -237,13 +229,12 @@
                         <outlet property="tableView" destination="SNE-4V-jqQ" id="bXd-eb-lso"/>
                         <outlet property="topProfileImageView" destination="T6a-wD-Cpu" id="RZj-8o-2ey"/>
                         <segue destination="lWv-Oy-kvK" kind="show" identifier="Email" id="cf9-Nc-I76"/>
-                        <segue destination="Ao0-L7-YC7" kind="show" identifier="Date of Birth" id="Cm4-eR-nm4"/>
-                        <segue destination="JPC-u2-nPJ" kind="show" identifier="Gender" id="BA7-pv-qN7"/>
                         <segue destination="VP1-sc-2c4" kind="show" identifier="Mobile" id="9bl-uO-6jv"/>
                         <segue destination="xs3-oa-YWf" kind="show" identifier="Address" id="ilB-Vg-cWk"/>
                         <segue destination="GHa-vg-Ded" kind="show" identifier="Name" id="7Av-5u-7rQ"/>
-                        <segue destination="MmN-mm-OKl" kind="show" identifier="Documents" id="Bcv-sa-hP0"/>
                         <segue destination="SKs-y3-OWa" kind="show" identifier="Bio" id="yZp-DW-U06"/>
+                        <segue destination="FHw-Cn-G9H" kind="show" identifier="Company" id="dii-cS-Gis"/>
+                        <segue destination="X4d-SS-kzy" kind="show" identifier="Password" id="I1h-vi-4oU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wdf-W5-Grn" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -282,29 +273,13 @@
             </objects>
             <point key="canvasLocation" x="269" y="-122"/>
         </scene>
-        <!--DateOfBirthEdit-->
-        <scene sceneID="S6s-NM-sRq">
-            <objects>
-                <viewControllerPlaceholder storyboardName="DateOfBirthEdit" id="Ao0-L7-YC7" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Jfw-Gl-cbN" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="307" y="-59"/>
-        </scene>
-        <!--GenderEdit-->
-        <scene sceneID="xIX-sy-BHg">
-            <objects>
-                <viewControllerPlaceholder storyboardName="GenderEdit" id="JPC-u2-nPJ" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="MS3-pV-k5w" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="287" y="-3"/>
-        </scene>
         <!--MobileEdit-->
         <scene sceneID="CYe-dc-QJI">
             <objects>
                 <viewControllerPlaceholder storyboardName="MobileEdit" id="VP1-sc-2c4" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MFy-vb-xwb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="285" y="51"/>
+            <point key="canvasLocation" x="285" y="-75"/>
         </scene>
         <!--AddressEdit-->
         <scene sceneID="HYV-zg-J0r">
@@ -312,17 +287,23 @@
                 <viewControllerPlaceholder storyboardName="AddressEdit" id="xs3-oa-YWf" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="E5M-bW-Ogg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="291" y="121"/>
+            <point key="canvasLocation" x="291" y="-20"/>
         </scene>
-        <!--Documents-->
-        <scene sceneID="2fG-BD-FYX">
+        <!--CompanyNameEdit-->
+        <scene sceneID="PmV-ae-xgO">
             <objects>
-                <viewControllerPlaceholder storyboardName="Documents" id="MmN-mm-OKl" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" id="sPu-4h-oei"/>
-                </viewControllerPlaceholder>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="hat-Wz-Nlv" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewControllerPlaceholder storyboardName="CompanyNameEdit" id="FHw-Cn-G9H" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="t0y-bS-u84" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="288" y="210"/>
+            <point key="canvasLocation" x="334" y="24"/>
+        </scene>
+        <!--PasswordEdit-->
+        <scene sceneID="kTx-mD-GXR">
+            <objects>
+                <viewControllerPlaceholder storyboardName="PasswordEdit" id="X4d-SS-kzy" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ykv-3O-vAJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="298" y="70"/>
         </scene>
     </scenes>
     <resources>

@@ -9,13 +9,13 @@
 import UIKit
 import Firebase
 import FirebaseAuth
+import FirebaseFirestore
+import FirebaseStorage
 import SCLAlertView
 
 class RegisterViewController: UIViewController {
     
-    @IBOutlet weak var topImageHeight: NSLayoutConstraint!
-    
-    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var companyNameText: UITextField!
     
     @IBOutlet weak var firstNameText: UITextField!
     
@@ -28,6 +28,8 @@ class RegisterViewController: UIViewController {
     @IBOutlet weak var submitButton: UIButton!
     
     @IBOutlet weak var errorLabel: UILabel!
+    
+    @IBOutlet weak var companyNameImage: UIImageView!
     
     @IBOutlet weak var firstNameImage: UIImageView!
     
@@ -49,20 +51,19 @@ class RegisterViewController: UIViewController {
         
         errorLabel.alpha = 0
         
+        Utilities.styleTextField(textfield: companyNameText, font: .textField, fontColor: .black, padding: 40.0)
         Utilities.styleTextField(textfield: firstNameText, font: .textField, fontColor: .black, padding: 40.0)
         Utilities.styleTextField(textfield: lastNameText, font: .textField, fontColor: .black, padding: 40.0)
         Utilities.styleTextField(textfield: emailText, font: .textField, fontColor: .black, padding: 40.0)
         Utilities.styleTextField(textfield: passwordText, font: .textField, fontColor: .black, padding: 40.0)
         Utilities.styleFilledButton(button: submitButton, font: .largeLoginButton, fontColor: .white, backgroundColor: .lightBlue, cornerRadius: 20.0)
         Utilities.styleLabel(label: errorLabel, font: .loginError, fontColor: .red)
-        Utilities.styleLabel(label: titleLabel, font: .loginTitle, fontColor: .lightGray)
         
+        Utilities.styleImage(imageView: companyNameImage, image: "user", imageColor: .lightGray)
         Utilities.styleImage(imageView: firstNameImage, image: "user", imageColor: .lightGray)
         Utilities.styleImage(imageView: lastNameImage, image: "user", imageColor: .lightGray)
         Utilities.styleImage(imageView: emailImage, image: "envelope", imageColor: .lightGray)
         Utilities.styleImage(imageView: passwordImage, image: "lock", imageColor: .lightGray)
-        
-        topImageHeight.constant = UIScreen.main.bounds.height / 2.25
     }
     
     @IBAction func createUserButtonTapped(_ sender: UIButton) {
@@ -96,22 +97,18 @@ class RegisterViewController: UIViewController {
     
     func saveUser(_ userId: String, _ avatarURL: String) {
         
-        Firestore.firestore().collection(Constants.FirebaseDB.user_ref).document(userId).setData([
+        Firestore.firestore().collection(Constants.FirebaseDB.company_ref).document(userId).setData([
             Constants.FirebaseDB.user_id: userId,
+            Constants.FirebaseDB.company_name: companyNameText.text!,
             Constants.FirebaseDB.first_name: firstNameText.text!,
             Constants.FirebaseDB.last_name: lastNameText.text!,
-            Constants.FirebaseDB.email: emailText.text!,
             Constants.FirebaseDB.bio: Constants.Profile.bioDescription,
             Constants.FirebaseDB.reviewRating: 0.0,
             Constants.FirebaseDB.avatar_url: avatarURL,
             Constants.FirebaseDB.mobile: Constants.Profile.notSet,
             Constants.FirebaseDB.address: Constants.Profile.notSet,
-            Constants.FirebaseDB.gender: Constants.Profile.notSet,
-            Constants.FirebaseDB.jobs_applied: [],
-            Constants.FirebaseDB.jobs_accepted: [],
-            Constants.FirebaseDB.documents: [],
-            Constants.FirebaseDB.dob: Constants.Profile.notSet,
-            Constants.FirebaseDB.date_created: Utilities.dateFormatter(Date())
+            Constants.FirebaseDB.jobs_created: [],
+            Constants.FirebaseDB.date_created: Utilities.dateFormatterFullMonth(Date())
             ], completion: { (error) in
                 if let error = error {
                     
@@ -173,7 +170,8 @@ class RegisterViewController: UIViewController {
         
         let error: String
         
-        if firstNameText.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
+        if companyNameText.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
+            firstNameText.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
             lastNameText.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
             emailText.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
             passwordText.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" {

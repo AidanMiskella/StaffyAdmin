@@ -9,6 +9,8 @@
 import UIKit
 import Firebase
 import FirebaseAuth
+import FirebaseStorage
+import FirebaseFirestore
 import StarryStars
 import ImagePicker
 
@@ -18,7 +20,7 @@ class ProfileViewController: UIViewController, ImagePickerDelegate {
     
     @IBOutlet weak var profileImage: UIImageView!
     
-    @IBOutlet weak var firstNameLabel: UILabel!
+    @IBOutlet weak var companyNameLabel: UILabel!
     
     @IBOutlet weak var contentView: UIView!
     
@@ -54,7 +56,6 @@ class ProfileViewController: UIViewController, ImagePickerDelegate {
 
         // Do any additional setup after loading the view.
         setUpElements()
-        topProfileImageView.layerGradient()
         dataCells = createArray()
         
         tableView.delegate = self
@@ -63,10 +64,11 @@ class ProfileViewController: UIViewController, ImagePickerDelegate {
     
     func setUpElements() {
 
-        Utilities.styleLabel(label: firstNameLabel, font: .boldLargeTitle, fontColor: .white)
         Utilities.styleLabel(label: ratingLabel, font: .subTitle, fontColor: .gray)
         Utilities.styleLabel(label: bioLabel, font: .subTitle, fontColor: .darkGray)
         Utilities.styleLabel(label: jobAlertLabel, font: .subTitle, fontColor: .white)
+        
+        topProfileImageView.backgroundColor = .lightBlue
         
         contentView.roundCorners([.topLeft, .topRight], radius: 30.0)
         
@@ -84,25 +86,21 @@ class ProfileViewController: UIViewController, ImagePickerDelegate {
         profileImage.isUserInteractionEnabled = true
         profileImage.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(profileImageTapped)))
         
-        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
-        self.navigationController?.navigationBar.shadowImage = UIImage()
-        self.navigationController?.navigationBar.isTranslucent = true
-        self.navigationController?.view.backgroundColor = .clear
+        Utilities.setupNavigationStyleNoBorder(navigationController!)
     }
     
     func setUpProfile() {
         
-        guard let currentUser = UserService.currentUser else { return }
+        guard let currentCompany = CompanyService.currentCompany else { return }
         
-        ImageService.getImage(withURL: currentUser.avatarURL!) { (image) in
+        ImageService.getImage(withURL: currentCompany.avatarURL!) { (image) in
             
             self.profileImage.image = image
         }
         
-        firstNameLabel.text = "\(currentUser.firstName) \(currentUser.lastName)"
-        ratingView.rating = currentUser.reviewRating!
-        ratingLabel.text = getRatingText(rating: currentUser.reviewRating!)
-        bioLabel.text = currentUser.bio
+        ratingView.rating = currentCompany.reviewRating!
+        ratingLabel.text = getRatingText(rating: currentCompany.reviewRating!)
+        bioLabel.text = currentCompany.bio
         
     }
     
@@ -148,9 +146,9 @@ class ProfileViewController: UIViewController, ImagePickerDelegate {
     func doneButtonDidPress(_ imagePicker: ImagePickerController, images: [UIImage]) {
         
         // Get the users avatarURL
-        let ref = Firestore.firestore().collection(Constants.FirebaseDB.user_ref)
+        let ref = Firestore.firestore().collection(Constants.FirebaseDB.company_ref)
             .document(Auth.auth().currentUser!.uid)
-        let storageRef = Storage.storage().reference().child("avatars").child(Auth.auth().currentUser!.uid)
+        let storageRef = Storage.storage().reference().child("company_avatars").child(Auth.auth().currentUser!.uid)
         
         if let uploadData = images[0].pngData() {
             
@@ -197,23 +195,21 @@ class ProfileViewController: UIViewController, ImagePickerDelegate {
     func createArray() -> [ProfileCellData] {
         
         var tempCells: [ProfileCellData] = []
-        guard let currentUser = UserService.currentUser else { return tempCells }
+        guard let currentCompany = CompanyService.currentCompany else { return tempCells }
         
-        let nameCell = ProfileCellData(title: "Name", data: "\(currentUser.firstName) \(currentUser.lastName)")
+        let companyName = ProfileCellData(title: "Company", data: currentCompany.companyName)
+        let nameCell = ProfileCellData(title: "Name", data: "\(currentCompany.firstName) \(currentCompany.lastName)")
         let emailCell = ProfileCellData(title: "Email", data: (Auth.auth().currentUser?.email)!)
-        let dateOfBirthCell = ProfileCellData(title: "Date of Birth", data: currentUser.dateOfBirth!)
-        let genderCell = ProfileCellData(title: "Gender", data: currentUser.gender!)
-        let mobileCell = ProfileCellData(title: "Mobile", data: currentUser.mobile!)
-        let addressCell = ProfileCellData(title: "Address", data: currentUser.address!)
-        let documentsCell = ProfileCellData(title: "Documents", data: "\(currentUser.documents!.count) Documents")
+        let mobileCell = ProfileCellData(title: "Mobile", data: currentCompany.mobile!)
+        let addressCell = ProfileCellData(title: "Address", data: currentCompany.address!)
+        let passwordCell = ProfileCellData(title: "Password", data: "*********")
         
+        tempCells.append(companyName)
         tempCells.append(nameCell)
         tempCells.append(emailCell)
-        tempCells.append(dateOfBirthCell)
-        tempCells.append(genderCell)
         tempCells.append(mobileCell)
         tempCells.append(addressCell)
-        tempCells.append(documentsCell)
+        tempCells.append(passwordCell)
         
         return tempCells
     }

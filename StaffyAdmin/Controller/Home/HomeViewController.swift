@@ -7,19 +7,25 @@
 //
 
 import UIKit
+import Firebase
 import FirebaseAuth
+import FirebaseFirestore
 import FoldingCell
 
-class HomeViewController: UIViewController {
+class HomeViewController: UIViewController, JobDelegate {
     
     enum Const {
         
-        static let closeCellHeight: CGFloat = 135
-        static let openCellHeight: CGFloat = 580
+        static let closeCellHeight: CGFloat = 150
+        static let openCellHeight: CGFloat = 600
         static let rowsCount = 10
     }
     
     var cellHeights: [CGFloat] = []
+    
+    private var jobs = [Job]()
+    private var jobs_ref: CollectionReference!
+    private var jobsListener: ListenerRegistration!
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -33,6 +39,8 @@ class HomeViewController: UIViewController {
         
         tableView.delegate = self
         tableView.dataSource = self
+        
+        jobs_ref = Firestore.firestore().collection(Constants.FirebaseDB.jobs_ref)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -41,13 +49,14 @@ class HomeViewController: UIViewController {
             
             if user != nil {
                 
-                UserService.observeUserProfile(user!.uid, completion: { (user) in
+                CompanyService.observeUserProfile(user!.uid, completion: { (user) in
                     
-                    UserService.currentUser = user
+                    CompanyService.currentCompany = user
+                    self.setListener()
                 })
             } else {
             
-                UserService.currentUser = nil
+                CompanyService.currentCompany = nil
                 
                 let storyboard = UIStoryboard(name: "Login", bundle: nil)
                 let loginVC = storyboard.instantiateViewController(withIdentifier: Constants.Storyboard.loginViewController)
@@ -56,33 +65,76 @@ class HomeViewController: UIViewController {
         })
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        
+        if jobsListener != nil {
+            
+            jobsListener.remove()
+        }
+    }
+    
     private func setup() {
         
         cellHeights = Array(repeating: Const.closeCellHeight, count: Const.rowsCount)
         tableView.estimatedRowHeight = Const.closeCellHeight
         tableView.rowHeight = UITableView.automaticDimension
-        tableView.backgroundColor = UIColor(displayP3Red: 220/255, green: 220/255, blue: 220/255, alpha: 1)
+        tableView.backgroundColor = UIColor(displayP3Red: 54/255, green: 76/255, blue: 112/255, alpha: 0.1)
+        
+        Utilities.setupNavigationStyle(navigationController!)
+    }
+    
+    func setListener() {
+        
+        guard let currentCompanyId = Auth.auth().currentUser?.uid else { return }
+        jobsListener = jobs_ref.whereField(Constants.FirebaseDB.company_id, isEqualTo: currentCompanyId)
+                .addSnapshotListener { (snapshot, error) in
+                    if let error = error {
+                        
+                        debugPrint("Error fetching docs: \(error)")
+                    } else {
+                        
+                        self.jobs.removeAll()
+                        self.jobs = Job.parseData(snapshot: snapshot)
+                        self.tableView.reloadData()
+                    }
+            }
+    }
+    
+    func manageButtonTapped(job: Job) {
+        
+        let alert = UIAlertController(title: "Job Options", message: "Manage your job by editing the details, managing the staff or delete the job", preferredStyle: .actionSheet)
+        
+        let manageAction = UIAlertAction(title: "Manage People", style: .default) { (action) in
+        
+            
+        }
+        
+        let editAction = UIAlertAction(title: "Edit Job", style: .default) { (action) in
+            
+            
+        }
+        
+        let deleteAction = UIAlertAction(title: "Delete Job", style: .destructive) { (action) in
+            
+            
+        }
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        alert.addAction(manageAction)
+        alert.addAction(editAction)
+        alert.addAction(deleteAction)
+        alert.addAction(cancelAction)
+        present(alert, animated: true, completion: nil)
     }
 }
 
 extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
-        return 10
+    func tableView(_: UITableView, numberOfRowsInSection _: Int) -> Int {
+        return jobs.count
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        let cell = tableView.dequeueReusableCell(withIdentifier: "FoldingCell", for: indexPath) as! FoldingCell
-        let durations: [TimeInterval] = [0.26, 0.2, 0.2]
-        cell.durationsForExpandedState = durations
-        cell.durationsForCollapsedState = durations
-        return cell
-    }
-    
-    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        
+    func tableView(_: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         guard case let cell as DemoCell = cell else {
             return
         }
@@ -96,8 +148,16 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         }
     }
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "FoldingCell", for: indexPath) as! DemoCell
+        let durations: [TimeInterval] = [0.26, 0.2, 0.2]
+        cell.durationsForExpandedState = durations
+        cell.durationsForCollapsedState = durations
+        cell.configureCell(job: jobs[indexPath.row], delegate: self)
+        return cell
+    }
+    
+    func tableView(_: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return cellHeights[indexPath.row]
     }
     
