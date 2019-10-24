@@ -1,19 +1,18 @@
 //
-//  AddJobViewController.swift
+//  JobEditViewController.swift
 //  StaffyAdmin
 //
-//  Created by Aidan Miskella on 15/10/2019.
+//  Created by Aidan Miskella on 23/10/2019.
 //  Copyright © 2019 Aidan Miskella. All rights reserved.
 //
 
 import UIKit
 import Firebase
 import FirebaseAuth
-import FirebaseFirestore
 import GrowingTextView
 
-class AddJobViewController: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
-    
+class JobEditViewController: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
+
     @IBOutlet weak var titleTextField: UITextField!
     
     @IBOutlet weak var descriptionTextView: GrowingTextView!
@@ -67,7 +66,7 @@ class AddJobViewController: UIViewController, UITextFieldDelegate, UIPickerViewD
     @IBOutlet weak var positionImage: UIImageView!
     
     @IBOutlet weak var experienceImage: UIImageView!
- 
+    
     @IBOutlet weak var errorLabel: UILabel!
     
     @IBOutlet weak var saveButton: UIButton!
@@ -76,14 +75,29 @@ class AddJobViewController: UIViewController, UITextFieldDelegate, UIPickerViewD
     var datePickerView: UIDatePicker!
     var timePickerView: UIDatePicker!
     
+    var job: Job?
+    
+    var newTitle: String?
+    var newDescription: String?
+    var newJobCompanyName: String?
+    var newAddress: String?
+    var newStartDate: Timestamp?
+    var newEndDate: Timestamp?
+    var newStartTime: String?
+    var newEndTime: String?
+    var newExperience: String?
+    var newPositions: String?
+    var newPay: Float?
+    
     var startDate: Date!
     var endDate: Date!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
         setupUI()
+        placeholders()
         pickUpArray()
         pickUpDate()
         pickUpTime()
@@ -107,8 +121,6 @@ class AddJobViewController: UIViewController, UITextFieldDelegate, UIPickerViewD
         
         errorLabel.alpha = 0
         
-        descriptionTextView.text = "Job Description"
-
         Utilities.styleTextField(textfield: titleTextField, font: .editProfileText, fontColor: .black, padding: 40.0)
         Utilities.styleTextView(textView: descriptionTextView, font: .editProfileText, fontColor: .darkGray)
         Utilities.styleTextField(textfield: jobCompanyNameTextField, font: .editProfileText, fontColor: .black, padding: 40.0)
@@ -141,88 +153,149 @@ class AddJobViewController: UIViewController, UITextFieldDelegate, UIPickerViewD
         Utilities.styleFilledButton(button: saveButton, font: .largeLoginButton, fontColor: .white, backgroundColor: .lightBlue, cornerRadius: 10.0)
     }
     
+    func placeholders() {
+        
+        titleTextField.placeholder = job?.title
+        descriptionTextView.text = job?.description
+        jobCompanyNameTextField.placeholder = job?.jobCompanyName
+        startDateTextField.placeholder = Utilities.dateFormatterFullMonth((job?.startDate.dateValue())!)
+        endDateTextField.placeholder = Utilities.dateFormatterFullMonth((job?.endDate.dateValue())!)
+        startTimeTextField.placeholder = job?.startTime
+        endTimeTextField.placeholder = job?.endTime
+        experienceTextField.placeholder = job?.experince
+        positionsTextField.placeholder = job?.positions
+        paySlider.setValue(job!.pay, animated: true)
+    }
+    
     @IBAction func saveButtonTapped(_ sender: Any) {
         
-        let error = validateFields()
-        
-        if error != nil {
+        if titleTextField.text != "" {
             
-            errorLabel.alpha = 1
-            errorLabel.text = error
+            newTitle = titleTextField.text
         } else {
             
-            guard let currentCompany = CompanyService.currentCompany else { return }
+            newTitle = job?.title
+        }
+        
+        if descriptionTextView.text != nil {
             
-            Firestore.firestore().collection(Constants.FirebaseDB.jobs_ref).addDocument(data: [
+            newDescription = descriptionTextView.text
+        } else {
+            
+            errorLabel.text = "Please enter a job description."
+        }
+        
+        if jobCompanyNameTextField.text != "" {
+            
+            newJobCompanyName = jobCompanyNameTextField.text
+        } else {
+            
+            newJobCompanyName = job?.jobCompanyName
+        }
+        
+        if startDateTextField.text != "" {
+            
+            newStartDate = Timestamp(date: startDate)
+        } else {
+            
+            newStartDate = job?.startDate
+        }
+        
+        if endDateTextField.text != "" {
+            
+            newEndDate = Timestamp(date: endDate)
+        } else {
+            
+            newEndDate = job?.endDate
+        }
+        
+        if startTimeTextField.text != "" {
+            
+            newStartTime = startTimeTextField.text
+        } else {
+            
+            newStartTime = job?.startTime
+        }
+        
+        if endTimeTextField.text != "" {
+            
+            newEndTime = endTimeTextField.text
+        } else {
+            
+            newEndTime = job?.endTime
+        }
+        
+        if experienceTextField.text != "" {
+            
+            newExperience = experienceTextField.text
+        } else {
+            
+            newExperience = job?.experince
+        }
+        
+        if positionsTextField.text != "" {
+            
+            newPositions = positionsTextField.text
+        } else {
+            
+            newPositions = job?.positions
+        }
+        
+        newPay = paySlider.value
+        
+        if (address1TextField.text != "" && address3TextField.text != "" && address4TextField.text != "") {
+            
+            if address2TextField.text == "" {
                 
-                Constants.FirebaseDB.jobs_ref: currentCompany.userId,
-                Constants.FirebaseDB.title: titleTextField.text!,
-                Constants.FirebaseDB.job_company_name: jobCompanyNameTextField.text!,
-                Constants.FirebaseDB.company_name: currentCompany.companyName,
-                Constants.FirebaseDB.address:getAddress(),
-                Constants.FirebaseDB.experience: experienceTextField.text!,
-                Constants.FirebaseDB.positions: positionsTextField.text!,
-                Constants.FirebaseDB.posted_date: Date(),
-                Constants.FirebaseDB.start_date: Timestamp(date: startDate),
-                Constants.FirebaseDB.end_date: Timestamp(date: endDate),
-                Constants.FirebaseDB.start_time: startTimeTextField.text!,
-                Constants.FirebaseDB.end_time: endTimeTextField.text!,
-                Constants.FirebaseDB.description: descriptionTextView.text!,
-                Constants.FirebaseDB.pay: String(format: "€%.1f0 per hour", paySlider.value),
-                Constants.FirebaseDB.company_email: Auth.auth().currentUser?.email ?? "",
-                Constants.FirebaseDB.company_phone: currentCompany.mobile!
+                newAddress = "\(address1TextField.text!), \(address3TextField.text!), \(address4TextField.text!)"
+            } else {
                 
-            ]) { (error) in
-                if let error = error {
-                    
-                    debugPrint("Error adding document: \(error)")
-                } else {
-                    
-                    self.navigationController?.popViewController(animated: true)
-                }
+                newAddress = "\(address1TextField.text!), \(address2TextField.text!), \(address3TextField.text!), \(address4TextField.text!)"
+            }
+            
+            updateJob()
+        } else {
+            
+            if (address1TextField.text == "" && address2TextField.text == "" && address3TextField.text == "" && address4TextField.text == "") {
+                
+                newAddress = job?.address
+                updateJob()
+            } else {
+                
+                errorLabel.alpha = 1
+                errorLabel.text = "Please provide a full address."
             }
         }
     }
     
-    func validateFields() -> String? {
+    func updateJob() {
         
-        let error: String
+        let ref = Firestore.firestore().collection(Constants.FirebaseDB.jobs_ref)
+            .document(job!.jobId)
         
-        if titleTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
-            jobCompanyNameTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
-            descriptionTextView.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
-            address1TextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
-            address3TextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
-            address4TextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
-            startDateTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
-            startTimeTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
-            endDateTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
-            endTimeTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
-            positionsTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
-            experienceTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" {
-            
-            error = "Please fill in all fields."
-            return error
+        ref.updateData([
+            Constants.FirebaseDB.title: newTitle!,
+            Constants.FirebaseDB.job_company_name: newJobCompanyName!,
+            Constants.FirebaseDB.address: newAddress!,
+            Constants.FirebaseDB.experience: newExperience!,
+            Constants.FirebaseDB.positions: newPositions!,
+            Constants.FirebaseDB.start_date: newStartDate!,
+            Constants.FirebaseDB.end_date: newEndDate!,
+            Constants.FirebaseDB.start_time: newStartTime!,
+            Constants.FirebaseDB.end_time: newEndTime!,
+            Constants.FirebaseDB.description: newDescription!,
+            Constants.FirebaseDB.pay: newPay!
+        ]) { (error) in
+            if let error = error {
+                
+                debugPrint("Error adding document: \(error)")
+            } else {
+                
+                self.navigationController?.popViewController(animated: true)
+            }
         }
-        
-        return nil
     }
     
-    func getAddress() -> String {
-        
-        var fullAddress: String
-        
-        if address2TextField.text == "" {
-            
-            fullAddress = "\(address1TextField.text!), \(address3TextField.text!), \(address4TextField.text!)"
-        } else {
-            
-            fullAddress = "\(address1TextField.text!), \(address2TextField.text!), \(address3TextField.text!), \(address4TextField.text!)"
-        }
-        
-        return fullAddress
-    }
-
     @IBAction func sliderValueChanged(_ sender: UISlider) {
         
         let currentValue = Float(sender.value)
@@ -285,26 +358,26 @@ class AddJobViewController: UIViewController, UITextFieldDelegate, UIPickerViewD
     }
     
     func pickUpTime() {
-
+        
         self.timePickerView = UIDatePicker(frame:CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 300))
         self.timePickerView.datePickerMode = .time
         self.timePickerView.backgroundColor = UIColor.white
-
+        
         self.startTimeTextField.inputView = self.timePickerView
         self.endTimeTextField.inputView = self.timePickerView
-
+        
         let toolBar = UIToolbar()
         toolBar.barStyle = .default
         toolBar.isTranslucent = true
         toolBar.tintColor = .lightBlue
         toolBar.sizeToFit()
-
+        
         let doneButton = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(doneClick))
         let spaceButton = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
         let cancelButton = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(cancelClick))
         toolBar.setItems([cancelButton, spaceButton, doneButton], animated: false)
         toolBar.isUserInteractionEnabled = true
-
+        
         startTimeTextField.inputAccessoryView = toolBar
         endTimeTextField.inputAccessoryView = toolBar
     }

@@ -18,6 +18,7 @@
 		7403CFC822F8A15100C6C8D1 /* ErrorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7403CFC722F8A15100C6C8D1 /* ErrorExtension.swift */; };
 		7403CFCA22F8A16000C6C8D1 /* FontExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7403CFC922F8A16000C6C8D1 /* FontExtension.swift */; };
 		7403CFCC22F8A16D00C6C8D1 /* ColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7403CFCB22F8A16D00C6C8D1 /* ColorExtension.swift */; };
+		7404EE4C2360ABFA00AEF2AA /* JobEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7404EE4B2360ABFA00AEF2AA /* JobEditViewController.swift */; };
 		740508D62355EAA300DA78EC /* FoldingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 740508D52355EAA200DA78EC /* FoldingCell.swift */; };
 		740508D82355F10C00DA78EC /* AddJobViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 740508D72355F10C00DA78EC /* AddJobViewController.swift */; };
 		7405A4FB233C2C360046BC71 /* NameEdit.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7405A4FA233C2C360046BC71 /* NameEdit.storyboard */; };
@@ -69,6 +70,7 @@
 		7403CFC722F8A15100C6C8D1 /* ErrorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorExtension.swift; sourceTree = "<group>"; };
 		7403CFC922F8A16000C6C8D1 /* FontExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontExtension.swift; sourceTree = "<group>"; };
 		7403CFCB22F8A16D00C6C8D1 /* ColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtension.swift; sourceTree = "<group>"; };
+		7404EE4B2360ABFA00AEF2AA /* JobEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobEditViewController.swift; sourceTree = "<group>"; };
 		740508D52355EAA200DA78EC /* FoldingCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoldingCell.swift; sourceTree = "<group>"; };
 		740508D72355F10C00DA78EC /* AddJobViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddJobViewController.swift; sourceTree = "<group>"; };
 		7405A4FA233C2C360046BC71 /* NameEdit.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = NameEdit.storyboard; sourceTree = "<group>"; };
@@ -132,6 +134,7 @@
 			children = (
 				7402B71122F7442F000454D1 /* HomeViewController.swift */,
 				740508D72355F10C00DA78EC /* AddJobViewController.swift */,
+				7404EE4B2360ABFA00AEF2AA /* JobEditViewController.swift */,
 				74B23E7F22F8ABE30058B5D4 /* Home.storyboard */,
 			);
 			path = Home;
@@ -483,6 +486,7 @@
 				74EE63002354B9E100DF9F69 /* CompanyNameEditViewController.swift in Sources */,
 				7453F20A233135270019EECE /* ProfileCellData.swift in Sources */,
 				74EDBC0422F0BD01007B65B8 /* LoginViewController.swift in Sources */,
+				7404EE4C2360ABFA00AEF2AA /* JobEditViewController.swift in Sources */,
 				740C16CA2336343F00266C62 /* ImageService.swift in Sources */,
 				7413AE4D22F375DC0019CD06 /* ResetPasswordViewController.swift in Sources */,
 				740301A5233CB39E0040FAF5 /* MobileEditViewController.swift in Sources */,

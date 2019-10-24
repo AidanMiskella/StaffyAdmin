@@ -27,6 +27,8 @@ class HomeViewController: UIViewController, JobDelegate {
     private var jobs_ref: CollectionReference!
     private var jobsListener: ListenerRegistration!
     
+    private var currentJob: Job?
+    
     @IBOutlet weak var tableView: UITableView!
     
     private var loginHandle: AuthStateDidChangeListenerHandle?
@@ -111,7 +113,8 @@ class HomeViewController: UIViewController, JobDelegate {
         
         let editAction = UIAlertAction(title: "Edit Job", style: .default) { (action) in
             
-            
+            self.currentJob = job
+            self.performSegue(withIdentifier: "JobEdit", sender: self)
         }
         
         let deleteAction = UIAlertAction(title: "Delete Job", style: .destructive) { (action) in
@@ -125,6 +128,15 @@ class HomeViewController: UIViewController, JobDelegate {
         alert.addAction(deleteAction)
         alert.addAction(cancelAction)
         present(alert, animated: true, completion: nil)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if segue.identifier == "JobEdit" {
+            
+            let vc = segue.destination as! JobEditViewController
+            vc.job = currentJob
+        }
     }
 }
 
