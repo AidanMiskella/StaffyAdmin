@@ -11,7 +11,7 @@ import Firebase
 import FirebaseAuth
 import FirebaseStorage
 import FirebaseFirestore
-import StarryStars
+import Cosmos
 import ImagePicker
 
 class ProfileViewController: UIViewController, ImagePickerDelegate {
@@ -20,13 +20,11 @@ class ProfileViewController: UIViewController, ImagePickerDelegate {
     
     @IBOutlet weak var profileImage: UIImageView!
     
-    @IBOutlet weak var companyNameLabel: UILabel!
-    
     @IBOutlet weak var contentView: UIView!
     
     @IBOutlet weak var middleRatingView: UIView!
     
-    @IBOutlet weak var ratingView: RatingView!
+    @IBOutlet weak var ratingView: CosmosView!
     
     @IBOutlet weak var ratingLabel: UILabel!
     
@@ -104,7 +102,7 @@ class ProfileViewController: UIViewController, ImagePickerDelegate {
         
     }
     
-    func getRatingText(rating: Float) -> String {
+    func getRatingText(rating: Double) -> String {
     
         switch rating {
         

@@ -71,7 +71,8 @@ struct Constants {
         static let pay = "pay"
         static let company_email = "companyEmail"
         static let company_phone = "companyPhone"
-        
+        static let status = "status"
+        static let applicants = "applicants"
     }
     
     struct Profile {
@@ -91,6 +92,7 @@ struct Constants {
         static let countyArray = ["Co. Antrim", "Co. Armagh", "Co. Carlow", "Co. Cavan", "Co. Clare", "Co. Cork", "Co. Derry", "Co. Donegal", "Co. Down", "Co. Dublin", "Co. Fermanagh", "Co. Galway", "Co. Kerry", "Co. Kildare", "Co. Kilkenny", "Co. Laois", "Co. Leitrim", "Co. Limerick", "Co. Longford", "Co. Louth", "Co. Mayo", "Co. Meath", "Co. Monaghan", "Co. Offaly", "Co. Roscommon", "Co. Sligo", "Co. Tipperary", "Co. Tyrone", "Co. Waterford", "Co. Westmeath", "Co. Wexford", "Co. Wicklow"]
         static let experienceArray = ["No Experience Required", "Experience Required", "Experience Required (1+ Year)", "Experience Required (2+ Years)", "Experience Required (3+ Years)", "Experience Required (4+ Years)", "Experience Required (5+ Year)", "Experience Required (10+ Year)"]
         static let positionsArray = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10+", "20+", "50+", "100+"]
+        static let statusArray = ["Open", "In-progress", "Closed"]
     }
     
     struct AlertView {

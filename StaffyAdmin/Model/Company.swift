@@ -16,11 +16,10 @@ class Company {
     var lastName: String
     var avatarURL: URL?
     var bio: String?
-    var reviewRating: Float?
+    var reviewRating: Double?
     var mobile: String?
     var address: String?
     var dateProfileCreated: String
-    var jobsCreated: [Any]?
     
     init(userId: String,
          companyName: String,
@@ -28,11 +27,10 @@ class Company {
          lastName: String,
          avatarURL: URL,
          bio: String?,
-         reviewRating: Float?,
+         reviewRating: Double?,
          mobile: String?,
          address: String?,
-         dateProfileCreated: String,
-         jobsCreated: [Any]?) {
+         dateProfileCreated: String) {
         
         self.userId = userId
         self.companyName = companyName
@@ -44,7 +42,6 @@ class Company {
         self.mobile = mobile
         self.address = address
         self.dateProfileCreated = dateProfileCreated
-        self.jobsCreated = jobsCreated
     }
 }
 

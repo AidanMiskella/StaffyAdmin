@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		7400A2092334306E00D4E9FE /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7400A2082334306E00D4E9FE /* User.swift */; };
 		7400A20B2334336D00D4E9FE /* CompanyServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7400A20A2334336D00D4E9FE /* CompanyServices.swift */; };
+		74016E792361B3C500D38E41 /* FoldingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74016E782361B3C500D38E41 /* FoldingCell.swift */; };
 		7402B71222F7442F000454D1 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7402B71122F7442F000454D1 /* HomeViewController.swift */; };
 		7402D1182337AD2E001E0573 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7402D1172337AD2E001E0573 /* UIViewExtension.swift */; };
 		7403019D233CB3390040FAF5 /* NameEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7403019C233CB3390040FAF5 /* NameEditViewController.swift */; };
@@ -19,25 +20,28 @@
 		7403CFCA22F8A16000C6C8D1 /* FontExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7403CFC922F8A16000C6C8D1 /* FontExtension.swift */; };
 		7403CFCC22F8A16D00C6C8D1 /* ColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7403CFCB22F8A16D00C6C8D1 /* ColorExtension.swift */; };
 		7404EE4C2360ABFA00AEF2AA /* JobEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7404EE4B2360ABFA00AEF2AA /* JobEditViewController.swift */; };
-		740508D62355EAA300DA78EC /* FoldingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 740508D52355EAA200DA78EC /* FoldingCell.swift */; };
+		74050498236F379900B95894 /* ManagePeopleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74050497236F379900B95894 /* ManagePeopleViewController.swift */; };
 		740508D82355F10C00DA78EC /* AddJobViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 740508D72355F10C00DA78EC /* AddJobViewController.swift */; };
 		7405A4FB233C2C360046BC71 /* NameEdit.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7405A4FA233C2C360046BC71 /* NameEdit.storyboard */; };
 		7405A4FD233C2C950046BC71 /* EmailEdit.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7405A4FC233C2C950046BC71 /* EmailEdit.storyboard */; };
 		7405A503233C2CC90046BC71 /* MobileEdit.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7405A502233C2CC90046BC71 /* MobileEdit.storyboard */; };
 		7405A505233C2CD50046BC71 /* AddressEdit.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7405A504233C2CD50046BC71 /* AddressEdit.storyboard */; };
-		740BE269235F93220035C04A /* PasswordEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 740BE268235F93220035C04A /* PasswordEditViewController.swift */; };
-		740BE26B235F933B0035C04A /* PasswordEdit.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 740BE26A235F933B0035C04A /* PasswordEdit.storyboard */; };
 		740C16CA2336343F00266C62 /* ImageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 740C16C92336343F00266C62 /* ImageService.swift */; };
 		7411E32922F0BA3200E3830A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7411E32822F0BA3200E3830A /* AppDelegate.swift */; };
 		7411E32E22F0BA3200E3830A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7411E32C22F0BA3200E3830A /* Main.storyboard */; };
 		7411E33022F0BA3500E3830A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7411E32F22F0BA3500E3830A /* Assets.xcassets */; };
 		7411E33322F0BA3500E3830A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7411E33122F0BA3500E3830A /* LaunchScreen.storyboard */; };
 		7413AE4D22F375DC0019CD06 /* ResetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7413AE4C22F375DC0019CD06 /* ResetPasswordViewController.swift */; };
+		741B5E5123705F0D00792761 /* ManagePeopleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 741B5E5023705F0D00792761 /* ManagePeopleCell.swift */; };
+		741B5E542371D74000792761 /* UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 741B5E532371D74000792761 /* UserProfileViewController.swift */; };
+		741B5E562371D75100792761 /* UserProfile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 741B5E552371D75100792761 /* UserProfile.storyboard */; };
 		743BE9E822F0C5A6006A2F6E /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 743BE9E722F0C5A6006A2F6E /* Utilities.swift */; };
 		743BE9EA22F0C5C6006A2F6E /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 743BE9E922F0C5C6006A2F6E /* Constants.swift */; };
 		743BE9EC22F0FF10006A2F6E /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 743BE9EB22F0FF10006A2F6E /* RegisterViewController.swift */; };
 		7453F2062331339D0019EECE /* ProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7453F2052331339D0019EECE /* ProfileTableViewCell.swift */; };
 		7453F20A233135270019EECE /* ProfileCellData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7453F209233135270019EECE /* ProfileCellData.swift */; };
+		74718BEE236880FA009A64F3 /* PasswordEdit.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 74718BEC236880F9009A64F3 /* PasswordEdit.storyboard */; };
+		74718BEF236880FA009A64F3 /* PasswordEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74718BED236880FA009A64F3 /* PasswordEditViewController.swift */; };
 		74B23E8022F8ABE30058B5D4 /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 74B23E7F22F8ABE30058B5D4 /* Home.storyboard */; };
 		74B23E8822F8ADDB0058B5D4 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74B23E8722F8ADDB0058B5D4 /* ProfileViewController.swift */; };
 		74B23E8A22F8ADEA0058B5D4 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 74B23E8922F8ADEA0058B5D4 /* Profile.storyboard */; };
@@ -61,6 +65,7 @@
 		73F7E1C8B7A535CBC1775FEA /* Pods_StaffyAdmin.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StaffyAdmin.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7400A2082334306E00D4E9FE /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		7400A20A2334336D00D4E9FE /* CompanyServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompanyServices.swift; sourceTree = "<group>"; };
+		74016E782361B3C500D38E41 /* FoldingCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FoldingCell.swift; path = ../../../../.Trash/FoldingCell.swift; sourceTree = "<group>"; };
 		7402B71122F7442F000454D1 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		7402D1172337AD2E001E0573 /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
 		7403019C233CB3390040FAF5 /* NameEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameEditViewController.swift; sourceTree = "<group>"; };
@@ -71,14 +76,12 @@
 		7403CFC922F8A16000C6C8D1 /* FontExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontExtension.swift; sourceTree = "<group>"; };
 		7403CFCB22F8A16D00C6C8D1 /* ColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtension.swift; sourceTree = "<group>"; };
 		7404EE4B2360ABFA00AEF2AA /* JobEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobEditViewController.swift; sourceTree = "<group>"; };
-		740508D52355EAA200DA78EC /* FoldingCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoldingCell.swift; sourceTree = "<group>"; };
+		74050497236F379900B95894 /* ManagePeopleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagePeopleViewController.swift; sourceTree = "<group>"; };
 		740508D72355F10C00DA78EC /* AddJobViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddJobViewController.swift; sourceTree = "<group>"; };
 		7405A4FA233C2C360046BC71 /* NameEdit.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = NameEdit.storyboard; sourceTree = "<group>"; };
 		7405A4FC233C2C950046BC71 /* EmailEdit.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = EmailEdit.storyboard; sourceTree = "<group>"; };
 		7405A502233C2CC90046BC71 /* MobileEdit.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MobileEdit.storyboard; sourceTree = "<group>"; };
 		7405A504233C2CD50046BC71 /* AddressEdit.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AddressEdit.storyboard; sourceTree = "<group>"; };
-		740BE268235F93220035C04A /* PasswordEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordEditViewController.swift; sourceTree = "<group>"; };
-		740BE26A235F933B0035C04A /* PasswordEdit.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PasswordEdit.storyboard; sourceTree = "<group>"; };
 		740C16C92336343F00266C62 /* ImageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageService.swift; sourceTree = "<group>"; };
 		7411E32522F0BA3200E3830A /* StaffyAdmin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StaffyAdmin.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7411E32822F0BA3200E3830A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -87,11 +90,16 @@
 		7411E33222F0BA3500E3830A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7411E33422F0BA3500E3830A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7413AE4C22F375DC0019CD06 /* ResetPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordViewController.swift; sourceTree = "<group>"; };
+		741B5E5023705F0D00792761 /* ManagePeopleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagePeopleCell.swift; sourceTree = "<group>"; };
+		741B5E532371D74000792761 /* UserProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileViewController.swift; sourceTree = "<group>"; };
+		741B5E552371D75100792761 /* UserProfile.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = UserProfile.storyboard; sourceTree = "<group>"; };
 		743BE9E722F0C5A6006A2F6E /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		743BE9E922F0C5C6006A2F6E /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		743BE9EB22F0FF10006A2F6E /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		7453F2052331339D0019EECE /* ProfileTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableViewCell.swift; sourceTree = "<group>"; };
 		7453F209233135270019EECE /* ProfileCellData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ProfileCellData.swift; path = ../View/ProfileCellData.swift; sourceTree = "<group>"; };
+		74718BEC236880F9009A64F3 /* PasswordEdit.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = PasswordEdit.storyboard; sourceTree = "<group>"; };
+		74718BED236880FA009A64F3 /* PasswordEditViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasswordEditViewController.swift; sourceTree = "<group>"; };
 		74B23E7F22F8ABE30058B5D4 /* Home.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
 		74B23E8722F8ADDB0058B5D4 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		74B23E8922F8ADEA0058B5D4 /* Profile.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
@@ -135,6 +143,7 @@
 				7402B71122F7442F000454D1 /* HomeViewController.swift */,
 				740508D72355F10C00DA78EC /* AddJobViewController.swift */,
 				7404EE4B2360ABFA00AEF2AA /* JobEditViewController.swift */,
+				74050497236F379900B95894 /* ManagePeopleViewController.swift */,
 				74B23E7F22F8ABE30058B5D4 /* Home.storyboard */,
 			);
 			path = Home;
@@ -157,8 +166,8 @@
 		740BE267235F92D50035C04A /* Password */ = {
 			isa = PBXGroup;
 			children = (
-				740BE268235F93220035C04A /* PasswordEditViewController.swift */,
-				740BE26A235F933B0035C04A /* PasswordEdit.storyboard */,
+				74718BED236880FA009A64F3 /* PasswordEditViewController.swift */,
+				74718BEC236880F9009A64F3 /* PasswordEdit.storyboard */,
 			);
 			path = Password;
 			sourceTree = "<group>";
@@ -227,6 +236,7 @@
 				7402A73722F62CFF00E2C78B /* Login */,
 				7402B71022F743DC000454D1 /* Home */,
 				74B23E8222F8AD5B0058B5D4 /* Profile */,
+				741B5E522371D6B700792761 /* User Profile */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -235,7 +245,8 @@
 			isa = PBXGroup;
 			children = (
 				7453F2052331339D0019EECE /* ProfileTableViewCell.swift */,
-				740508D52355EAA200DA78EC /* FoldingCell.swift */,
+				74016E782361B3C500D38E41 /* FoldingCell.swift */,
+				741B5E5023705F0D00792761 /* ManagePeopleCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -245,10 +256,19 @@
 			children = (
 				7400A2082334306E00D4E9FE /* User.swift */,
 				74EE62FC2354B21800DF9F69 /* Company.swift */,
-				7453F209233135270019EECE /* ProfileCellData.swift */,
 				74EE63032355451600DF9F69 /* Job.swift */,
+				7453F209233135270019EECE /* ProfileCellData.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		741B5E522371D6B700792761 /* User Profile */ = {
+			isa = PBXGroup;
+			children = (
+				741B5E532371D74000792761 /* UserProfileViewController.swift */,
+				741B5E552371D75100792761 /* UserProfile.storyboard */,
+			);
+			path = "User Profile";
 			sourceTree = "<group>";
 		};
 		74B23E8222F8AD5B0058B5D4 /* Profile */ = {
@@ -414,9 +434,10 @@
 				74B23E8A22F8ADEA0058B5D4 /* Profile.storyboard in Resources */,
 				74EE62FB2354AE8800DF9F69 /* GoogleService-Info.plist in Resources */,
 				7405A503233C2CC90046BC71 /* MobileEdit.storyboard in Resources */,
+				741B5E562371D75100792761 /* UserProfile.storyboard in Resources */,
+				74718BEE236880FA009A64F3 /* PasswordEdit.storyboard in Resources */,
 				74EDBC0222F0BC19007B65B8 /* Login.storyboard in Resources */,
 				7411E32E22F0BA3200E3830A /* Main.storyboard in Resources */,
-				740BE26B235F933B0035C04A /* PasswordEdit.storyboard in Resources */,
 				7405A4FD233C2C950046BC71 /* EmailEdit.storyboard in Resources */,
 				74FC54BD2343C15400938320 /* BioEdit.storyboard in Resources */,
 			);
@@ -472,7 +493,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				7403CFCA22F8A16000C6C8D1 /* FontExtension.swift in Sources */,
-				740508D62355EAA300DA78EC /* FoldingCell.swift in Sources */,
 				7403019F233CB3530040FAF5 /* EmailEditViewController.swift in Sources */,
 				7453F2062331339D0019EECE /* ProfileTableViewCell.swift in Sources */,
 				743BE9E822F0C5A6006A2F6E /* Utilities.swift in Sources */,
@@ -481,8 +501,11 @@
 				7402B71222F7442F000454D1 /* HomeViewController.swift in Sources */,
 				7403CFC822F8A15100C6C8D1 /* ErrorExtension.swift in Sources */,
 				7402D1182337AD2E001E0573 /* UIViewExtension.swift in Sources */,
+				741B5E542371D74000792761 /* UserProfileViewController.swift in Sources */,
 				740508D82355F10C00DA78EC /* AddJobViewController.swift in Sources */,
+				74718BEF236880FA009A64F3 /* PasswordEditViewController.swift in Sources */,
 				74EE62FD2354B21800DF9F69 /* Company.swift in Sources */,
+				741B5E5123705F0D00792761 /* ManagePeopleCell.swift in Sources */,
 				74EE63002354B9E100DF9F69 /* CompanyNameEditViewController.swift in Sources */,
 				7453F20A233135270019EECE /* ProfileCellData.swift in Sources */,
 				74EDBC0422F0BD01007B65B8 /* LoginViewController.swift in Sources */,
@@ -490,14 +513,15 @@
 				740C16CA2336343F00266C62 /* ImageService.swift in Sources */,
 				7413AE4D22F375DC0019CD06 /* ResetPasswordViewController.swift in Sources */,
 				740301A5233CB39E0040FAF5 /* MobileEditViewController.swift in Sources */,
-				740BE269235F93220035C04A /* PasswordEditViewController.swift in Sources */,
 				7411E32922F0BA3200E3830A /* AppDelegate.swift in Sources */,
+				74050498236F379900B95894 /* ManagePeopleViewController.swift in Sources */,
 				74EE63042355451600DF9F69 /* Job.swift in Sources */,
 				74B23E8822F8ADDB0058B5D4 /* ProfileViewController.swift in Sources */,
 				7400A20B2334336D00D4E9FE /* CompanyServices.swift in Sources */,
 				7403019D233CB3390040FAF5 /* NameEditViewController.swift in Sources */,
 				7403CFCC22F8A16D00C6C8D1 /* ColorExtension.swift in Sources */,
 				740301A7233CB3B00040FAF5 /* AddressEditViewController.swift in Sources */,
+				74016E792361B3C500D38E41 /* FoldingCell.swift in Sources */,
 				74FC54BF2343C16300938320 /* BioEditViewController.swift in Sources */,
 				743BE9EA22F0C5C6006A2F6E /* Constants.swift in Sources */,
 			);

@@ -30,6 +30,8 @@ class Job {
     private(set) var pay: Float
     private(set) var companyEmail: String
     private(set) var companyPhone: String
+    private(set) var status: String
+    private(set) var applicants: [String]
     
     init(jobId: String,
          companyId: String,
@@ -47,7 +49,9 @@ class Job {
          description: String,
          pay: Float,
          companyEmail: String,
-         companyPhone: String) {
+         companyPhone: String,
+         status: String,
+         applicants: [String]) {
         
         self.jobId = jobId
         self.companyId = companyId
@@ -66,6 +70,8 @@ class Job {
         self.pay = pay
         self.companyEmail = companyEmail
         self.companyPhone = companyPhone
+        self.status = status
+        self.applicants = applicants
     }
     
     class func parseData(snapshot: QuerySnapshot?) -> [Job] {
@@ -93,8 +99,10 @@ class Job {
             let pay = data["pay"] as? Float ?? 0.00
             let companyEmail = data["companyEmail"] as? String ?? ""
             let companyPhone = data["companyPhone"] as? String ?? ""
+            let status = data["status"] as? String ?? ""
+            let applicants = data["applicants"] as? [String] ?? []
             
-            let newJob = Job(jobId: jobId, companyId: companyId!, title: title, companyName: companyName, jobCompanyName: jobCompanyName, address: address, experince: experience, positions: positions, postedDate: postedDate, startDate: startDate, endDate: endDate, startTime: startTime, endTime: endTime, description: description, pay: pay, companyEmail: companyEmail, companyPhone: companyPhone)
+            let newJob = Job(jobId: jobId, companyId: companyId!, title: title, companyName: companyName, jobCompanyName: jobCompanyName, address: address, experince: experience, positions: positions, postedDate: postedDate, startDate: startDate, endDate: endDate, startTime: startTime, endTime: endTime, description: description, pay: pay, companyEmail: companyEmail, companyPhone: companyPhone, status: status, applicants: applicants)
             jobs.append(newJob)
         }
         

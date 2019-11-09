@@ -155,7 +155,7 @@ class AddJobViewController: UIViewController, UITextFieldDelegate, UIPickerViewD
             
             Firestore.firestore().collection(Constants.FirebaseDB.jobs_ref).addDocument(data: [
                 
-                Constants.FirebaseDB.jobs_ref: currentCompany.userId,
+                Constants.FirebaseDB.company_id: currentCompany.userId,
                 Constants.FirebaseDB.title: titleTextField.text!,
                 Constants.FirebaseDB.job_company_name: jobCompanyNameTextField.text!,
                 Constants.FirebaseDB.company_name: currentCompany.companyName,
@@ -170,7 +170,8 @@ class AddJobViewController: UIViewController, UITextFieldDelegate, UIPickerViewD
                 Constants.FirebaseDB.description: descriptionTextView.text!,
                 Constants.FirebaseDB.pay: String(format: "€%.1f0 per hour", paySlider.value),
                 Constants.FirebaseDB.company_email: Auth.auth().currentUser?.email ?? "",
-                Constants.FirebaseDB.company_phone: currentCompany.mobile!
+                Constants.FirebaseDB.status: "open",
+                Constants.FirebaseDB.applicants: []
                 
             ]) { (error) in
                 if let error = error {

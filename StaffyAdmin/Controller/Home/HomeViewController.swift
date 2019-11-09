@@ -11,6 +11,14 @@ import Firebase
 import FirebaseAuth
 import FirebaseFirestore
 import FoldingCell
+import SCLAlertView
+
+enum StatusCategory: String {
+    
+    case open = "OPEN"
+    case in_progress = "IN-PROGRESS"
+    case closed = "CLOSED"
+}
 
 class HomeViewController: UIViewController, JobDelegate {
     
@@ -26,23 +34,28 @@ class HomeViewController: UIViewController, JobDelegate {
     private var jobs = [Job]()
     private var jobs_ref: CollectionReference!
     private var jobsListener: ListenerRegistration!
-    
-    private var currentJob: Job?
+    private var jobsCollectionRef: CollectionReference!
     
     @IBOutlet weak var tableView: UITableView!
     
+    @IBOutlet private weak var segmentControl: UISegmentedControl!
+    
     private var loginHandle: AuthStateDidChangeListenerHandle?
+    private var selectedCategory = StatusCategory.open.rawValue
+    private var currentJob: Job?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
         setup()
+        getJobCount()
+        segmentControl.tintColor = .lightBlue
         
         tableView.delegate = self
         tableView.dataSource = self
         
-        jobs_ref = Firestore.firestore().collection(Constants.FirebaseDB.jobs_ref)
+        jobsCollectionRef = Firestore.firestore().collection(Constants.FirebaseDB.jobs_ref)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -51,7 +64,7 @@ class HomeViewController: UIViewController, JobDelegate {
             
             if user != nil {
                 
-                CompanyService.observeUserProfile(user!.uid, completion: { (user) in
+                CompanyService.observeCompanyProfile(user!.uid, completion: { (user) in
                     
                     CompanyService.currentCompany = user
                     self.setListener()
@@ -75,6 +88,35 @@ class HomeViewController: UIViewController, JobDelegate {
         }
     }
     
+    func getJobCount() {
+        
+        guard let currentCompanyId = Auth.auth().currentUser?.uid else { return }
+        
+        let openArray = Firestore.firestore().collection(Constants.FirebaseDB.jobs_ref)
+            .whereField(Constants.FirebaseDB.company_id, isEqualTo: currentCompanyId)
+            .whereField(Constants.FirebaseDB.status, isEqualTo: "open")
+        openArray.getDocuments { (snapshot, error) in
+            
+            self.segmentControl.setTitle("OPEN (\(snapshot!.count))", forSegmentAt: 0)
+        }
+        
+        let inprogressArray = Firestore.firestore().collection(Constants.FirebaseDB.jobs_ref)
+            .whereField(Constants.FirebaseDB.company_id, isEqualTo: currentCompanyId)
+            .whereField(Constants.FirebaseDB.status, isEqualTo: "inProgress")
+        inprogressArray.getDocuments { (snapshot, error) in
+            
+            self.segmentControl.setTitle("IN-PROGRESS (\(snapshot!.count))", forSegmentAt: 1)
+        }
+        
+        let closedArray = Firestore.firestore().collection(Constants.FirebaseDB.jobs_ref)
+            .whereField(Constants.FirebaseDB.company_id, isEqualTo: currentCompanyId)
+            .whereField(Constants.FirebaseDB.status, isEqualTo: "closed")
+        closedArray.getDocuments { (snapshot, error) in
+            
+            self.segmentControl.setTitle("CLOSED (\(snapshot!.count))", forSegmentAt: 2)
+        }
+    }
+    
     private func setup() {
         
         cellHeights = Array(repeating: Const.closeCellHeight, count: Const.rowsCount)
@@ -85,11 +127,35 @@ class HomeViewController: UIViewController, JobDelegate {
         Utilities.setupNavigationStyle(navigationController!)
     }
     
+    @IBAction func categoryChanged(_ sender: Any) {
+        
+        if segmentControl.selectedSegmentIndex == 0 {
+            
+            selectedCategory = StatusCategory.open.rawValue
+        } else if segmentControl.selectedSegmentIndex == 1 {
+            
+            selectedCategory = StatusCategory.in_progress.rawValue
+        } else {
+            
+            selectedCategory = StatusCategory.closed.rawValue
+        }
+        
+        jobsListener.remove()
+        setListener()
+    }
+    
     func setListener() {
         
         guard let currentCompanyId = Auth.auth().currentUser?.uid else { return }
-        jobsListener = jobs_ref.whereField(Constants.FirebaseDB.company_id, isEqualTo: currentCompanyId)
-                .addSnapshotListener { (snapshot, error) in
+        
+        if selectedCategory == StatusCategory.open.rawValue {
+            
+            jobsListener = jobsCollectionRef
+                .whereField(Constants.FirebaseDB.company_id, isEqualTo: currentCompanyId)
+                .whereField(Constants.FirebaseDB.status, isEqualTo: "open")
+                .order(by: Constants.FirebaseDB.posted_date, descending: true)
+                .addSnapshotListener({ (snapshot, error) in
+                    
                     if let error = error {
                         
                         debugPrint("Error fetching docs: \(error)")
@@ -97,9 +163,49 @@ class HomeViewController: UIViewController, JobDelegate {
                         
                         self.jobs.removeAll()
                         self.jobs = Job.parseData(snapshot: snapshot)
+                        self.getJobCount()
                         self.tableView.reloadData()
                     }
-            }
+                })
+        } else if selectedCategory == StatusCategory.in_progress.rawValue {
+            
+            jobsListener = jobsCollectionRef
+                .whereField(Constants.FirebaseDB.company_id, isEqualTo: currentCompanyId)
+                .whereField(Constants.FirebaseDB.status, isEqualTo: "inProgress")
+                .order(by: Constants.FirebaseDB.posted_date, descending: true)
+                .addSnapshotListener({ (snapshot, error) in
+                    
+                    if let error = error {
+                        
+                        debugPrint("Error fetching docs: \(error)")
+                    } else {
+                        
+                        self.jobs.removeAll()
+                        self.jobs = Job.parseData(snapshot: snapshot)
+                        self.getJobCount()
+                        self.tableView.reloadData()
+                    }
+                })
+        } else {
+            
+            jobsListener = jobsCollectionRef
+                .whereField(Constants.FirebaseDB.company_id, isEqualTo: currentCompanyId)
+                .whereField(Constants.FirebaseDB.status, isEqualTo: "closed")
+                .order(by: Constants.FirebaseDB.posted_date, descending: true)
+                .addSnapshotListener({ (snapshot, error) in
+                    
+                    if let error = error {
+                        
+                        debugPrint("Error fetching docs: \(error)")
+                    } else {
+                        
+                        self.jobs.removeAll()
+                        self.jobs = Job.parseData(snapshot: snapshot)
+                        self.getJobCount()
+                        self.tableView.reloadData()
+                    }
+                })
+        }
     }
     
     func manageButtonTapped(job: Job) {
@@ -108,7 +214,8 @@ class HomeViewController: UIViewController, JobDelegate {
         
         let manageAction = UIAlertAction(title: "Manage People", style: .default) { (action) in
         
-            
+            self.currentJob = job
+            self.performSegue(withIdentifier: "JobManage", sender: self)
         }
         
         let editAction = UIAlertAction(title: "Edit Job", style: .default) { (action) in
@@ -123,7 +230,68 @@ class HomeViewController: UIViewController, JobDelegate {
         }
         
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        
         alert.addAction(manageAction)
+        
+        if selectedCategory == StatusCategory.open.rawValue {
+            
+            let moveToInProgress = UIAlertAction(title: "Move to In-Progress", style: .default) { (action) in
+                
+                if Calendar.current.isDateInTomorrow(job.startDate.dateValue()) || Calendar.current.isDateInToday(job.startDate.dateValue()) {
+                    
+                    let ref = Firestore.firestore().collection(Constants.FirebaseDB.jobs_ref)
+                        .document(job.jobId)
+                    
+                    ref.updateData([
+                        Constants.FirebaseDB.status: "inProgress"
+                    ]) { (error) in
+                        
+                        if let error = error {
+                            
+                            print("Error updating information \(error)")
+                        } else {
+                            
+                            print("Updated status")
+                            self.getJobCount()
+                        }
+                    }
+                } else {
+                    
+                    let alertView = SCLAlertView(appearance: Constants.AlertView.appearance)
+                    
+                    alertView.addButton("Continue", backgroundColor: .lightBlue, textColor: .white) {
+                        
+                        alertView.dismiss(animated: true)
+                    }
+                    
+                    alertView.showError("Cannot move job", subTitle: "This job doesn't start until \(Utilities.dateFormatterFullMonth(job.startDate.dateValue())). You can only move this job the day before or day of its start date", animationStyle: .rightToLeft)
+                }
+            }
+            alert.addAction(moveToInProgress)
+        } else if selectedCategory == StatusCategory.in_progress.rawValue {
+            
+            let moveToClosed = UIAlertAction(title: "Move to Closed", style: .default) { (action) in
+                
+                let ref = Firestore.firestore().collection(Constants.FirebaseDB.jobs_ref)
+                    .document(job.jobId)
+                
+                ref.updateData([
+                    Constants.FirebaseDB.status: "closed"
+                ]) { (error) in
+                    
+                    if let error = error {
+                        
+                        print("Error updating information \(error)")
+                    } else {
+                        
+                        print("Updated status")
+                        self.getJobCount()
+                    }
+                }
+            }
+            alert.addAction(moveToClosed)
+        }
+        
         alert.addAction(editAction)
         alert.addAction(deleteAction)
         alert.addAction(cancelAction)
@@ -135,6 +303,12 @@ class HomeViewController: UIViewController, JobDelegate {
         if segue.identifier == "JobEdit" {
             
             let vc = segue.destination as! JobEditViewController
+            vc.job = currentJob
+        }
+        
+        if segue.identifier == "JobManage" {
+            
+            let vc = segue.destination as! ManagePeopleViewController
             vc.job = currentJob
         }
     }
