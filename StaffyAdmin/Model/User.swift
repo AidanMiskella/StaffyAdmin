@@ -24,8 +24,10 @@ class User {
     var gender: String?
     var dateOfBirth: String?
     var dateProfileCreated: String
+    var allApplications: [String]?
     var jobsApplied: [String]?
     var jobsAccepted: [String]?
+    var jobsCompleted: Int?
     
     init(userId: String,
          email: String,
@@ -40,8 +42,10 @@ class User {
          gender: String?,
          dateOfBirth: String?,
          dateProfileCreated: String,
+         allApplications: [String]?,
          jobsApplied: [String]?,
-         jobsAccepted: [String]?) {
+         jobsAccepted: [String]?,
+         jobsCompleted: Int?) {
         
         self.userId = userId
         self.email = email
@@ -56,8 +60,10 @@ class User {
         self.gender = gender
         self.dateOfBirth = dateOfBirth
         self.dateProfileCreated = dateProfileCreated
+        self.allApplications = allApplications
         self.jobsApplied = jobsApplied
         self.jobsAccepted = jobsAccepted
+        self.jobsCompleted = jobsCompleted
     }
     
     class func parseData(snapshot: QuerySnapshot?) -> [User] {
@@ -81,11 +87,13 @@ class User {
             let gender = data[Constants.FirebaseDB.gender] as? String,
             let dateOfBirth = data[Constants.FirebaseDB.dob] as? String,
             let dateProfileCreated = data[Constants.FirebaseDB.date_created] as? String,
+            let allApplications = data[Constants.FirebaseDB.all_applications] as? [String],
             let jobsApplied = data[Constants.FirebaseDB.jobs_applied] as? [String],
             let jobsAccepted = data[Constants.FirebaseDB.jobs_accepted] as? [String],
+            let jobsCompleted = data[Constants.FirebaseDB.jobs_completed] as? Int,
             let url = URL(string: avatarURL) {
             
-                let newUser = User(userId: userId, email: email, firstName: firstName, lastName: lastName, avatarURL: url, bio: bio, reviewRating: reviewRating, mobile: mobile, documents: documents, address: address, gender: gender, dateOfBirth: dateOfBirth, dateProfileCreated: dateProfileCreated, jobsApplied: jobsApplied, jobsAccepted: jobsAccepted)
+                let newUser = User(userId: userId, email: email, firstName: firstName, lastName: lastName, avatarURL: url, bio: bio, reviewRating: reviewRating, mobile: mobile, documents: documents, address: address, gender: gender, dateOfBirth: dateOfBirth, dateProfileCreated: dateProfileCreated, allApplications: allApplications, jobsApplied: jobsApplied, jobsAccepted: jobsAccepted, jobsCompleted: jobsCompleted)
             
                 users.append(newUser)
             }

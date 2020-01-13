@@ -108,6 +108,7 @@ class RegisterViewController: UIViewController {
             Constants.FirebaseDB.mobile: Constants.Profile.notSet,
             Constants.FirebaseDB.address: Constants.Profile.notSet,
             Constants.FirebaseDB.jobs_created: [],
+            Constants.FirebaseDB.jobs_completed: 0,
             Constants.FirebaseDB.date_created: Utilities.dateFormatterFullMonth(Date())
             ], completion: { (error) in
                 if let error = error {

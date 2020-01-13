@@ -40,9 +40,10 @@ class CompanyService {
                     let mobile = data[Constants.FirebaseDB.mobile] as? String,
                     let address = data[Constants.FirebaseDB.address] as? String,
                     let dateProfileCreated = data[Constants.FirebaseDB.date_created] as? String,
+                    let jobsCompleted = data[Constants.FirebaseDB.jobs_completed] as? Int,
                     let url = URL(string: avatarURL) {
                         
-                        company = Company(userId: userId, companyName: companyName, firstName: firstName, lastName: lastName, avatarURL: url, bio: bio, reviewRating: reviewRating, mobile: mobile, address: address, dateProfileCreated: dateProfileCreated)
+                        company = Company(userId: userId, companyName: companyName, firstName: firstName, lastName: lastName, avatarURL: url, bio: bio, reviewRating: reviewRating, mobile: mobile, address: address, dateProfileCreated: dateProfileCreated, jobsCompleted: jobsCompleted)
                     }
                     
                     completion(company)
@@ -79,11 +80,13 @@ class CompanyService {
                         let gender = data[Constants.FirebaseDB.gender] as? String,
                         let dateOfBirth = data[Constants.FirebaseDB.dob] as? String,
                         let dateProfileCreated = data[Constants.FirebaseDB.date_created] as? String,
+                        let allApplications = data[Constants.FirebaseDB.all_applications] as? [String],
                         let jobsApplied = data[Constants.FirebaseDB.jobs_applied] as? [String],
                         let jobsAccepted = data[Constants.FirebaseDB.jobs_accepted] as? [String],
+                        let jobsCompleted = data[Constants.FirebaseDB.jobs_completed] as? Int,
                         let url = URL(string: avatarURL) {
                         
-                        user = User(userId: userId, email: email, firstName: firstName, lastName: lastName, avatarURL: url, bio: bio, reviewRating: reviewRating, mobile: mobile, documents: documents, address: address, gender: gender, dateOfBirth: dateOfBirth, dateProfileCreated: dateProfileCreated, jobsApplied: jobsApplied, jobsAccepted: jobsAccepted)
+                        user = User(userId: userId, email: email, firstName: firstName, lastName: lastName, avatarURL: url, bio: bio, reviewRating: reviewRating, mobile: mobile, documents: documents, address: address, gender: gender, dateOfBirth: dateOfBirth, dateProfileCreated: dateProfileCreated, allApplications: allApplications, jobsApplied: jobsApplied, jobsAccepted: jobsAccepted, jobsCompleted: jobsCompleted)
                     }
                     
                     completion(user)

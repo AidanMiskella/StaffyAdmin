@@ -170,7 +170,9 @@ class AddJobViewController: UIViewController, UITextFieldDelegate, UIPickerViewD
                 Constants.FirebaseDB.description: descriptionTextView.text!,
                 Constants.FirebaseDB.pay: String(format: "€%.1f0 per hour", paySlider.value),
                 Constants.FirebaseDB.company_email: Auth.auth().currentUser?.email ?? "",
+                Constants.FirebaseDB.company_phone: currentCompany.mobile ?? "",
                 Constants.FirebaseDB.status: "open",
+                Constants.FirebaseDB.accepted: [],
                 Constants.FirebaseDB.applicants: []
                 
             ]) { (error) in

@@ -17,5 +17,6 @@ target 'StaffyAdmin' do
   pod 'NADocumentPicker'
   pod 'GrowingTextView'
   pod 'FoldingCell'
+  pod 'SignaturePad'
 
 end

@@ -96,30 +96,20 @@ class ProfileViewController: UIViewController, ImagePickerDelegate {
             self.profileImage.image = image
         }
         
-        ratingView.rating = currentCompany.reviewRating!
-        ratingLabel.text = getRatingText(rating: currentCompany.reviewRating!)
+        ratingView.rating = (currentCompany.reviewRating! / Double(currentCompany.jobsCompleted))
+        ratingLabel.text = getRatingText(rating: (currentCompany.reviewRating! / Double(currentCompany.jobsCompleted)))
         bioLabel.text = currentCompany.bio
         
     }
     
     func getRatingText(rating: Double) -> String {
-    
-        switch rating {
         
-        case 0:
-            return "\(Constants.Profile.no_rating)"
-        case 1:
-            return "1 \(Constants.Profile.rating)"
-        case 2:
-            return "2 \(Constants.Profile.rating)"
-        case 3:
-            return "3 \(Constants.Profile.rating)"
-        case 4:
-            return "4 \(Constants.Profile.rating)"
-        case 5:
-            return "5 \(Constants.Profile.rating)"
-        default:
-            return "\(Constants.Profile.ratingError)"
+        if rating == 0.0 {
+            
+            return "No reviews yet"
+        } else {
+            
+            return String(format: "%.1f of 5 Star Rating", rating)
         }
     }
     

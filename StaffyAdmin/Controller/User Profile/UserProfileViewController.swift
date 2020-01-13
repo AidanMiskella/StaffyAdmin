@@ -90,7 +90,6 @@ class UserProfileViewController: UIViewController {
         ratingView.rating = user.reviewRating!
         ratingLabel.text = getRatingText(rating: user.reviewRating!)
         bioLabel.text = user.bio
-        
     }
     
     func getRatingText(rating: Double) -> String {

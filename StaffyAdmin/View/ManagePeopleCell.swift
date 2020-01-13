@@ -45,9 +45,9 @@ class ManagePeopleCell: UITableViewCell {
         let moreButtonTap = UITapGestureRecognizer(target: self, action: #selector(moreButtonPressed))
         moreImageButton.addGestureRecognizer(moreButtonTap)
         
-        avatarImageView.layer.borderWidth = 2
+        avatarImageView.layer.borderWidth = 1
         avatarImageView.layer.masksToBounds = false
-        avatarImageView.layer.borderColor = UIColor.white.cgColor
+        avatarImageView.layer.borderColor = UIColor.gray.cgColor
         avatarImageView.layer.cornerRadius = avatarImageView.frame.height / 2
         avatarImageView.clipsToBounds = true
         avatarImageView.isUserInteractionEnabled = true
@@ -59,6 +59,20 @@ class ManagePeopleCell: UITableViewCell {
         
         nameLabel.text = "\(user.firstName) \(user.lastName)"
         ratingView.rating = user.reviewRating!
+    }
+    
+    func removeOptionsButton(job: Job, selectedSegment: String) {
+        
+        if job.status == "inProgress" || job.status == "closed" {
+            
+            if selectedSegment == "APPLICANTS"{
+                
+                moreImageButton.isHidden = true
+            } else {
+                
+                moreImageButton.isHidden = false
+            }
+        }
     }
     
     @objc func moreButtonPressed() {

@@ -36,6 +36,8 @@ class ManagePeopleViewController: UIViewController, UserCellDelegate {
         // Do any additional setup after loading the view.
         getUserCount()
         segmentControl.tintColor = .lightBlue
+        segmentControl.addUnderlineForSelectedSegment()
+        segmentControl.setFontSize(12)
         
         tableView.delegate = self
         tableView.dataSource = self
@@ -58,22 +60,42 @@ class ManagePeopleViewController: UIViewController, UserCellDelegate {
     
     func getUserCount() {
         
-        let applicantsArray = Firestore.firestore().collection(Constants.FirebaseDB.user_ref)
-            .whereField(Constants.FirebaseDB.jobs_applied, arrayContains: job.jobId)
-        applicantsArray.getDocuments { (snapshot, error) in
+        if job.status == "open" {
             
-            self.segmentControl.setTitle("APPLICANTS (\(snapshot!.count))", forSegmentAt: 0)
-        }
-        
-        let acceptedArray = Firestore.firestore().collection(Constants.FirebaseDB.user_ref)
-            .whereField(Constants.FirebaseDB.jobs_accepted, arrayContains: job.jobId)
-        acceptedArray.getDocuments { (snapshot, error) in
+            let applicantsArray = Firestore.firestore().collection(Constants.FirebaseDB.user_ref)
+                .whereField(Constants.FirebaseDB.jobs_applied, arrayContains: job.jobId)
+            applicantsArray.getDocuments { (snapshot, error) in
+                
+                self.segmentControl.setTitle("APPLICANTS (\(snapshot!.count))", forSegmentAt: 0)
+            }
             
-            self.segmentControl.setTitle("STAFF (\(snapshot!.count))", forSegmentAt: 1)
+            let acceptedArray = Firestore.firestore().collection(Constants.FirebaseDB.user_ref)
+                .whereField(Constants.FirebaseDB.jobs_accepted, arrayContains: job.jobId)
+            acceptedArray.getDocuments { (snapshot, error) in
+                
+                self.segmentControl.setTitle("STAFF (\(snapshot!.count))", forSegmentAt: 1)
+            }
+        } else {
+            
+            let applicantsArray = Firestore.firestore().collection(Constants.FirebaseDB.user_ref)
+                .whereField(Constants.FirebaseDB.all_applications, arrayContains: job.jobId)
+            applicantsArray.getDocuments { (snapshot, error) in
+                
+                self.segmentControl.setTitle("APPLICANTS (\(snapshot!.count))", forSegmentAt: 0)
+            }
+            
+            let acceptedArray = Firestore.firestore().collection(Constants.FirebaseDB.user_ref)
+                .whereField(Constants.FirebaseDB.jobs_accepted, arrayContains: job.jobId)
+            acceptedArray.getDocuments { (snapshot, error) in
+                
+                self.segmentControl.setTitle("STAFF (\(snapshot!.count))", forSegmentAt: 1)
+            }
         }
     }
     
     @IBAction func categoryChanged(_ sender: Any) {
+        
+        segmentControl.changeUnderlinePosition()
         
         if segmentControl.selectedSegmentIndex == 0 {
             
@@ -89,44 +111,86 @@ class ManagePeopleViewController: UIViewController, UserCellDelegate {
     
     func setListener() {
         
-        if selectedCategory == ManagePeopleCategory.applicants.rawValue {
-            
-            userListener = userCollectionRef
-                .whereField(Constants.FirebaseDB.jobs_applied, arrayContains: job.jobId)
-                .addSnapshotListener { (snapshot, error) in
-                    
-                    if let error = error {
+        if job.status == "open" {
+        
+            if selectedCategory == ManagePeopleCategory.applicants.rawValue {
+                
+                userListener = userCollectionRef
+                    .whereField(Constants.FirebaseDB.jobs_applied, arrayContains: job.jobId)
+                    .addSnapshotListener { (snapshot, error) in
                         
-                        debugPrint("Error fetching docs: \(error)")
-                    } else {
+                        if let error = error {
+                            
+                            debugPrint("Error fetching docs: \(error)")
+                        } else {
+                            
+                            self.users.removeAll()
+                            self.users = User.parseData(snapshot: snapshot)
+                            self.getUserCount()
+                            self.tableView.reloadData()
+                        }
+                }
+            } else {
+                
+                userListener = userCollectionRef
+                    .whereField(Constants.FirebaseDB.jobs_accepted, arrayContains: job.jobId)
+                    .addSnapshotListener { (snapshot, error) in
                         
-                        self.users.removeAll()
-                        self.users = User.parseData(snapshot: snapshot)
-                        self.getUserCount()
-                        self.tableView.reloadData()
-                    }
+                        if let error = error {
+                            
+                            debugPrint("Error fetching docs: \(error)")
+                        } else {
+                            
+                            self.users.removeAll()
+                            self.users = User.parseData(snapshot: snapshot)
+                            self.getUserCount()
+                            self.tableView.reloadData()
+                        }
+                }
             }
         } else {
             
-            userListener = userCollectionRef
-                .whereField(Constants.FirebaseDB.jobs_accepted, arrayContains: job.jobId)
-                .addSnapshotListener { (snapshot, error) in
-                    
-                    if let error = error {
+            if selectedCategory == ManagePeopleCategory.applicants.rawValue {
+                
+                userListener = userCollectionRef
+                    .whereField(Constants.FirebaseDB.all_applications, arrayContains: job.jobId)
+                    .addSnapshotListener { (snapshot, error) in
                         
-                        debugPrint("Error fetching docs: \(error)")
-                    } else {
+                        if let error = error {
+                            
+                            debugPrint("Error fetching docs: \(error)")
+                        } else {
+                            
+                            self.users.removeAll()
+                            self.users = User.parseData(snapshot: snapshot)
+                            self.getUserCount()
+                            self.tableView.reloadData()
+                        }
+                }
+            } else {
+                
+                userListener = userCollectionRef
+                    .whereField(Constants.FirebaseDB.jobs_accepted, arrayContains: job.jobId)
+                    .addSnapshotListener { (snapshot, error) in
                         
-                        self.users.removeAll()
-                        self.users = User.parseData(snapshot: snapshot)
-                        self.getUserCount()
-                        self.tableView.reloadData()
-                    }
+                        if let error = error {
+                            
+                            debugPrint("Error fetching docs: \(error)")
+                        } else {
+                            
+                            self.users.removeAll()
+                            self.users = User.parseData(snapshot: snapshot)
+                            self.getUserCount()
+                            self.tableView.reloadData()
+                        }
+                }
             }
         }
     }
-    
+
     func moreButtonTapped(user: User) {
+        
+        currentUser = user
         
         if job.status == "open" {
         
@@ -135,7 +199,32 @@ class ManagePeopleViewController: UIViewController, UserCellDelegate {
                 let alert = UIAlertController(title: "People Options", message: "Accept or decline \(user.firstName)'s application. If accepted, \(user.firstName) will appear in accepted staff", preferredStyle: .actionSheet)
 
                 let acceptAction = UIAlertAction(title: "Accept", style: .default) { (action) in
-
+                    
+                    let report_ref = Firestore.firestore().collection(Constants.FirebaseDB.jobs_ref).document(self.job.jobId).collection(Constants.FirebaseDB.reports_ref)
+                    
+                    let reportDoc = report_ref.document()
+                    reportDoc.setData([
+                        
+                        Constants.FirebaseDB.user_id: user.userId,
+                        Constants.FirebaseDB.report_id: reportDoc.documentID,
+                        Constants.FirebaseDB.report_status: "Not clocked in",
+                        Constants.FirebaseDB.clocking_messages: [],
+                        Constants.FirebaseDB.employer_star_rating: 0.0,
+                        Constants.FirebaseDB.employer_comment: "No comment",
+                        Constants.FirebaseDB.employee_star_rating: 0.0,
+                        Constants.FirebaseDB.employee_comment: "Not comment",
+                        Constants.FirebaseDB.report_open: true
+                        
+                        ], completion: { (error) in
+                            if let error = error {
+                                
+                                debugPrint("Error adding document: \(error)")
+                            } else {
+                                
+                    
+                            }
+                    })
+                    
                     let batch = Firestore.firestore().batch()
                     
                     // Update job applicants
@@ -143,7 +232,8 @@ class ManagePeopleViewController: UIViewController, UserCellDelegate {
                         .document(self.job.jobId)
                     
                     batch.updateData([
-                        Constants.FirebaseDB.applicants: FieldValue.arrayRemove([user.userId])
+                        Constants.FirebaseDB.applicants: FieldValue.arrayRemove([user.userId]),
+                        Constants.FirebaseDB.accepted: FieldValue.arrayUnion([user.userId])
                         ], forDocument: job_ref)
                     
                     // Update jobs applied/accepted for
@@ -210,6 +300,13 @@ class ManagePeopleViewController: UIViewController, UserCellDelegate {
                         Constants.FirebaseDB.jobs_accepted: FieldValue.arrayRemove([self.job.jobId])
                         ], forDocument: user_ref)
                     
+                    let job_ref = Firestore.firestore().collection(Constants.FirebaseDB.jobs_ref)
+                        .document(self.job.jobId)
+                    
+                    batch.updateData([
+                        Constants.FirebaseDB.accepted: FieldValue.arrayRemove([user.userId])
+                        ], forDocument: job_ref)
+                    
                     batch.commit() { err in
                         if let err = err {
                             
@@ -226,22 +323,66 @@ class ManagePeopleViewController: UIViewController, UserCellDelegate {
                 alert.addAction(cancelAction)
                 present(alert, animated: true, completion: nil)
             }
-        } else {
+        } else if job.status == "inProgress" {
             
-            if selectedCategory == ManagePeopleCategory.applicants.rawValue {
-                
-                
-            } else {
+            if selectedCategory == ManagePeopleCategory.accepted.rawValue {
                 
                 let alert = UIAlertController(title: "Staff Options", message: "View \(user.firstName)'s work details. This includes clock in and out and also any details of the job", preferredStyle: .actionSheet)
                 
-                let viewWork = UIAlertAction(title: "Job Details", style: .default) { (action) in
+                let viewReport = UIAlertAction(title: "View Report", style: .default) { (action) in
                     
+                    self.performSegue(withIdentifier: "viewreport", sender: self)
+                }
+                
+                let removeAction = UIAlertAction(title: "Remove", style: .destructive) { (action) in
                     
+                    let batch = Firestore.firestore().batch()
+                    
+                    // Update jobs accepted for
+                    let user_ref = Firestore.firestore().collection(Constants.FirebaseDB.user_ref)
+                        .document(user.userId)
+                    
+                    batch.updateData([
+                        Constants.FirebaseDB.jobs_accepted: FieldValue.arrayRemove([self.job.jobId])
+                        ], forDocument: user_ref)
+                    
+                    let job_ref = Firestore.firestore().collection(Constants.FirebaseDB.jobs_ref)
+                        .document(self.job.jobId)
+                    
+                    batch.updateData([
+                        Constants.FirebaseDB.accepted: FieldValue.arrayRemove([user.userId])
+                        ], forDocument: job_ref)
+                    
+                    batch.commit() { err in
+                        if let err = err {
+                            
+                            print("Error writing batch \(err)")
+                        } else {
+                            
+                            self.getUserCount()
+                        }
+                    }
                 }
                 
                 let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-                alert.addAction(viewWork)
+                alert.addAction(viewReport)
+                alert.addAction(removeAction)
+                alert.addAction(cancelAction)
+                present(alert, animated: true, completion: nil)
+            }
+        } else {
+            
+            if selectedCategory == ManagePeopleCategory.accepted.rawValue {
+                
+                let alert = UIAlertController(title: "Staff Options", message: "View \(user.firstName)'s work details. This includes clock in and out and also any details of the job", preferredStyle: .actionSheet)
+                
+                let viewReport = UIAlertAction(title: "View Report", style: .default) { (action) in
+                    
+                    self.performSegue(withIdentifier: "viewreport", sender: self)
+                }
+                
+                let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+                alert.addAction(viewReport)
                 alert.addAction(cancelAction)
                 present(alert, animated: true, completion: nil)
             }
@@ -261,6 +402,19 @@ class ManagePeopleViewController: UIViewController, UserCellDelegate {
             let vc = segue.destination as! UserProfileViewController
             vc.user = currentUser
         }
+        
+        if segue.identifier == "viewreport" {
+            
+            let vc = segue.destination as! ReportViewController
+            vc.job = job
+            vc.currentUser = currentUser
+        }
+        
+        if segue.identifier == "employerFeedback" {
+            
+            let vc = segue.destination as! EmployerFeedbackViewController
+            vc.job = job
+        }
     }
 }
 
@@ -277,6 +431,7 @@ extension ManagePeopleViewController: UITableViewDelegate, UITableViewDataSource
         let cell = tableView.dequeueReusableCell(withIdentifier: "ManagePeopleCell") as! ManagePeopleCell
 
         cell.setCell(user: user, delegate: self)
+        cell.removeOptionsButton(job: job, selectedSegment: selectedCategory)
 
         return cell
     }

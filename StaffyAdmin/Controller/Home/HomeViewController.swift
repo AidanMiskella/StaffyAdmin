@@ -10,7 +10,6 @@ import UIKit
 import Firebase
 import FirebaseAuth
 import FirebaseFirestore
-import FoldingCell
 import SCLAlertView
 
 enum StatusCategory: String {
@@ -20,16 +19,7 @@ enum StatusCategory: String {
     case closed = "CLOSED"
 }
 
-class HomeViewController: UIViewController, JobDelegate {
-    
-    enum Const {
-        
-        static let closeCellHeight: CGFloat = 150
-        static let openCellHeight: CGFloat = 600
-        static let rowsCount = 10
-    }
-    
-    var cellHeights: [CGFloat] = []
+class HomeViewController: UIViewController {
     
     private var jobs = [Job]()
     private var jobs_ref: CollectionReference!
@@ -38,11 +28,16 @@ class HomeViewController: UIViewController, JobDelegate {
     
     @IBOutlet weak var tableView: UITableView!
     
+    @IBOutlet weak var searchBar: UISearchBar!
+    
     @IBOutlet private weak var segmentControl: UISegmentedControl!
     
     private var loginHandle: AuthStateDidChangeListenerHandle?
     private var selectedCategory = StatusCategory.open.rawValue
     private var currentJob: Job?
+    private var selectedJob: Job?
+    var filteredJobs: [Job] = []
+    var searchActive : Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,6 +49,7 @@ class HomeViewController: UIViewController, JobDelegate {
         
         tableView.delegate = self
         tableView.dataSource = self
+        searchBar.delegate = self
         
         jobsCollectionRef = Firestore.firestore().collection(Constants.FirebaseDB.jobs_ref)
     }
@@ -119,15 +115,14 @@ class HomeViewController: UIViewController, JobDelegate {
     
     private func setup() {
         
-        cellHeights = Array(repeating: Const.closeCellHeight, count: Const.rowsCount)
-        tableView.estimatedRowHeight = Const.closeCellHeight
-        tableView.rowHeight = UITableView.automaticDimension
-        tableView.backgroundColor = UIColor(displayP3Red: 54/255, green: 76/255, blue: 112/255, alpha: 0.1)
-        
         Utilities.setupNavigationStyle(navigationController!)
+        segmentControl.addUnderlineForSelectedSegment()
+        segmentControl.setFontSize(12)
     }
     
     @IBAction func categoryChanged(_ sender: Any) {
+        
+        segmentControl.changeUnderlinePosition()
         
         if segmentControl.selectedSegmentIndex == 0 {
             
@@ -207,173 +202,84 @@ class HomeViewController: UIViewController, JobDelegate {
                 })
         }
     }
-    
-    func manageButtonTapped(job: Job) {
-        
-        let alert = UIAlertController(title: "Job Options", message: "Manage your job by editing the details, managing the staff or delete the job", preferredStyle: .actionSheet)
-        
-        let manageAction = UIAlertAction(title: "Manage People", style: .default) { (action) in
-        
-            self.currentJob = job
-            self.performSegue(withIdentifier: "JobManage", sender: self)
-        }
-        
-        let editAction = UIAlertAction(title: "Edit Job", style: .default) { (action) in
-            
-            self.currentJob = job
-            self.performSegue(withIdentifier: "JobEdit", sender: self)
-        }
-        
-        let deleteAction = UIAlertAction(title: "Delete Job", style: .destructive) { (action) in
-            
-            
-        }
-        
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-        
-        alert.addAction(manageAction)
-        
-        if selectedCategory == StatusCategory.open.rawValue {
-            
-            let moveToInProgress = UIAlertAction(title: "Move to In-Progress", style: .default) { (action) in
-                
-                if Calendar.current.isDateInTomorrow(job.startDate.dateValue()) || Calendar.current.isDateInToday(job.startDate.dateValue()) {
-                    
-                    let ref = Firestore.firestore().collection(Constants.FirebaseDB.jobs_ref)
-                        .document(job.jobId)
-                    
-                    ref.updateData([
-                        Constants.FirebaseDB.status: "inProgress"
-                    ]) { (error) in
-                        
-                        if let error = error {
-                            
-                            print("Error updating information \(error)")
-                        } else {
-                            
-                            print("Updated status")
-                            self.getJobCount()
-                        }
-                    }
-                } else {
-                    
-                    let alertView = SCLAlertView(appearance: Constants.AlertView.appearance)
-                    
-                    alertView.addButton("Continue", backgroundColor: .lightBlue, textColor: .white) {
-                        
-                        alertView.dismiss(animated: true)
-                    }
-                    
-                    alertView.showError("Cannot move job", subTitle: "This job doesn't start until \(Utilities.dateFormatterFullMonth(job.startDate.dateValue())). You can only move this job the day before or day of its start date", animationStyle: .rightToLeft)
-                }
-            }
-            alert.addAction(moveToInProgress)
-        } else if selectedCategory == StatusCategory.in_progress.rawValue {
-            
-            let moveToClosed = UIAlertAction(title: "Move to Closed", style: .default) { (action) in
-                
-                let ref = Firestore.firestore().collection(Constants.FirebaseDB.jobs_ref)
-                    .document(job.jobId)
-                
-                ref.updateData([
-                    Constants.FirebaseDB.status: "closed"
-                ]) { (error) in
-                    
-                    if let error = error {
-                        
-                        print("Error updating information \(error)")
-                    } else {
-                        
-                        print("Updated status")
-                        self.getJobCount()
-                    }
-                }
-            }
-            alert.addAction(moveToClosed)
-        }
-        
-        alert.addAction(editAction)
-        alert.addAction(deleteAction)
-        alert.addAction(cancelAction)
-        present(alert, animated: true, completion: nil)
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
-        if segue.identifier == "JobEdit" {
-            
-            let vc = segue.destination as! JobEditViewController
-            vc.job = currentJob
-        }
-        
-        if segue.identifier == "JobManage" {
-            
-            let vc = segue.destination as! ManagePeopleViewController
-            vc.job = currentJob
-        }
-    }
 }
 
 extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     
-    func tableView(_: UITableView, numberOfRowsInSection _: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+        if(searchActive) {
+            return filteredJobs.count
+        }
         return jobs.count
     }
     
-    func tableView(_: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        guard case let cell as DemoCell = cell else {
-            return
-        }
-        
-        cell.backgroundColor = .clear
-        
-        if cellHeights[indexPath.row] == Const.closeCellHeight {
-            cell.unfold(false, animated: false, completion: nil)
-        } else {
-            cell.unfold(true, animated: false, completion: nil)
-        }
-    }
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "FoldingCell", for: indexPath) as! DemoCell
-        let durations: [TimeInterval] = [0.26, 0.2, 0.2]
-        cell.durationsForExpandedState = durations
-        cell.durationsForCollapsedState = durations
-        cell.configureCell(job: jobs[indexPath.row], delegate: self)
+        
+        var job: Job
+        
+        if(searchActive) {
+            job = filteredJobs[indexPath.row]
+        } else {
+            job = jobs[indexPath.row]
+        }
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "JobCell") as! JobTableViewCell
+        
+        cell.setCell(job: job)
+        
         return cell
     }
     
-    func tableView(_: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return cellHeights[indexPath.row]
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+     
+        selectedJob = jobs[indexPath.row]
+        performSegue(withIdentifier: "goToJobDetails", sender: nil)
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
-        let cell = tableView.cellForRow(at: indexPath) as! FoldingCell
-        
-        if cell.isAnimating() {
-            return
-        }
-        
-        var duration = 0.0
-        let cellIsCollapsed = cellHeights[indexPath.row] == Const.closeCellHeight
-        if cellIsCollapsed {
-            cellHeights[indexPath.row] = Const.openCellHeight
-            cell.unfold(true, animated: true, completion: nil)
-            duration = 0.5
-        } else {
-            cellHeights[indexPath.row] = Const.closeCellHeight
-            cell.unfold(false, animated: true, completion: nil)
-            duration = 0.8
-        }
-        
-        UIView.animate(withDuration: duration, delay: 0, options: .curveEaseOut, animations: { () -> Void in
-            tableView.beginUpdates()
-            tableView.endUpdates()
+        if segue.identifier == "goToJobDetails" {
             
-            if cell.frame.maxY > tableView.frame.maxY {
-                tableView.scrollToRow(at: indexPath, at: UITableView.ScrollPosition.bottom, animated: true)
-            }
-        }, completion: nil)
+            let vc = segue.destination as! JobViewController
+            vc.job = selectedJob
+        }
+    }
+}
+
+extension HomeViewController: UISearchBarDelegate {
+    
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        
+        searchActive = true
+    }
+    
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        
+        searchActive = false
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        
+        searchBar.text = ""
+        searchBar.endEditing(true)
+        searchActive = false
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        
+        searchActive = false
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        
+        filteredJobs = jobs.filter({$0.title.lowercased().prefix(searchText.count) == searchText.lowercased()})
+        
+        if(filteredJobs.count == 0){
+            searchActive = false;
+        } else {
+            searchActive = true;
+        }
+        self.tableView.reloadData()
     }
 }

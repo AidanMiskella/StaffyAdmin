@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		7400A2092334306E00D4E9FE /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7400A2082334306E00D4E9FE /* User.swift */; };
 		7400A20B2334336D00D4E9FE /* CompanyServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7400A20A2334336D00D4E9FE /* CompanyServices.swift */; };
-		74016E792361B3C500D38E41 /* FoldingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74016E782361B3C500D38E41 /* FoldingCell.swift */; };
 		7402B71222F7442F000454D1 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7402B71122F7442F000454D1 /* HomeViewController.swift */; };
 		7402D1182337AD2E001E0573 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7402D1172337AD2E001E0573 /* UIViewExtension.swift */; };
 		7403019D233CB3390040FAF5 /* NameEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7403019C233CB3390040FAF5 /* NameEditViewController.swift */; };
@@ -26,6 +25,8 @@
 		7405A4FD233C2C950046BC71 /* EmailEdit.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7405A4FC233C2C950046BC71 /* EmailEdit.storyboard */; };
 		7405A503233C2CC90046BC71 /* MobileEdit.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7405A502233C2CC90046BC71 /* MobileEdit.storyboard */; };
 		7405A505233C2CD50046BC71 /* AddressEdit.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7405A504233C2CD50046BC71 /* AddressEdit.storyboard */; };
+		740AC9122389889D004371F1 /* JobTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 740AC9112389889D004371F1 /* JobTableViewCell.swift */; };
+		740AC9142389B8C6004371F1 /* JobViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 740AC9132389B8C6004371F1 /* JobViewController.swift */; };
 		740C16CA2336343F00266C62 /* ImageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 740C16C92336343F00266C62 /* ImageService.swift */; };
 		7411E32922F0BA3200E3830A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7411E32822F0BA3200E3830A /* AppDelegate.swift */; };
 		7411E32E22F0BA3200E3830A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7411E32C22F0BA3200E3830A /* Main.storyboard */; };
@@ -40,11 +41,17 @@
 		743BE9EC22F0FF10006A2F6E /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 743BE9EB22F0FF10006A2F6E /* RegisterViewController.swift */; };
 		7453F2062331339D0019EECE /* ProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7453F2052331339D0019EECE /* ProfileTableViewCell.swift */; };
 		7453F20A233135270019EECE /* ProfileCellData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7453F209233135270019EECE /* ProfileCellData.swift */; };
+		7462C30C23C7C68900BEB83A /* ReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7462C30B23C7C68900BEB83A /* ReportViewController.swift */; };
+		7462C30E23C7C6B000BEB83A /* EmployerSignatureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7462C30D23C7C6B000BEB83A /* EmployerSignatureViewController.swift */; };
+		7462C31223C7C8C400BEB83A /* Report.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7462C31123C7C8C400BEB83A /* Report.swift */; };
+		7462C31423C7C8FD00BEB83A /* ReportTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7462C31323C7C8FD00BEB83A /* ReportTableViewCell.swift */; };
 		74718BEE236880FA009A64F3 /* PasswordEdit.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 74718BEC236880F9009A64F3 /* PasswordEdit.storyboard */; };
 		74718BEF236880FA009A64F3 /* PasswordEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74718BED236880FA009A64F3 /* PasswordEditViewController.swift */; };
 		74B23E8022F8ABE30058B5D4 /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 74B23E7F22F8ABE30058B5D4 /* Home.storyboard */; };
 		74B23E8822F8ADDB0058B5D4 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74B23E8722F8ADDB0058B5D4 /* ProfileViewController.swift */; };
 		74B23E8A22F8ADEA0058B5D4 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 74B23E8922F8ADEA0058B5D4 /* Profile.storyboard */; };
+		74BC261923CB7A280076E3A5 /* EmployerFeedbackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74BC261823CB7A280076E3A5 /* EmployerFeedbackViewController.swift */; };
+		74D05063237AE8E000F6B7CB /* UISegmentControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D05062237AE8E000F6B7CB /* UISegmentControllerExtension.swift */; };
 		74EDBC0222F0BC19007B65B8 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 74EDBC0122F0BC19007B65B8 /* Login.storyboard */; };
 		74EDBC0422F0BD01007B65B8 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74EDBC0322F0BD01007B65B8 /* LoginViewController.swift */; };
 		74EE62FB2354AE8800DF9F69 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 74EE62FA2354AE8800DF9F69 /* GoogleService-Info.plist */; };
@@ -65,7 +72,6 @@
 		73F7E1C8B7A535CBC1775FEA /* Pods_StaffyAdmin.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StaffyAdmin.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7400A2082334306E00D4E9FE /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		7400A20A2334336D00D4E9FE /* CompanyServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompanyServices.swift; sourceTree = "<group>"; };
-		74016E782361B3C500D38E41 /* FoldingCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FoldingCell.swift; path = ../../../../.Trash/FoldingCell.swift; sourceTree = "<group>"; };
 		7402B71122F7442F000454D1 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		7402D1172337AD2E001E0573 /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
 		7403019C233CB3390040FAF5 /* NameEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameEditViewController.swift; sourceTree = "<group>"; };
@@ -82,6 +88,8 @@
 		7405A4FC233C2C950046BC71 /* EmailEdit.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = EmailEdit.storyboard; sourceTree = "<group>"; };
 		7405A502233C2CC90046BC71 /* MobileEdit.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MobileEdit.storyboard; sourceTree = "<group>"; };
 		7405A504233C2CD50046BC71 /* AddressEdit.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AddressEdit.storyboard; sourceTree = "<group>"; };
+		740AC9112389889D004371F1 /* JobTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobTableViewCell.swift; sourceTree = "<group>"; };
+		740AC9132389B8C6004371F1 /* JobViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobViewController.swift; sourceTree = "<group>"; };
 		740C16C92336343F00266C62 /* ImageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageService.swift; sourceTree = "<group>"; };
 		7411E32522F0BA3200E3830A /* StaffyAdmin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StaffyAdmin.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7411E32822F0BA3200E3830A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -97,12 +105,18 @@
 		743BE9E922F0C5C6006A2F6E /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		743BE9EB22F0FF10006A2F6E /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		7453F2052331339D0019EECE /* ProfileTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableViewCell.swift; sourceTree = "<group>"; };
-		7453F209233135270019EECE /* ProfileCellData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ProfileCellData.swift; path = ../View/ProfileCellData.swift; sourceTree = "<group>"; };
+		7453F209233135270019EECE /* ProfileCellData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCellData.swift; sourceTree = "<group>"; };
+		7462C30B23C7C68900BEB83A /* ReportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportViewController.swift; sourceTree = "<group>"; };
+		7462C30D23C7C6B000BEB83A /* EmployerSignatureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployerSignatureViewController.swift; sourceTree = "<group>"; };
+		7462C31123C7C8C400BEB83A /* Report.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Report.swift; sourceTree = "<group>"; };
+		7462C31323C7C8FD00BEB83A /* ReportTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportTableViewCell.swift; sourceTree = "<group>"; };
 		74718BEC236880F9009A64F3 /* PasswordEdit.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = PasswordEdit.storyboard; sourceTree = "<group>"; };
 		74718BED236880FA009A64F3 /* PasswordEditViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasswordEditViewController.swift; sourceTree = "<group>"; };
 		74B23E7F22F8ABE30058B5D4 /* Home.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
 		74B23E8722F8ADDB0058B5D4 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		74B23E8922F8ADEA0058B5D4 /* Profile.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
+		74BC261823CB7A280076E3A5 /* EmployerFeedbackViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployerFeedbackViewController.swift; sourceTree = "<group>"; };
+		74D05062237AE8E000F6B7CB /* UISegmentControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UISegmentControllerExtension.swift; sourceTree = "<group>"; };
 		74EDBC0122F0BC19007B65B8 /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		74EDBC0322F0BD01007B65B8 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		74EE62FA2354AE8800DF9F69 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -144,6 +158,10 @@
 				740508D72355F10C00DA78EC /* AddJobViewController.swift */,
 				7404EE4B2360ABFA00AEF2AA /* JobEditViewController.swift */,
 				74050497236F379900B95894 /* ManagePeopleViewController.swift */,
+				740AC9132389B8C6004371F1 /* JobViewController.swift */,
+				7462C30B23C7C68900BEB83A /* ReportViewController.swift */,
+				7462C30D23C7C6B000BEB83A /* EmployerSignatureViewController.swift */,
+				74BC261823CB7A280076E3A5 /* EmployerFeedbackViewController.swift */,
 				74B23E7F22F8ABE30058B5D4 /* Home.storyboard */,
 			);
 			path = Home;
@@ -226,6 +244,7 @@
 				7403CFCB22F8A16D00C6C8D1 /* ColorExtension.swift */,
 				7403CFC722F8A15100C6C8D1 /* ErrorExtension.swift */,
 				7402D1172337AD2E001E0573 /* UIViewExtension.swift */,
+				74D05062237AE8E000F6B7CB /* UISegmentControllerExtension.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -244,9 +263,11 @@
 		7413AE5022F37D8B0019CD06 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				7453F209233135270019EECE /* ProfileCellData.swift */,
 				7453F2052331339D0019EECE /* ProfileTableViewCell.swift */,
-				74016E782361B3C500D38E41 /* FoldingCell.swift */,
 				741B5E5023705F0D00792761 /* ManagePeopleCell.swift */,
+				740AC9112389889D004371F1 /* JobTableViewCell.swift */,
+				7462C31323C7C8FD00BEB83A /* ReportTableViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -257,7 +278,7 @@
 				7400A2082334306E00D4E9FE /* User.swift */,
 				74EE62FC2354B21800DF9F69 /* Company.swift */,
 				74EE63032355451600DF9F69 /* Job.swift */,
-				7453F209233135270019EECE /* ProfileCellData.swift */,
+				7462C31123C7C8C400BEB83A /* Report.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -492,36 +513,43 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7462C30E23C7C6B000BEB83A /* EmployerSignatureViewController.swift in Sources */,
 				7403CFCA22F8A16000C6C8D1 /* FontExtension.swift in Sources */,
 				7403019F233CB3530040FAF5 /* EmailEditViewController.swift in Sources */,
+				74D05063237AE8E000F6B7CB /* UISegmentControllerExtension.swift in Sources */,
 				7453F2062331339D0019EECE /* ProfileTableViewCell.swift in Sources */,
 				743BE9E822F0C5A6006A2F6E /* Utilities.swift in Sources */,
 				743BE9EC22F0FF10006A2F6E /* RegisterViewController.swift in Sources */,
 				7400A2092334306E00D4E9FE /* User.swift in Sources */,
+				74BC261923CB7A280076E3A5 /* EmployerFeedbackViewController.swift in Sources */,
 				7402B71222F7442F000454D1 /* HomeViewController.swift in Sources */,
+				7462C31223C7C8C400BEB83A /* Report.swift in Sources */,
 				7403CFC822F8A15100C6C8D1 /* ErrorExtension.swift in Sources */,
 				7402D1182337AD2E001E0573 /* UIViewExtension.swift in Sources */,
 				741B5E542371D74000792761 /* UserProfileViewController.swift in Sources */,
 				740508D82355F10C00DA78EC /* AddJobViewController.swift in Sources */,
 				74718BEF236880FA009A64F3 /* PasswordEditViewController.swift in Sources */,
+				7462C30C23C7C68900BEB83A /* ReportViewController.swift in Sources */,
 				74EE62FD2354B21800DF9F69 /* Company.swift in Sources */,
 				741B5E5123705F0D00792761 /* ManagePeopleCell.swift in Sources */,
+				740AC9122389889D004371F1 /* JobTableViewCell.swift in Sources */,
 				74EE63002354B9E100DF9F69 /* CompanyNameEditViewController.swift in Sources */,
 				7453F20A233135270019EECE /* ProfileCellData.swift in Sources */,
 				74EDBC0422F0BD01007B65B8 /* LoginViewController.swift in Sources */,
 				7404EE4C2360ABFA00AEF2AA /* JobEditViewController.swift in Sources */,
 				740C16CA2336343F00266C62 /* ImageService.swift in Sources */,
 				7413AE4D22F375DC0019CD06 /* ResetPasswordViewController.swift in Sources */,
+				740AC9142389B8C6004371F1 /* JobViewController.swift in Sources */,
 				740301A5233CB39E0040FAF5 /* MobileEditViewController.swift in Sources */,
 				7411E32922F0BA3200E3830A /* AppDelegate.swift in Sources */,
 				74050498236F379900B95894 /* ManagePeopleViewController.swift in Sources */,
+				7462C31423C7C8FD00BEB83A /* ReportTableViewCell.swift in Sources */,
 				74EE63042355451600DF9F69 /* Job.swift in Sources */,
 				74B23E8822F8ADDB0058B5D4 /* ProfileViewController.swift in Sources */,
 				7400A20B2334336D00D4E9FE /* CompanyServices.swift in Sources */,
 				7403019D233CB3390040FAF5 /* NameEditViewController.swift in Sources */,
 				7403CFCC22F8A16D00C6C8D1 /* ColorExtension.swift in Sources */,
 				740301A7233CB3B00040FAF5 /* AddressEditViewController.swift in Sources */,
-				74016E792361B3C500D38E41 /* FoldingCell.swift in Sources */,
 				74FC54BF2343C16300938320 /* BioEditViewController.swift in Sources */,
 				743BE9EA22F0C5C6006A2F6E /* Constants.swift in Sources */,
 			);
@@ -670,15 +698,17 @@
 			baseConfigurationReference = 3E08EA34B6084B757D334FBA /* Pods-StaffyAdmin.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 8CDXH35L83;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = AKE2WMZ5JW;
 				INFOPLIST_FILE = StaffyAdmin/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.aidanmiskella.StaffyAdmin;
+				PRODUCT_BUNDLE_IDENTIFIER = ie.ucc.cs.yr3.StaffyAdmin;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = StaffyAdmin;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -689,15 +719,17 @@
 			baseConfigurationReference = 18CFE4FF7E548750235621ED /* Pods-StaffyAdmin.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 8CDXH35L83;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = AKE2WMZ5JW;
 				INFOPLIST_FILE = StaffyAdmin/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.aidanmiskella.StaffyAdmin;
+				PRODUCT_BUNDLE_IDENTIFIER = ie.ucc.cs.yr3.StaffyAdmin;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = StaffyAdmin;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
