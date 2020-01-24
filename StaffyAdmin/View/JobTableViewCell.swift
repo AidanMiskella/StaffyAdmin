@@ -46,7 +46,7 @@ class JobTableViewCell: UITableViewCell {
             self.companyImageView.image = image
         }
 
-        companyStarRating.rating = currentCompany.reviewRating!
+        companyStarRating.rating = (currentCompany.reviewRating! / Double(currentCompany.jobsCompleted))
         jobTitleLabel.text = job.title
         jobCompanyNameLabel.text = job.jobCompanyName
         jobLocationLabel.text = job.address

@@ -53,7 +53,6 @@ struct Constants {
         static let gender = "gender"
         static let dob = "dob"
         static let date_created = "dateCreated"
-        static let jobs_created = "jobsCreated"
         static let jobs_applied = "jobsApplied"
         static let jobs_accepted = "jobsAccepted"
         
@@ -86,6 +85,8 @@ struct Constants {
         static let signature_url = "signatureURL"
         static let employee_star_rating = "employeeStarRating"
         static let employee_comment = "employeeComment"
+        static let signature_employer_name = "signatureEmployerName"
+        static let signature_employer_position = "signatureEmployerPosition"
         static let report_open = "reportOpen"
     }
     

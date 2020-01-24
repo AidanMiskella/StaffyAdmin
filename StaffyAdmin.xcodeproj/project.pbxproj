@@ -36,6 +36,7 @@
 		741B5E5123705F0D00792761 /* ManagePeopleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 741B5E5023705F0D00792761 /* ManagePeopleCell.swift */; };
 		741B5E542371D74000792761 /* UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 741B5E532371D74000792761 /* UserProfileViewController.swift */; };
 		741B5E562371D75100792761 /* UserProfile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 741B5E552371D75100792761 /* UserProfile.storyboard */; };
+		741DE77623DB4BF90052A981 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 741DE77523DB4BF90052A981 /* CardView.swift */; };
 		743BE9E822F0C5A6006A2F6E /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 743BE9E722F0C5A6006A2F6E /* Utilities.swift */; };
 		743BE9EA22F0C5C6006A2F6E /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 743BE9E922F0C5C6006A2F6E /* Constants.swift */; };
 		743BE9EC22F0FF10006A2F6E /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 743BE9EB22F0FF10006A2F6E /* RegisterViewController.swift */; };
@@ -50,6 +51,7 @@
 		74B23E8022F8ABE30058B5D4 /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 74B23E7F22F8ABE30058B5D4 /* Home.storyboard */; };
 		74B23E8822F8ADDB0058B5D4 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74B23E8722F8ADDB0058B5D4 /* ProfileViewController.swift */; };
 		74B23E8A22F8ADEA0058B5D4 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 74B23E8922F8ADEA0058B5D4 /* Profile.storyboard */; };
+		74B8853623D5EE93001E8F4E /* ManageStaffTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74B8853523D5EE93001E8F4E /* ManageStaffTableViewCell.swift */; };
 		74BC261923CB7A280076E3A5 /* EmployerFeedbackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74BC261823CB7A280076E3A5 /* EmployerFeedbackViewController.swift */; };
 		74D05063237AE8E000F6B7CB /* UISegmentControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D05062237AE8E000F6B7CB /* UISegmentControllerExtension.swift */; };
 		74EDBC0222F0BC19007B65B8 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 74EDBC0122F0BC19007B65B8 /* Login.storyboard */; };
@@ -81,6 +83,7 @@
 		7403CFC722F8A15100C6C8D1 /* ErrorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorExtension.swift; sourceTree = "<group>"; };
 		7403CFC922F8A16000C6C8D1 /* FontExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontExtension.swift; sourceTree = "<group>"; };
 		7403CFCB22F8A16D00C6C8D1 /* ColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtension.swift; sourceTree = "<group>"; };
+		7403E03923D0B58000BD6615 /* StaffyAdmin.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = StaffyAdmin.entitlements; sourceTree = "<group>"; };
 		7404EE4B2360ABFA00AEF2AA /* JobEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobEditViewController.swift; sourceTree = "<group>"; };
 		74050497236F379900B95894 /* ManagePeopleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagePeopleViewController.swift; sourceTree = "<group>"; };
 		740508D72355F10C00DA78EC /* AddJobViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddJobViewController.swift; sourceTree = "<group>"; };
@@ -101,6 +104,7 @@
 		741B5E5023705F0D00792761 /* ManagePeopleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagePeopleCell.swift; sourceTree = "<group>"; };
 		741B5E532371D74000792761 /* UserProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileViewController.swift; sourceTree = "<group>"; };
 		741B5E552371D75100792761 /* UserProfile.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = UserProfile.storyboard; sourceTree = "<group>"; };
+		741DE77523DB4BF90052A981 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		743BE9E722F0C5A6006A2F6E /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		743BE9E922F0C5C6006A2F6E /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		743BE9EB22F0FF10006A2F6E /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
@@ -115,6 +119,7 @@
 		74B23E7F22F8ABE30058B5D4 /* Home.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
 		74B23E8722F8ADDB0058B5D4 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		74B23E8922F8ADEA0058B5D4 /* Profile.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
+		74B8853523D5EE93001E8F4E /* ManageStaffTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageStaffTableViewCell.swift; sourceTree = "<group>"; };
 		74BC261823CB7A280076E3A5 /* EmployerFeedbackViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployerFeedbackViewController.swift; sourceTree = "<group>"; };
 		74D05062237AE8E000F6B7CB /* UISegmentControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UISegmentControllerExtension.swift; sourceTree = "<group>"; };
 		74EDBC0122F0BC19007B65B8 /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
@@ -220,6 +225,7 @@
 		7411E32722F0BA3200E3830A /* StaffyAdmin */ = {
 			isa = PBXGroup;
 			children = (
+				7403E03923D0B58000BD6615 /* StaffyAdmin.entitlements */,
 				7413AE4E22F37D740019CD06 /* Helpers */,
 				740C16C82336332B00266C62 /* Services */,
 				7413AE5122F37D8F0019CD06 /* Model */,
@@ -245,6 +251,7 @@
 				7403CFC722F8A15100C6C8D1 /* ErrorExtension.swift */,
 				7402D1172337AD2E001E0573 /* UIViewExtension.swift */,
 				74D05062237AE8E000F6B7CB /* UISegmentControllerExtension.swift */,
+				741DE77523DB4BF90052A981 /* CardView.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -268,6 +275,7 @@
 				741B5E5023705F0D00792761 /* ManagePeopleCell.swift */,
 				740AC9112389889D004371F1 /* JobTableViewCell.swift */,
 				7462C31323C7C8FD00BEB83A /* ReportTableViewCell.swift */,
+				74B8853523D5EE93001E8F4E /* ManageStaffTableViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -530,6 +538,7 @@
 				740508D82355F10C00DA78EC /* AddJobViewController.swift in Sources */,
 				74718BEF236880FA009A64F3 /* PasswordEditViewController.swift in Sources */,
 				7462C30C23C7C68900BEB83A /* ReportViewController.swift in Sources */,
+				74B8853623D5EE93001E8F4E /* ManageStaffTableViewCell.swift in Sources */,
 				74EE62FD2354B21800DF9F69 /* Company.swift in Sources */,
 				741B5E5123705F0D00792761 /* ManagePeopleCell.swift in Sources */,
 				740AC9122389889D004371F1 /* JobTableViewCell.swift in Sources */,
@@ -537,6 +546,7 @@
 				7453F20A233135270019EECE /* ProfileCellData.swift in Sources */,
 				74EDBC0422F0BD01007B65B8 /* LoginViewController.swift in Sources */,
 				7404EE4C2360ABFA00AEF2AA /* JobEditViewController.swift in Sources */,
+				741DE77623DB4BF90052A981 /* CardView.swift in Sources */,
 				740C16CA2336343F00266C62 /* ImageService.swift in Sources */,
 				7413AE4D22F375DC0019CD06 /* ResetPasswordViewController.swift in Sources */,
 				740AC9142389B8C6004371F1 /* JobViewController.swift in Sources */,

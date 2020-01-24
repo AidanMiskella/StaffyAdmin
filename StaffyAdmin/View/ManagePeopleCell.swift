@@ -8,8 +8,10 @@
 
 import UIKit
 import Cosmos
+import Firebase
+import FirebaseAuth
 
-protocol UserCellDelegate {
+protocol UserCellApplicantDelegate {
     
     func profileButtonTapped(user: User)
     
@@ -27,9 +29,9 @@ class ManagePeopleCell: UITableViewCell {
     @IBOutlet weak var moreImageButton: UIImageView!
     
     private var user: User!
-    private var delegate: UserCellDelegate?
+    private var delegate: UserCellApplicantDelegate?
     
-    func setCell(user: User, delegate: UserCellDelegate) {
+    func setCell(user: User, delegate: UserCellApplicantDelegate) {
         
         Utilities.styleLabel(label: nameLabel, font: .profileTableData, fontColor: .black)
         Utilities.styleImage(imageView: moreImageButton, image: "more", imageColor: .darkGray)
@@ -58,7 +60,7 @@ class ManagePeopleCell: UITableViewCell {
         }
         
         nameLabel.text = "\(user.firstName) \(user.lastName)"
-        ratingView.rating = user.reviewRating!
+        ratingView.rating = (user.reviewRating! / Double(user.jobsCompleted!))
     }
     
     func removeOptionsButton(job: Job, selectedSegment: String) {

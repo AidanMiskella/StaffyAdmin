@@ -31,8 +31,6 @@ class ReportViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     private var timer = Timer()
-    var clockedIn = false
-    var onBreak = false
     
     var job: Job!
     var currentUser: User!
@@ -91,9 +89,9 @@ class ReportViewController: UIViewController {
     
     func setupElements() {
         
-        Utilities.styleLabel(label: nameLabel, font: .largeTitle, fontColor: .black)
+        Utilities.styleLabel(label: nameLabel, font: .reportNameTitle, fontColor: .black)
         Utilities.styleLabel(label: currentTime, font: .largeTime, fontColor: .black)
-        Utilities.styleLabel(label: statusLabel, font: .largeTitle, fontColor: .black)
+        Utilities.styleLabel(label: statusLabel, font: .reportClockingStatus, fontColor: .black)
         Utilities.styleFilledButton(button: clockingButton, font: .largeLoginButton, fontColor: .white, backgroundColor: .lightBlue, cornerRadius: 10.0)
         Utilities.styleFilledButton(button: breakButton, font: .largeLoginButton, fontColor: .white, backgroundColor: .lightBlue, cornerRadius: 10.0)
     }
@@ -105,6 +103,11 @@ class ReportViewController: UIViewController {
         avatarImageView.layer.borderColor = UIColor.gray.cgColor
         avatarImageView.layer.cornerRadius = avatarImageView.frame.height / 2
         avatarImageView.clipsToBounds = true
+        
+        clockingButton.isEnabled = false
+        breakButton.isEnabled = false
+        clockingButton.tintColor = .gray
+        breakButton.tintColor = .gray
         
         CompanyService.observeUserProfile(currentUser.userId, completion: { (user) in
             
@@ -131,8 +134,8 @@ class ReportViewController: UIViewController {
                     self.reports.removeAll()
                     self.reports = Report.parseData(snapshot: snapshot)
                     self.currentReport = self.reports[0]
+                    self.statusLabel.text = self.self.currentReport.reportStatus
                     self.clockingMessages = self.currentReport.clockingMessages.reversed()
-                    self.clockingButtonTitle()
                     self.tableView.reloadData()
                 }
             })
@@ -164,64 +167,6 @@ class ReportViewController: UIViewController {
             }
             
             alertView.showWarning("Job not complete", subTitle: "You cannot fully review an employee report until it is completed by providing a employer signature and employee feedback.", animationStyle: .rightToLeft)
-        }
-    }
-    
-    func clockingButtonTitle() {
-        
-        if currentReport.reportOpen == true {
-            
-            if currentReport.reportStatus == Constants.Report.notClockedIn {
-                
-                clockingButton.setTitle("Clock in", for: .normal)
-                statusLabel.text = Constants.Report.notClockedIn
-                breakButton.backgroundColor = .gray
-                breakButton.isEnabled = false
-                Utilities.styleImage(imageView: statusImageView, image: "dot", imageColor: .red)
-            }
-                
-            else if currentReport.reportStatus == Constants.Report.clockedIn {
-                
-                clockingButton.setTitle("Clock out", for: .normal)
-                breakButton.setTitle("Start break", for: .normal)
-                statusLabel.text = Constants.Report.clockedIn
-                breakButton.backgroundColor = .lightBlue
-                breakButton.isEnabled = true
-                clockingButton.backgroundColor = .lightBlue
-                clockingButton.isEnabled = true
-                Utilities.styleImage(imageView: statusImageView, image: "dot", imageColor: .green)
-            }
-                
-            else if currentReport.reportStatus == Constants.Report.clockedOut {
-                
-                clockingButton.setTitle("Clock in", for: .normal)
-                statusLabel.text = Constants.Report.clockedOut
-                breakButton.backgroundColor = .gray
-                breakButton.isEnabled = false
-                Utilities.styleImage(imageView: statusImageView, image: "dot", imageColor: .red)
-            }
-                
-            else if currentReport.reportStatus == Constants.Report.onBreak {
-                
-                breakButton.setTitle("End break", for: .normal)
-                statusLabel.text = Constants.Report.onBreak
-                clockingButton.backgroundColor = .gray
-                clockingButton.isEnabled = false
-                Utilities.styleImage(imageView: statusImageView, image: "dot", imageColor: .yellow)
-            } else {
-                
-                breakButton.setTitle("Start break", for: .normal)
-                statusLabel.text = Constants.Report.clockedIn
-                Utilities.styleImage(imageView: statusImageView, image: "dot", imageColor: .green)
-            }
-        } else {
-            
-            breakButton.backgroundColor = .gray
-            breakButton.isEnabled = false
-            clockingButton.backgroundColor = .gray
-            clockingButton.isEnabled = false
-            statusLabel.text = Constants.Report.reportComlpete
-            Utilities.styleImage(imageView: statusImageView, image: "dot", imageColor: .green)
         }
     }
     

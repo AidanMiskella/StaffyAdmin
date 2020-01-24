@@ -153,27 +153,30 @@ class AddJobViewController: UIViewController, UITextFieldDelegate, UIPickerViewD
             
             guard let currentCompany = CompanyService.currentCompany else { return }
             
-            Firestore.firestore().collection(Constants.FirebaseDB.jobs_ref).addDocument(data: [
-                
-                Constants.FirebaseDB.company_id: currentCompany.userId,
-                Constants.FirebaseDB.title: titleTextField.text!,
-                Constants.FirebaseDB.job_company_name: jobCompanyNameTextField.text!,
-                Constants.FirebaseDB.company_name: currentCompany.companyName,
-                Constants.FirebaseDB.address:getAddress(),
-                Constants.FirebaseDB.experience: experienceTextField.text!,
-                Constants.FirebaseDB.positions: positionsTextField.text!,
-                Constants.FirebaseDB.posted_date: Date(),
-                Constants.FirebaseDB.start_date: Timestamp(date: startDate),
-                Constants.FirebaseDB.end_date: Timestamp(date: endDate),
-                Constants.FirebaseDB.start_time: startTimeTextField.text!,
-                Constants.FirebaseDB.end_time: endTimeTextField.text!,
-                Constants.FirebaseDB.description: descriptionTextView.text!,
-                Constants.FirebaseDB.pay: String(format: "€%.1f0 per hour", paySlider.value),
-                Constants.FirebaseDB.company_email: Auth.auth().currentUser?.email ?? "",
-                Constants.FirebaseDB.company_phone: currentCompany.mobile ?? "",
-                Constants.FirebaseDB.status: "open",
-                Constants.FirebaseDB.accepted: [],
-                Constants.FirebaseDB.applicants: []
+            let job_ref = Firestore.firestore().collection(Constants.FirebaseDB.jobs_ref)
+            
+            let jobDoc = job_ref.document()
+            
+            jobDoc.setData([Constants.FirebaseDB.job_id: jobDoc.documentID,
+                            Constants.FirebaseDB.company_id: currentCompany.userId,
+                            Constants.FirebaseDB.title: titleTextField.text!,
+                            Constants.FirebaseDB.job_company_name: jobCompanyNameTextField.text!,
+                            Constants.FirebaseDB.company_name: currentCompany.companyName,
+                            Constants.FirebaseDB.address:getAddress(),
+                            Constants.FirebaseDB.experience: experienceTextField.text!,
+                            Constants.FirebaseDB.positions: positionsTextField.text!,
+                            Constants.FirebaseDB.posted_date: Date(),
+                            Constants.FirebaseDB.start_date: Timestamp(date: startDate),
+                            Constants.FirebaseDB.end_date: Timestamp(date: endDate),
+                            Constants.FirebaseDB.start_time: startTimeTextField.text!,
+                            Constants.FirebaseDB.end_time: endTimeTextField.text!,
+                            Constants.FirebaseDB.description: descriptionTextView.text!,
+                            Constants.FirebaseDB.pay: getPay(),
+                            Constants.FirebaseDB.company_email: Auth.auth().currentUser?.email ?? "",
+                            Constants.FirebaseDB.company_phone: currentCompany.mobile ?? "",
+                            Constants.FirebaseDB.status: "open",
+                            Constants.FirebaseDB.accepted: [],
+                            Constants.FirebaseDB.applicants: []
                 
             ]) { (error) in
                 if let error = error {
@@ -209,6 +212,12 @@ class AddJobViewController: UIViewController, UITextFieldDelegate, UIPickerViewD
         }
         
         return nil
+    }
+    
+    func getPay() -> Double {
+        
+        let divisor = pow(10.0, Double(1))
+        return (Double(paySlider.value) * divisor).rounded() / divisor
     }
     
     func getAddress() -> String {

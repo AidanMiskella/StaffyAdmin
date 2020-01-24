@@ -23,8 +23,6 @@ class EmployerFeedbackViewController: UIViewController {
     var job: Job!
     var currentReport: Report!
     var currentUser: User!
-    var employerStarRating: Double!
-    var employerComment: String!
     var signature: UIImage!
     
     override func viewDidLoad() {
@@ -42,12 +40,12 @@ class EmployerFeedbackViewController: UIViewController {
     
     func connectOutlets() {
         
-        if currentReport.employerStarRating != 0.0 {
+        if currentReport.employeeStarRating != 0.0 {
             
             starRating.isUserInteractionEnabled = false
             commentsTextView.isEditable = false
-            starRating.rating = currentReport.employerStarRating
-            commentsTextView.text = currentReport.employerComment
+            starRating.rating = currentReport.employeeStarRating
+            commentsTextView.text = currentReport.employeeComment
             navigationItem.rightBarButtonItem = nil
         }
         
@@ -76,8 +74,8 @@ class EmployerFeedbackViewController: UIViewController {
         batch.updateData([Constants.FirebaseDB.reviewRating: self.starRating.rating + currentUser.reviewRating!,
                           Constants.FirebaseDB.jobs_completed: currentUser.jobsCompleted! + 1], forDocument: user_ref)
         
-        batch.updateData([Constants.FirebaseDB.employer_star_rating: self.starRating.rating,
-                          Constants.FirebaseDB.employer_comment: self.commentsTextView.text!,
+        batch.updateData([Constants.FirebaseDB.employee_star_rating: self.starRating.rating,
+                          Constants.FirebaseDB.employee_comment: self.commentsTextView.text!,
                           Constants.FirebaseDB.report_open: false], forDocument: report_ref)
         
         batch.commit() { err in

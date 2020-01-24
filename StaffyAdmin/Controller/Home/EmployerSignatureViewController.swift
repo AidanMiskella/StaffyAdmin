@@ -14,8 +14,15 @@ import SCLAlertView
 import Firebase
 import FirebaseAuth
 
-
 class EmployerSignatureViewController: UIViewController, SignaturePadDelegate {
+    
+    @IBOutlet weak var signatureEmployerName: UITextField!
+    
+    @IBOutlet weak var signatureEmployerNameImage: UIImageView!
+    
+    @IBOutlet weak var signatureEmployerPosition: UITextField!
+    
+    @IBOutlet weak var signatureEmployerPositionImage: UIImageView!
     
     @IBOutlet weak var signaturePadView: SignaturePad!
     
@@ -34,6 +41,17 @@ class EmployerSignatureViewController: UIViewController, SignaturePadDelegate {
     func connectOutlets() {
             
         signaturePadView.isUserInteractionEnabled = false
+        
+        Utilities.styleTextField(textfield: signatureEmployerName, font: .editProfileText, fontColor: .black, padding: 40.0)
+        Utilities.styleTextField(textfield: signatureEmployerPosition, font: .editProfileText, fontColor: .black, padding: 40.0)
+        Utilities.styleImage(imageView: signatureEmployerNameImage, image: "userSmall", imageColor: .lightGray)
+        Utilities.styleImage(imageView: signatureEmployerPositionImage, image: "userSmall", imageColor: .lightGray)
+        
+        signatureEmployerName.text = currentReport.signatureEmployerName
+        signatureEmployerPosition.text = currentReport.signatureEmployerPosition
+        
+        signatureEmployerName.isEnabled = false
+        signatureEmployerPosition.isEnabled = false
         ImageService.downloadImage(withURL: currentReport.signatureURL!) { (image) in
             
             self.signaturePadView.setSignature(_image: image!)

@@ -12,8 +12,9 @@ import FirebaseAuth
 import SCLAlertView
 import Cosmos
 import GrowingTextView
+import MessageUI
 
-class JobViewController: UIViewController {
+class JobViewController: UIViewController, MFMailComposeViewControllerDelegate {
     
     @IBOutlet weak var avatarImageView: UIImageView!
     
@@ -48,6 +49,11 @@ class JobViewController: UIViewController {
     @IBOutlet weak var jobDescriptionTextView: GrowingTextView!
     
     var job: Job?
+    var currentJob = [Job]()
+    
+    private var jobs_ref: CollectionReference!
+    private var jobsListener: ListenerRegistration!
+    private var loginHandle: AuthStateDidChangeListenerHandle?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,11 +61,52 @@ class JobViewController: UIViewController {
         // Do any additional setup after loading the view.
         setupElements()
         connectOutlets()
+        
+        jobs_ref = Firestore.firestore().collection(Constants.FirebaseDB.jobs_ref)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        
+        loginHandle = Auth.auth().addStateDidChangeListener({ (auth, user) in
+            
+            if user != nil {
+                
+                CompanyService.observeCompanyProfile(user!.uid, completion: { (user) in
+                    
+                    CompanyService.currentCompany = user
+                    self.setListener()
+                })
+            } else {
+                
+                CompanyService.currentCompany = nil
+                
+                let storyboard = UIStoryboard(name: "Login", bundle: nil)
+                let loginVC = storyboard.instantiateViewController(withIdentifier: Constants.Storyboard.loginViewController)
+                self.present(loginVC, animated: true, completion: nil)
+            }
+        })
+    }
+    
+    func setListener() {
+        
+        jobsListener = jobs_ref
+            .whereField(Constants.FirebaseDB.job_id, isEqualTo: job!.jobId)
+            .addSnapshotListener { (snapshot, error) in
+                if let error = error {
+                    
+                    debugPrint("Error fetching docs: \(error)")
+                } else {
+                    
+                    self.currentJob = Job.parseData(snapshot: snapshot)
+                    self.job = self.currentJob[0]
+                    self.updateUI()
+                }
+        }
     }
     
     func setupElements() {
         
-        Utilities.styleLabel(label: companyNameLabel, font: .largeTitle, fontColor: .black)
+        Utilities.styleLabel(label: companyNameLabel, font: .jobViewTitle, fontColor: .black)
         Utilities.styleLabel(label: jobTitleLabel, font: .editProfileText, fontColor: .black)
         Utilities.styleLabel(label: jobCompanyNameLabel, font: .editProfileText, fontColor: .black)
         Utilities.styleLabel(label: jobLocationLabel, font: .editProfileText, fontColor: .black)
@@ -68,8 +115,8 @@ class JobViewController: UIViewController {
         Utilities.styleLabel(label: datesLabel, font: .editProfileText, fontColor: .black)
         Utilities.styleLabel(label: timesLabel, font: .editProfileText, fontColor: .black)
         Utilities.styleLabel(label: payLabel, font: .editProfileText, fontColor: .black)
-        Utilities.styleLabel(label: companyEmailLabel, font: .editProfileText, fontColor: .black)
-        Utilities.styleLabel(label: companyPhoneLabel, font: .editProfileText, fontColor: .black)
+        Utilities.styleLabel(label: companyEmailLabel, font: .jobViewContactText, fontColor: .black)
+        Utilities.styleLabel(label: companyPhoneLabel, font: .jobViewContactText, fontColor: .black)
         Utilities.styleFilledButton(button: manageButton, font: .largeLoginButton, fontColor: .white, backgroundColor: .lightBlue, cornerRadius: 10.0)
         Utilities.styleFilledButton(button: deleteJob, font: .largeLoginButton, fontColor: .white, backgroundColor: .red, cornerRadius: 10.0)
         Utilities.styleTextView(textView: jobDescriptionTextView, font: .editProfileText, fontColor: .black)
@@ -87,10 +134,17 @@ class JobViewController: UIViewController {
         avatarImageView.layer.cornerRadius = avatarImageView.frame.height / 2
         avatarImageView.clipsToBounds = true
         
+        companyRating.rating = (currentCompany.reviewRating! / Double(currentCompany.jobsCompleted))
+        
         ImageService.getImage(withURL: currentCompany.avatarURL!) { (image) in
             
             self.avatarImageView.image = image
         }
+        
+        updateUI()
+    }
+    
+    func updateUI() {
         
         guard let positions = job?.positions,
             let startTime = job?.startTime,
@@ -102,10 +156,10 @@ class JobViewController: UIViewController {
         jobCompanyNameLabel.text = job?.jobCompanyName
         jobLocationLabel.text = job?.address
         experienceLabel.text = job?.experince
-        positionsLabel.text = "\(positions) positions"
+        positionsLabel.text = "\(positions) position(s)"
         datesLabel.text = "\(Utilities.dateFormatterShortMonth((job?.startDate.dateValue())!)) - \(Utilities.dateFormatterShortMonth((job?.endDate.dateValue())!))"
         timesLabel.text = "\(startTime) - \(endTime)"
-        payLabel.text = "€\(pay)"
+        payLabel.text = String(format: "€%.1f0 per hour", pay)
         companyEmailLabel.text = job?.companyEmail
         companyPhoneLabel.text = job?.companyPhone
         jobDescriptionTextView.text = job?.description
@@ -121,8 +175,6 @@ class JobViewController: UIViewController {
         }
         
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-        
-        alert.addAction(manageAction)
         
         if job?.status == "open" {
             
@@ -181,8 +233,23 @@ class JobViewController: UIViewController {
             alert.addAction(moveToClosed)
         }
         
+        alert.addAction(manageAction)
         alert.addAction(cancelAction)
         present(alert, animated: true, completion: nil)
+    }
+    
+    @IBAction func deleteJob(_ sender: Any) {
+        
+        Firestore.firestore().collection(Constants.FirebaseDB.jobs_ref).document(job!.jobId).delete { (error) in
+            
+            if let err = error {
+                
+                print(err.localizedDescription)
+            } else {
+                
+                self.navigationController?.popToRootViewController(animated: true)
+            }
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

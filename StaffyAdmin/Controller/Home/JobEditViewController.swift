@@ -164,7 +164,7 @@ class JobEditViewController: UIViewController, UITextFieldDelegate, UIPickerView
         endTimeTextField.placeholder = job?.endTime
         experienceTextField.placeholder = job?.experince
         positionsTextField.placeholder = job?.positions
-        paySlider.setValue(job!.pay, animated: true)
+        paySlider.setValue(Float(job!.pay), animated: true)
     }
     
     @IBAction func saveButtonTapped(_ sender: Any) {

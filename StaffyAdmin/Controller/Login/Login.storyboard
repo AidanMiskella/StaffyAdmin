@@ -109,6 +109,13 @@
                                     <constraint firstAttribute="height" constant="20" id="tkj-Kz-HzD"/>
                                 </constraints>
                             </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Staffy" translatesAutoresizingMaskIntoConstraints="NO" id="aps-rC-Ll7">
+                                <rect key="frame" x="57" y="128" width="300" height="300"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="300" id="I5z-Vz-85U"/>
+                                    <constraint firstAttribute="height" constant="300" id="JyJ-jg-9vH"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -122,6 +129,7 @@
                             <constraint firstItem="cBW-io-dNa" firstAttribute="trailing" secondItem="3tx-rG-WSV" secondAttribute="trailing" constant="40" id="LtQ-J3-9l7"/>
                             <constraint firstItem="CqW-6Y-jAe" firstAttribute="leading" secondItem="cBW-io-dNa" secondAttribute="leading" constant="40" id="MHM-CX-H77"/>
                             <constraint firstItem="cBW-io-dNa" firstAttribute="trailing" secondItem="bw8-jE-J6q" secondAttribute="trailing" constant="40" id="MRh-gX-Vjj"/>
+                            <constraint firstItem="aps-rC-Ll7" firstAttribute="top" secondItem="cBW-io-dNa" secondAttribute="top" constant="40" id="Mzg-09-Tgm"/>
                             <constraint firstItem="bw8-jE-J6q" firstAttribute="top" secondItem="Kvw-Lv-lOd" secondAttribute="bottom" constant="5" id="SD5-RH-bnP"/>
                             <constraint firstItem="FEw-1m-V2B" firstAttribute="leading" secondItem="cBW-io-dNa" secondAttribute="leading" constant="49" id="UWC-Oa-bgd"/>
                             <constraint firstAttribute="trailing" secondItem="CqW-6Y-jAe" secondAttribute="trailing" constant="40" id="XpO-aI-4dY"/>
@@ -131,6 +139,7 @@
                             <constraint firstItem="feh-6A-KZs" firstAttribute="leading" secondItem="Hcc-pX-SFY" secondAttribute="leading" constant="40" id="dud-v7-gTI"/>
                             <constraint firstItem="3tx-rG-WSV" firstAttribute="top" secondItem="bw8-jE-J6q" secondAttribute="bottom" constant="15" id="ghd-Up-wYp"/>
                             <constraint firstAttribute="trailing" secondItem="97q-35-O0M" secondAttribute="trailing" constant="40" id="m8E-IT-SZ2"/>
+                            <constraint firstItem="aps-rC-Ll7" firstAttribute="centerX" secondItem="Hcc-pX-SFY" secondAttribute="centerX" id="myG-86-Ob4"/>
                             <constraint firstItem="bw8-jE-J6q" firstAttribute="leading" secondItem="cBW-io-dNa" secondAttribute="leading" constant="40" id="qqA-dU-fos"/>
                             <constraint firstAttribute="trailing" secondItem="feh-6A-KZs" secondAttribute="trailing" constant="40" id="vYA-ow-mTy"/>
                         </constraints>
@@ -244,6 +253,13 @@
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="company" translatesAutoresizingMaskIntoConstraints="NO" id="dNf-NI-Uiz">
                                 <rect key="frame" x="46" y="557" width="20" height="20"/>
                             </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Staffy" translatesAutoresizingMaskIntoConstraints="NO" id="TWb-Yr-w5f">
+                                <rect key="frame" x="57" y="128" width="300" height="300"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="300" id="5c0-lJ-ODR"/>
+                                    <constraint firstAttribute="width" constant="300" id="oVD-l7-a3P"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -268,6 +284,7 @@
                             <constraint firstItem="6JJ-VE-zM6" firstAttribute="trailing" secondItem="LIg-2U-PVX" secondAttribute="trailing" constant="40" id="Q3x-0a-WIn"/>
                             <constraint firstItem="6JJ-VE-zM6" firstAttribute="trailing" secondItem="MQf-Sh-tNG" secondAttribute="trailing" constant="40" id="R0Q-tW-Jct"/>
                             <constraint firstItem="i0r-md-PjA" firstAttribute="trailing" secondItem="cgR-qP-OBP" secondAttribute="trailing" id="SgC-I7-L6N"/>
+                            <constraint firstItem="TWb-Yr-w5f" firstAttribute="top" secondItem="6JJ-VE-zM6" secondAttribute="top" constant="40" id="Sjy-8K-C9w"/>
                             <constraint firstItem="BBb-UZ-3lr" firstAttribute="top" secondItem="AWo-jE-zd5" secondAttribute="bottom" constant="15" id="WIc-Ph-BjG"/>
                             <constraint firstItem="cgR-qP-OBP" firstAttribute="centerY" secondItem="AWo-jE-zd5" secondAttribute="centerY" id="WX5-dQ-7F2"/>
                             <constraint firstItem="eSP-3Z-Oyt" firstAttribute="top" secondItem="91f-Ea-bWv" secondAttribute="bottom" constant="15" id="Wgd-j2-EjK"/>
@@ -278,6 +295,7 @@
                             <constraint firstItem="91f-Ea-bWv" firstAttribute="leading" secondItem="6JJ-VE-zM6" secondAttribute="leading" constant="40" id="kvL-9h-0VD"/>
                             <constraint firstItem="91f-Ea-bWv" firstAttribute="top" secondItem="dNf-NI-Uiz" secondAttribute="bottom" constant="20" id="mSV-2f-RjN"/>
                             <constraint firstItem="91f-Ea-bWv" firstAttribute="top" secondItem="LIg-2U-PVX" secondAttribute="bottom" constant="15" id="min-Xn-j88"/>
+                            <constraint firstItem="TWb-Yr-w5f" firstAttribute="centerX" secondItem="W3X-rv-By6" secondAttribute="centerX" id="n3K-fG-fke"/>
                             <constraint firstItem="MQf-Sh-tNG" firstAttribute="top" secondItem="BBb-UZ-3lr" secondAttribute="bottom" constant="5" id="nQV-6l-bIN"/>
                             <constraint firstItem="BBb-UZ-3lr" firstAttribute="leading" secondItem="6JJ-VE-zM6" secondAttribute="leading" constant="40" id="sek-n1-kve"/>
                             <constraint firstItem="6JJ-VE-zM6" firstAttribute="trailing" secondItem="eSP-3Z-Oyt" secondAttribute="trailing" constant="40" id="uZj-rk-Zp2"/>
@@ -343,9 +361,17 @@
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="envelope" translatesAutoresizingMaskIntoConstraints="NO" id="0E0-fg-Xfb">
                                 <rect key="frame" x="50" y="522" width="20" height="100"/>
                             </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Staffy" translatesAutoresizingMaskIntoConstraints="NO" id="mhP-20-RPd">
+                                <rect key="frame" x="57" y="128" width="300" height="300"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="300" id="CYi-cQ-78m"/>
+                                    <constraint firstAttribute="width" constant="300" id="Fbw-4O-PFw"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="mhP-20-RPd" firstAttribute="centerX" secondItem="Hfw-t6-rDp" secondAttribute="centerX" id="2MK-Hn-Qlz"/>
                             <constraint firstItem="rDl-2d-UWt" firstAttribute="top" secondItem="6bj-pr-y5x" secondAttribute="bottom" constant="210" id="4VA-XD-xOM"/>
                             <constraint firstItem="lKM-5U-iJ4" firstAttribute="trailing" secondItem="rDl-2d-UWt" secondAttribute="trailing" constant="40" id="9Ao-Uo-0wu"/>
                             <constraint firstItem="rDl-2d-UWt" firstAttribute="leading" secondItem="lKM-5U-iJ4" secondAttribute="leading" constant="40" id="HBa-f4-4yE"/>
@@ -357,6 +383,7 @@
                             <constraint firstItem="lKM-5U-iJ4" firstAttribute="trailing" secondItem="TVb-WU-mFN" secondAttribute="trailing" constant="40" id="kz7-Au-BWR"/>
                             <constraint firstItem="lKM-5U-iJ4" firstAttribute="trailing" secondItem="0E0-fg-Xfb" secondAttribute="trailing" constant="344" id="mzB-vf-tEa"/>
                             <constraint firstItem="lKM-5U-iJ4" firstAttribute="trailing" secondItem="6bj-pr-y5x" secondAttribute="trailing" constant="40" id="nYo-p1-EIf"/>
+                            <constraint firstItem="mhP-20-RPd" firstAttribute="top" secondItem="lKM-5U-iJ4" secondAttribute="top" constant="40" id="pLG-co-QD4"/>
                             <constraint firstItem="lKM-5U-iJ4" firstAttribute="bottom" secondItem="rDl-2d-UWt" secondAttribute="bottom" constant="15" id="tnW-tg-E6d"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="lKM-5U-iJ4"/>
@@ -374,6 +401,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Staffy" width="250" height="250"/>
         <image name="company" width="75" height="75"/>
         <image name="envelope" width="100" height="100"/>
         <image name="imageView:FEw-1m-V2B:image" width="75" height="75">

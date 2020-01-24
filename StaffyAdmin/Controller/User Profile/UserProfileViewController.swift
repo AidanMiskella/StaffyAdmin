@@ -87,29 +87,20 @@ class UserProfileViewController: UIViewController {
             self.profileImage.image = image
         }
         
-        ratingView.rating = user.reviewRating!
-        ratingLabel.text = getRatingText(rating: user.reviewRating!)
+        ratingView.rating = (user.reviewRating! / Double(user.jobsCompleted!))
+        ratingLabel.text = getRatingText(rating: (user.reviewRating! / Double(user.jobsCompleted!)))
         bioLabel.text = user.bio
+        
     }
     
     func getRatingText(rating: Double) -> String {
         
-        switch rating {
+        if rating == 0.0 {
             
-        case 0:
-            return "\(Constants.Profile.no_rating)"
-        case 1:
-            return "1 \(Constants.Profile.rating)"
-        case 2:
-            return "2 \(Constants.Profile.rating)"
-        case 3:
-            return "3 \(Constants.Profile.rating)"
-        case 4:
-            return "4 \(Constants.Profile.rating)"
-        case 5:
-            return "5 \(Constants.Profile.rating)"
-        default:
-            return "\(Constants.Profile.ratingError)"
+            return "No reviews yet"
+        } else {
+            
+            return String(format: "%.1f of 5 Star Rating", rating)
         }
     }
     

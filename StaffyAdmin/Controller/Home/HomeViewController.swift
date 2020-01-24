@@ -118,9 +118,14 @@ class HomeViewController: UIViewController {
         Utilities.setupNavigationStyle(navigationController!)
         segmentControl.addUnderlineForSelectedSegment()
         segmentControl.setFontSize(12)
+        searchBar.tintColor = .lightBlue
     }
     
     @IBAction func categoryChanged(_ sender: Any) {
+        
+        searchBar.text = ""
+        searchBar.endEditing(true)
+        searchActive = false
         
         segmentControl.changeUnderlinePosition()
         
@@ -264,6 +269,7 @@ extension HomeViewController: UISearchBarDelegate {
         searchBar.text = ""
         searchBar.endEditing(true)
         searchActive = false
+        tableView.reloadData()
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
@@ -273,12 +279,15 @@ extension HomeViewController: UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         
-        filteredJobs = jobs.filter({$0.title.lowercased().prefix(searchText.count) == searchText.lowercased()})
+        filteredJobs = jobs.filter({$0.title.lowercased().contains(searchText.lowercased()) ||
+            $0.address.lowercased().contains(searchText.lowercased())
+        })
         
         if(filteredJobs.count == 0){
-            searchActive = false;
+            searchActive = false
+            tableView.endEditing(true)
         } else {
-            searchActive = true;
+            searchActive = true
         }
         self.tableView.reloadData()
     }

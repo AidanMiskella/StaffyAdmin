@@ -17,15 +17,20 @@ enum ManagePeopleCategory: String {
     case accepted = "ACCEPTED"
 }
 
-class ManagePeopleViewController: UIViewController, UserCellDelegate {
+class ManagePeopleViewController: UIViewController, UserCellDelegate, UserCellApplicantDelegate {
     
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var searchBar: UISearchBar!
     
     @IBOutlet private weak var segmentControl: UISegmentedControl!
     
     var job: Job!
     var currentUser: User!
     private var users = [User]()
+    
+    var filteredUsers: [User] = []
+    var searchActive : Bool = false
+    
     private var selectedCategory = ManagePeopleCategory.applicants.rawValue
     private var userListener: ListenerRegistration!
     private var userCollectionRef: CollectionReference!
@@ -36,11 +41,13 @@ class ManagePeopleViewController: UIViewController, UserCellDelegate {
         // Do any additional setup after loading the view.
         getUserCount()
         segmentControl.tintColor = .lightBlue
+        searchBar.tintColor = .lightBlue
         segmentControl.addUnderlineForSelectedSegment()
         segmentControl.setFontSize(12)
         
         tableView.delegate = self
         tableView.dataSource = self
+        searchBar.delegate = self
         
         userCollectionRef = Firestore.firestore().collection(Constants.FirebaseDB.user_ref)
     }
@@ -94,6 +101,10 @@ class ManagePeopleViewController: UIViewController, UserCellDelegate {
     }
     
     @IBAction func categoryChanged(_ sender: Any) {
+        
+        searchBar.text = ""
+        searchBar.endEditing(true)
+        searchActive = false
         
         segmentControl.changeUnderlinePosition()
         
@@ -213,16 +224,18 @@ class ManagePeopleViewController: UIViewController, UserCellDelegate {
                         Constants.FirebaseDB.employer_comment: "No comment",
                         Constants.FirebaseDB.employee_star_rating: 0.0,
                         Constants.FirebaseDB.employee_comment: "Not comment",
+                        Constants.FirebaseDB.signature_employer_name: "",
+                        Constants.FirebaseDB.signature_employer_position: "",
                         Constants.FirebaseDB.report_open: true
                         
                         ], completion: { (error) in
-                            if let error = error {
-                                
-                                debugPrint("Error adding document: \(error)")
-                            } else {
-                                
-                    
-                            }
+                        if let error = error {
+                            
+                            debugPrint("Error adding document: \(error)")
+                        } else {
+                            
+                
+                        }
                     })
                     
                     let batch = Firestore.firestore().batch()
@@ -268,6 +281,13 @@ class ManagePeopleViewController: UIViewController, UserCellDelegate {
                         Constants.FirebaseDB.jobs_applied: FieldValue.arrayRemove([self.job.jobId])
                         ], forDocument: user_ref)
                     
+                    let job_ref = Firestore.firestore().collection(Constants.FirebaseDB.jobs_ref)
+                        .document(self.job.jobId)
+                    
+                    batch.updateData([
+                        Constants.FirebaseDB.applicants: FieldValue.arrayRemove([user.userId])
+                        ], forDocument: job_ref)
+                    
                     batch.commit() { err in
                         if let err = err {
                             
@@ -297,7 +317,8 @@ class ManagePeopleViewController: UIViewController, UserCellDelegate {
                         .document(user.userId)
                     
                     batch.updateData([
-                        Constants.FirebaseDB.jobs_accepted: FieldValue.arrayRemove([self.job.jobId])
+                        Constants.FirebaseDB.jobs_accepted: FieldValue.arrayRemove([self.job.jobId]),
+                        Constants.FirebaseDB.all_applications: FieldValue.arrayRemove([self.job.jobId])
                         ], forDocument: user_ref)
                     
                     let job_ref = Firestore.firestore().collection(Constants.FirebaseDB.jobs_ref)
@@ -343,7 +364,8 @@ class ManagePeopleViewController: UIViewController, UserCellDelegate {
                         .document(user.userId)
                     
                     batch.updateData([
-                        Constants.FirebaseDB.jobs_accepted: FieldValue.arrayRemove([self.job.jobId])
+                        Constants.FirebaseDB.jobs_accepted: FieldValue.arrayRemove([self.job.jobId]),
+                        Constants.FirebaseDB.all_applications: FieldValue.arrayRemove([self.job.jobId])
                         ], forDocument: user_ref)
                     
                     let job_ref = Firestore.firestore().collection(Constants.FirebaseDB.jobs_ref)
@@ -416,6 +438,21 @@ class ManagePeopleViewController: UIViewController, UserCellDelegate {
             vc.job = job
         }
     }
+    
+    func getReport(user: User, completion: @escaping (Report) -> ()) {
+        
+        Firestore.firestore().collection(Constants.FirebaseDB.jobs_ref)
+            .document(job!.jobId).collection(Constants.FirebaseDB.reports_ref)
+            .whereField(Constants.FirebaseDB.user_id, isEqualTo: user.userId)
+            .getDocuments { (snapshot, error) in
+                
+                let reports = Report.parseData(snapshot: snapshot)
+                if reports.count > 0 {
+                    
+                    completion(reports[0])
+                }
+        }
+    }
 }
 
 extension ManagePeopleViewController: UITableViewDelegate, UITableViewDataSource {
@@ -428,11 +465,62 @@ extension ManagePeopleViewController: UITableViewDelegate, UITableViewDataSource
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let user = users[indexPath.row]
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: "ManagePeopleCell") as! ManagePeopleCell
+        
+        if selectedCategory == ManagePeopleCategory.accepted.rawValue {
+            
+            let cell2 = tableView.dequeueReusableCell(withIdentifier: "ManageStaffCell") as! ManageStaffCell
+            
+            getReport(user: user, completion: { (report) -> Void in
+                
+                cell2.setCell(user: user, userReport: report, delegate: self)
+            })
+            return cell2
+        } else {
+            
+            cell.setCell(user: user, delegate: self)
+            cell.removeOptionsButton(job: job, selectedSegment: selectedCategory)
+            return cell
+        }
+    }
+}
 
-        cell.setCell(user: user, delegate: self)
-        cell.removeOptionsButton(job: job, selectedSegment: selectedCategory)
-
-        return cell
+extension ManagePeopleViewController: UISearchBarDelegate {
+    
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        
+        searchActive = true
+    }
+    
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        
+        searchActive = false
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        
+        searchBar.text = ""
+        searchBar.endEditing(true)
+        searchActive = false
+        tableView.reloadData()
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        
+        searchActive = false
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        
+        filteredUsers = users.filter({"\($0.firstName + " " + $0.lastName)".lowercased() .contains(searchText.lowercased().trimmingCharacters(in: .whitespaces))})
+        print(filteredUsers.count)
+        if(filteredUsers.count == 0){
+            searchActive = false
+            tableView.endEditing(true)
+        } else {
+            searchActive = true
+        }
+        self.tableView.reloadData()
     }
 }
