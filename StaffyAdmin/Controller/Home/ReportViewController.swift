@@ -136,6 +136,7 @@ class ReportViewController: UIViewController {
                     self.currentReport = self.reports[0]
                     self.statusLabel.text = self.self.currentReport.reportStatus
                     self.clockingMessages = self.currentReport.clockingMessages.reversed()
+                    self.clockingButtonTitle()
                     self.tableView.reloadData()
                 }
             })
@@ -149,6 +150,39 @@ class ReportViewController: UIViewController {
             vc.job = job
             vc.currentReport = currentReport
             vc.currentUser = currentUser
+        }
+    }
+    
+    func clockingButtonTitle() {
+        
+        if currentReport.reportOpen == true {
+            
+            if currentReport.reportStatus == Constants.Report.notClockedIn {
+                
+                Utilities.styleImage(imageView: statusImageView, image: "dot", imageColor: .orange)
+            }
+                
+            else if currentReport.reportStatus == Constants.Report.clockedIn {
+                
+                Utilities.styleImage(imageView: statusImageView, image: "dot", imageColor: .green)
+            }
+                
+            else if currentReport.reportStatus == Constants.Report.clockedOut {
+
+                Utilities.styleImage(imageView: statusImageView, image: "dot", imageColor: .red)
+            }
+                
+            else if currentReport.reportStatus == Constants.Report.onBreak {
+                
+                Utilities.styleImage(imageView: statusImageView, image: "dot", imageColor: .yellow)
+            } else {
+
+                Utilities.styleImage(imageView: statusImageView, image: "dot", imageColor: .green)
+            }
+        } else {
+
+            statusLabel.text = Constants.Report.reportComlpete
+            Utilities.styleImage(imageView: statusImageView, image: "dot", imageColor: .lightBlue)
         }
     }
     

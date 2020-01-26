@@ -41,12 +41,35 @@ class ProfileViewController: UIViewController, ImagePickerDelegate {
     @IBOutlet weak var tableView: UITableView!
     
     var dataCells: [ProfileCellData] = []
+    private var jobs = [Job]()
+    private var jobs_ref: CollectionReference!
+    private var jobsListener: ListenerRegistration!
+    private var jobsCollectionRef: CollectionReference!
+    private var loginHandle: AuthStateDidChangeListenerHandle?
     
     override func viewWillAppear(_ animated: Bool) {
         
-        setUpProfile()
-        dataCells = createArray()
-        tableView.reloadData()
+        loginHandle = Auth.auth().addStateDidChangeListener({ (auth, user) in
+            
+            if user != nil {
+                
+                CompanyService.observeCompanyProfile(user!.uid, completion: { (user) in
+                    
+                    CompanyService.currentCompany = user
+                    self.setUpProfile()
+                    self.dataCells = self.createArray()
+                    self.tableView.reloadData()
+                    self.setListener()
+                })
+            } else {
+                
+                CompanyService.currentCompany = nil
+                
+                let storyboard = UIStoryboard(name: "Login", bundle: nil)
+                let loginVC = storyboard.instantiateViewController(withIdentifier: Constants.Storyboard.loginViewController)
+                self.present(loginVC, animated: true, completion: nil)
+            }
+        })
     }
     
     override func viewDidLoad() {
@@ -58,6 +81,8 @@ class ProfileViewController: UIViewController, ImagePickerDelegate {
         
         tableView.delegate = self
         tableView.dataSource = self
+        
+        jobsCollectionRef = Firestore.firestore().collection(Constants.FirebaseDB.jobs_ref)
     }
     
     func setUpElements() {
@@ -99,7 +124,47 @@ class ProfileViewController: UIViewController, ImagePickerDelegate {
         ratingView.rating = (currentCompany.reviewRating! / Double(currentCompany.jobsCompleted))
         ratingLabel.text = getRatingText(rating: (currentCompany.reviewRating! / Double(currentCompany.jobsCompleted)))
         bioLabel.text = currentCompany.bio
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
         
+        if jobsListener != nil {
+            
+            jobsListener.remove()
+        }
+    }
+    
+    func setListener() {
+        
+        guard let currentCompanyId = Auth.auth().currentUser?.uid else { return }
+        
+        jobsListener = jobsCollectionRef
+            .whereField(Constants.FirebaseDB.company_id, isEqualTo: currentCompanyId)
+            .whereField(Constants.FirebaseDB.status, isEqualTo: "open")
+            .order(by: Constants.FirebaseDB.start_date, descending: false)
+            .addSnapshotListener({ (snapshot, error) in
+                
+                if let error = error {
+                    
+                    debugPrint("Error fetching docs: \(error)")
+                } else {
+                    
+                    self.jobs.removeAll()
+                    self.jobs = Job.parseData(snapshot: snapshot)
+                    self.getJobs()
+                }
+            })
+    }
+
+    func getJobs() {
+        
+        if jobs.count == 0 {
+            
+            jobAlertLabel.text = "You have no upcoming jobs, create a new job in the 'My Jobs' tab"
+        } else {
+            
+            jobAlertLabel.text = "You have \(jobs.count) upcoming jobs, starting on the \(Utilities.dateFormatterFullMonth(jobs[0].startDate.dateValue())) at \(jobs[0].startTime)"
+        }
     }
     
     func getRatingText(rating: Double) -> String {

@@ -226,6 +226,7 @@ class ManagePeopleViewController: UIViewController, UserCellDelegate, UserCellAp
                         Constants.FirebaseDB.employee_comment: "Not comment",
                         Constants.FirebaseDB.signature_employer_name: "",
                         Constants.FirebaseDB.signature_employer_position: "",
+                        Constants.FirebaseDB.signature_url: "",
                         Constants.FirebaseDB.report_open: true
                         
                         ], completion: { (error) in
