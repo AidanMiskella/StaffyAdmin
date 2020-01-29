@@ -48,6 +48,7 @@
 		7462C31423C7C8FD00BEB83A /* ReportTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7462C31323C7C8FD00BEB83A /* ReportTableViewCell.swift */; };
 		74718BEE236880FA009A64F3 /* PasswordEdit.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 74718BEC236880F9009A64F3 /* PasswordEdit.storyboard */; };
 		74718BEF236880FA009A64F3 /* PasswordEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74718BED236880FA009A64F3 /* PasswordEditViewController.swift */; };
+		748F8ACD23E1F7C9008224F8 /* ImageLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 748F8ACC23E1F7C9008224F8 /* ImageLayout.swift */; };
 		74B23E8022F8ABE30058B5D4 /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 74B23E7F22F8ABE30058B5D4 /* Home.storyboard */; };
 		74B23E8822F8ADDB0058B5D4 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74B23E8722F8ADDB0058B5D4 /* ProfileViewController.swift */; };
 		74B23E8A22F8ADEA0058B5D4 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 74B23E8922F8ADEA0058B5D4 /* Profile.storyboard */; };
@@ -116,6 +117,7 @@
 		7462C31323C7C8FD00BEB83A /* ReportTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportTableViewCell.swift; sourceTree = "<group>"; };
 		74718BEC236880F9009A64F3 /* PasswordEdit.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = PasswordEdit.storyboard; sourceTree = "<group>"; };
 		74718BED236880FA009A64F3 /* PasswordEditViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasswordEditViewController.swift; sourceTree = "<group>"; };
+		748F8ACC23E1F7C9008224F8 /* ImageLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLayout.swift; sourceTree = "<group>"; };
 		74B23E7F22F8ABE30058B5D4 /* Home.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
 		74B23E8722F8ADDB0058B5D4 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		74B23E8922F8ADEA0058B5D4 /* Profile.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
@@ -252,6 +254,7 @@
 				7402D1172337AD2E001E0573 /* UIViewExtension.swift */,
 				74D05062237AE8E000F6B7CB /* UISegmentControllerExtension.swift */,
 				741DE77523DB4BF90052A981 /* CardView.swift */,
+				748F8ACC23E1F7C9008224F8 /* ImageLayout.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -542,6 +545,7 @@
 				74EE62FD2354B21800DF9F69 /* Company.swift in Sources */,
 				741B5E5123705F0D00792761 /* ManagePeopleCell.swift in Sources */,
 				740AC9122389889D004371F1 /* JobTableViewCell.swift in Sources */,
+				748F8ACD23E1F7C9008224F8 /* ImageLayout.swift in Sources */,
 				74EE63002354B9E100DF9F69 /* CompanyNameEditViewController.swift in Sources */,
 				7453F20A233135270019EECE /* ProfileCellData.swift in Sources */,
 				74EDBC0422F0BD01007B65B8 /* LoginViewController.swift in Sources */,

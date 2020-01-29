@@ -117,7 +117,7 @@ class HomeViewController: UIViewController {
         
         Utilities.setupNavigationStyle(navigationController!)
         segmentControl.addUnderlineForSelectedSegment()
-        segmentControl.setFontSize(12)
+        segmentControl.setFontSize()
         searchBar.tintColor = .lightBlue
     }
     

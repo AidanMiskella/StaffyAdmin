@@ -21,7 +21,6 @@ class ManagePeopleViewController: UIViewController, UserCellDelegate, UserCellAp
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
-    
     @IBOutlet private weak var segmentControl: UISegmentedControl!
     
     var job: Job!
@@ -43,7 +42,7 @@ class ManagePeopleViewController: UIViewController, UserCellDelegate, UserCellAp
         segmentControl.tintColor = .lightBlue
         searchBar.tintColor = .lightBlue
         segmentControl.addUnderlineForSelectedSegment()
-        segmentControl.setFontSize(12)
+        segmentControl.setFontSize()
         
         tableView.delegate = self
         tableView.dataSource = self

@@ -46,11 +46,22 @@ class JobTableViewCell: UITableViewCell {
             self.companyImageView.image = image
         }
 
-        companyStarRating.rating = (currentCompany.reviewRating! / Double(currentCompany.jobsCompleted))
+        companyStarRating.rating = getStarRating()
         jobTitleLabel.text = job.title
         jobCompanyNameLabel.text = job.jobCompanyName
         jobLocationLabel.text = job.address
         jobPostedTimeLabel.text = Utilities.timeAgoSinceDate(job.postedDate.dateValue(), currentDate: Date(), numericDates: true)
+    }
+    
+    func getStarRating() -> Double {
+        
+        if CompanyService.currentCompany?.reviewRating == 0 {
+            
+            return 0
+        } else {
+            
+            return (CompanyService.currentCompany!.reviewRating! / Double(CompanyService.currentCompany!.jobsCompleted))
+        }
     }
 }
 

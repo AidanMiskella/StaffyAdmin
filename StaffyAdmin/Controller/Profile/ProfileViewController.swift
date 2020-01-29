@@ -13,6 +13,7 @@ import FirebaseStorage
 import FirebaseFirestore
 import Cosmos
 import ImagePicker
+import GrowingTextView
 
 class ProfileViewController: UIViewController, ImagePickerDelegate {
     
@@ -20,15 +21,13 @@ class ProfileViewController: UIViewController, ImagePickerDelegate {
     
     @IBOutlet weak var profileImage: UIImageView!
     
-    @IBOutlet weak var contentView: UIView!
-    
     @IBOutlet weak var middleRatingView: UIView!
     
     @IBOutlet weak var ratingView: CosmosView!
     
     @IBOutlet weak var ratingLabel: UILabel!
     
-    @IBOutlet weak var bioLabel: UILabel!
+    @IBOutlet weak var bioLabel: GrowingTextView!
     
     @IBOutlet weak var jobAlertView: UIView!
     
@@ -56,8 +55,8 @@ class ProfileViewController: UIViewController, ImagePickerDelegate {
                 CompanyService.observeCompanyProfile(user!.uid, completion: { (user) in
                     
                     CompanyService.currentCompany = user
-                    self.setUpProfile()
                     self.dataCells = self.createArray()
+                    self.setUpProfile()
                     self.tableView.reloadData()
                     self.setListener()
                 })
@@ -77,6 +76,7 @@ class ProfileViewController: UIViewController, ImagePickerDelegate {
 
         // Do any additional setup after loading the view.
         setUpElements()
+        setUpProfile()
         dataCells = createArray()
         
         tableView.delegate = self
@@ -88,12 +88,12 @@ class ProfileViewController: UIViewController, ImagePickerDelegate {
     func setUpElements() {
 
         Utilities.styleLabel(label: ratingLabel, font: .subTitle, fontColor: .gray)
-        Utilities.styleLabel(label: bioLabel, font: .subTitle, fontColor: .darkGray)
+        Utilities.styleTextView(textView: bioLabel, font: .editProfileText, fontColor: .darkGray)
         Utilities.styleLabel(label: jobAlertLabel, font: .subTitle, fontColor: .white)
         
         topProfileImageView.backgroundColor = .lightBlue
         
-        contentView.roundCorners([.topLeft, .topRight], radius: 30.0)
+        middleRatingView.roundCorners([.topLeft, .topRight], radius: 30.0)
         
         bioLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(bioTapped)))
         bioLabel.sizeToFit()
@@ -121,9 +121,20 @@ class ProfileViewController: UIViewController, ImagePickerDelegate {
             self.profileImage.image = image
         }
         
-        ratingView.rating = (currentCompany.reviewRating! / Double(currentCompany.jobsCompleted))
-        ratingLabel.text = getRatingText(rating: (currentCompany.reviewRating! / Double(currentCompany.jobsCompleted)))
+        ratingView.rating = getStarRating()
+        ratingLabel.text = getRatingText()
         bioLabel.text = currentCompany.bio
+    }
+    
+    func getStarRating() -> Double {
+        
+        if CompanyService.currentCompany?.reviewRating == 0 {
+            
+            return 0
+        } else {
+            
+            return (CompanyService.currentCompany!.reviewRating! / Double(CompanyService.currentCompany!.jobsCompleted))
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -167,13 +178,14 @@ class ProfileViewController: UIViewController, ImagePickerDelegate {
         }
     }
     
-    func getRatingText(rating: Double) -> String {
+    func getRatingText() -> String {
         
-        if rating == 0.0 {
+        if CompanyService.currentCompany?.reviewRating == 0 {
             
             return "No reviews yet"
         } else {
             
+            let rating = (CompanyService.currentCompany!.reviewRating! / Double(CompanyService.currentCompany!.jobsCompleted))
             return String(format: "%.1f of 5 Star Rating", rating)
         }
     }
@@ -203,7 +215,7 @@ class ProfileViewController: UIViewController, ImagePickerDelegate {
             .document(Auth.auth().currentUser!.uid)
         let storageRef = Storage.storage().reference().child("company_avatars").child(Auth.auth().currentUser!.uid)
         
-        if let uploadData = images[0].pngData() {
+        if let uploadData = images[0].jpegData(compressionQuality: 0.5) {
             
             storageRef.putData(uploadData, metadata: nil) { (metaData, error) in
                 
@@ -218,13 +230,13 @@ class ProfileViewController: UIViewController, ImagePickerDelegate {
                         ref.updateData(["avatarURL": avatarURL.absoluteString], completion: { (error) in
                             
                             self.profileImage.image = images[0]
-                            imagePicker.dismiss(animated: true)
                         })
                     }
                 }
             }
         }
 
+        imagePicker.dismiss(animated: true)
     }
     
     func cancelButtonDidPress(_ imagePicker: ImagePickerController) {

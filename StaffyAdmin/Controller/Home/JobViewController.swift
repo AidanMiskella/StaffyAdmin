@@ -14,7 +14,7 @@ import Cosmos
 import GrowingTextView
 import MessageUI
 
-class JobViewController: UIViewController, MFMailComposeViewControllerDelegate {
+class JobViewController: UIViewController {
     
     @IBOutlet weak var avatarImageView: UIImageView!
     
@@ -87,6 +87,11 @@ class JobViewController: UIViewController, MFMailComposeViewControllerDelegate {
         })
     }
     
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        avatarImageView.layer.cornerRadius = avatarImageView.frame.height / 2.0
+    }
+    
     func setListener() {
         
         jobsListener = jobs_ref
@@ -134,7 +139,7 @@ class JobViewController: UIViewController, MFMailComposeViewControllerDelegate {
         avatarImageView.layer.cornerRadius = avatarImageView.frame.height / 2
         avatarImageView.clipsToBounds = true
         
-        companyRating.rating = (currentCompany.reviewRating! / Double(currentCompany.jobsCompleted))
+        companyRating.rating = getStarRating()
         
         ImageService.getImage(withURL: currentCompany.avatarURL!) { (image) in
             
@@ -142,6 +147,17 @@ class JobViewController: UIViewController, MFMailComposeViewControllerDelegate {
         }
         
         updateUI()
+    }
+    
+    func getStarRating() -> Double {
+        
+        if CompanyService.currentCompany?.reviewRating == 0 {
+            
+            return 0
+        } else {
+            
+            return (CompanyService.currentCompany!.reviewRating! / Double(CompanyService.currentCompany!.jobsCompleted))
+        }
     }
     
     func updateUI() {

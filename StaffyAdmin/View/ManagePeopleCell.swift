@@ -60,7 +60,18 @@ class ManagePeopleCell: UITableViewCell {
         }
         
         nameLabel.text = "\(user.firstName) \(user.lastName)"
-        ratingView.rating = (user.reviewRating! / Double(user.jobsCompleted!))
+        ratingView.rating = getStarRating()
+    }
+    
+    func getStarRating() -> Double {
+        
+        if user.reviewRating == 0 {
+            
+            return 0
+        } else {
+            
+            return (user.reviewRating! / Double(user.jobsCompleted!))
+        }
     }
     
     func removeOptionsButton(job: Job, selectedSegment: String) {

@@ -11,6 +11,7 @@ import Firebase
 import FirebaseAuth
 import Cosmos
 import ImagePicker
+import GrowingTextView
 
 class UserProfileViewController: UIViewController {
     
@@ -18,15 +19,13 @@ class UserProfileViewController: UIViewController {
     
     @IBOutlet weak var profileImage: UIImageView!
     
-    @IBOutlet weak var contentView: UIView!
-    
     @IBOutlet weak var middleRatingView: UIView!
     
     @IBOutlet weak var ratingView: CosmosView!
     
     @IBOutlet weak var ratingLabel: UILabel!
     
-    @IBOutlet weak var bioLabel: UILabel!
+    @IBOutlet weak var bioLabel: GrowingTextView!
     
     @IBOutlet weak var jobAlertView: UIView!
     
@@ -61,15 +60,16 @@ class UserProfileViewController: UIViewController {
     func setUpElements() {
         
         Utilities.styleLabel(label: ratingLabel, font: .subTitle, fontColor: .gray)
-        Utilities.styleLabel(label: bioLabel, font: .subTitle, fontColor: .darkGray)
+        Utilities.styleTextView(textView: bioLabel, font: .subTitle, fontColor: .darkGray)
         Utilities.styleLabel(label: jobAlertLabel, font: .subTitle, fontColor: .white)
         
-        contentView.roundCorners([.topLeft, .topRight], radius: 30.0)
+        middleRatingView.roundCorners([.topLeft, .topRight], radius: 30.0)
         
         bioLabel.sizeToFit()
         
         jobAlertView.backgroundColor = .lightBlue
         jobAlertImage.tintColor = .white
+        jobAlertLabel.text = "\(user.firstName) has completed \(user.jobsCompleted!) job since joining in \(user.dateProfileCreated)"
         
         profileImage.layer.borderWidth = 4
         profileImage.layer.masksToBounds = false
@@ -87,19 +87,31 @@ class UserProfileViewController: UIViewController {
             self.profileImage.image = image
         }
         
-        ratingView.rating = (user.reviewRating! / Double(user.jobsCompleted!))
-        ratingLabel.text = getRatingText(rating: (user.reviewRating! / Double(user.jobsCompleted!)))
+        ratingView.rating = getStarRating()
+        ratingLabel.text = getRatingText()
         bioLabel.text = user.bio
         
     }
     
-    func getRatingText(rating: Double) -> String {
+    func getStarRating() -> Double {
         
-        if rating == 0.0 {
+        if user.reviewRating == 0 {
+            
+            return 0
+        } else {
+            
+            return (user.reviewRating! / Double(user.jobsCompleted!))
+        }
+    }
+    
+    func getRatingText() -> String {
+        
+        if user.reviewRating == 0 {
             
             return "No reviews yet"
         } else {
             
+            let rating = (user.reviewRating! / Double(user.jobsCompleted!))
             return String(format: "%.1f of 5 Star Rating", rating)
         }
     }
