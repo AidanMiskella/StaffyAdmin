@@ -46,14 +46,14 @@
                                 <rect key="frame" x="0.0" y="188" width="414" height="679"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="JobCell" id="F4Z-P0-ruD" customClass="JobTableViewCell" customModule="Staffy" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="JobCell" id="F4Z-P0-ruD" customClass="JobTableViewCell" customModule="StaffyAdmin" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="115"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="F4Z-P0-ruD" id="W8p-ju-OeJ">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="114.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="XaV-AF-wpL">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="XaV-AF-wpL">
                                                     <rect key="frame" x="20" y="28.5" width="57.5" height="57.5"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="XaV-AF-wpL" secondAttribute="height" multiplier="1:1" id="Ifo-5k-gOC"/>
@@ -621,8 +621,8 @@
                                                         <constraint firstAttribute="width" secondItem="cqO-Zg-hM2" secondAttribute="height" multiplier="1:1" id="htV-CF-zTt"/>
                                                     </constraints>
                                                 </imageView>
-                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="k4w-6E-cNK">
-                                                    <rect key="frame" x="97" y="23" width="247.5" height="38.5"/>
+                                                <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="k4w-6E-cNK">
+                                                    <rect key="frame" x="97" y="22.5" width="247.5" height="71.5"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Aidan Miskella" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sNr-VK-FBg">
                                                             <rect key="frame" x="0.0" y="0.0" width="247.5" height="20.5"/>
@@ -630,8 +630,8 @@
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9Fs-lH-6Bp" customClass="CosmosView" customModule="Cosmos">
-                                                            <rect key="frame" x="0.0" y="20.5" width="247.5" height="18"/>
+                                                        <view userInteractionEnabled="NO" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9Fs-lH-6Bp" customClass="CosmosView" customModule="Cosmos">
+                                                            <rect key="frame" x="0.0" y="21.5" width="247.5" height="50"/>
                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <userDefinedRuntimeAttributes>
                                                                 <userDefinedRuntimeAttribute type="boolean" keyPath="editable" value="NO"/>
@@ -1411,7 +1411,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pNy-OJ-WDI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="451" y="-1708"/>
+            <point key="canvasLocation" x="450.72463768115944" y="-1708.2589285714284"/>
         </scene>
         <!--Job Details-->
         <scene sceneID="y5f-xX-oM1">
@@ -1430,7 +1430,7 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nSh-hm-veE">
                                                 <rect key="frame" x="0.0" y="0.0" width="414" height="215"/>
                                                 <subviews>
-                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="edh-1W-sJg" customClass="ImageLayout" customModule="StaffyAdmin" customModuleProvider="target">
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="edh-1W-sJg" customClass="ImageLayout" customModule="StaffyAdmin" customModuleProvider="target">
                                                         <rect key="frame" x="30" y="30" width="103.5" height="103.5"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" secondItem="edh-1W-sJg" secondAttribute="height" multiplier="1:1" id="ZFf-ks-4lY"/>
@@ -1512,7 +1512,7 @@
                                                     <constraint firstItem="Fza-Ha-lNY" firstAttribute="centerY" secondItem="edh-1W-sJg" secondAttribute="centerY" id="yiP-fj-XHF"/>
                                                 </constraints>
                                             </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2pD-c8-7eb" customClass="CardView" customModule="Staffy" customModuleProvider="target">
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2pD-c8-7eb" customClass="CardView" customModule="StaffyAdmin" customModuleProvider="target">
                                                 <rect key="frame" x="20" y="215" width="374" height="284"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Job Details" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4WN-6W-ap9">
@@ -1670,7 +1670,7 @@
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LU1-pj-dEm" customClass="CardView" customModule="Staffy" customModuleProvider="target">
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LU1-pj-dEm" customClass="CardView" customModule="StaffyAdmin" customModuleProvider="target">
                                                 <rect key="frame" x="20" y="525" width="374" height="109"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Job Description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4uX-XI-o8P">
@@ -1899,7 +1899,7 @@
                                 <rect key="frame" x="0.0" y="369" width="414" height="444"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="reportCell" id="Cw7-yY-q1G" customClass="ReportTableViewCell" customModule="Staffy" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="reportCell" id="Cw7-yY-q1G" customClass="ReportTableViewCell" customModule="StaffyAdmin" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="75"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Cw7-yY-q1G" id="yBC-vi-5Oj">

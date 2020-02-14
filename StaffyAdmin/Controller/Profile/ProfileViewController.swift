@@ -103,7 +103,7 @@ class ProfileViewController: UIViewController, ImagePickerDelegate {
         
         profileImage.layer.borderWidth = 4
         profileImage.layer.masksToBounds = false
-        profileImage.layer.borderColor = UIColor.white.cgColor
+        profileImage.layer.borderColor = UIColor.gray.cgColor
         profileImage.layer.cornerRadius = profileImage.frame.height / 2
         profileImage.clipsToBounds = true
         profileImage.isUserInteractionEnabled = true
